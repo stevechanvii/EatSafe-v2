@@ -2,6 +2,11 @@
 
 One Paragraph of project description goes here
 
+The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
+
+For version 2, we set up text recognition (by Google Machine Learning) to extract the ingredients
+from product wrapping, so that can analysis the allergens.
+
 ## Getting Started
 
 This App is proudly produced by team Hyieia
@@ -29,6 +34,11 @@ Download the code, install packages and dependencies
 npm install
 ```
 
+Go to ios folder, run
+```
+pod install
+```
+
 Run android, you need to run Android simulator first
 
 ```
@@ -45,11 +55,13 @@ Run iOS
 react-native run-ios
 ```
 If your camera not working, you need to setup RNCamera https://github.com/react-native-community/react-native-camera
-Highly recommend using Cocoapods, because automatic install may have conflicts in setting both camera and text recognition, if you have these kind of problems, follow the instructions below
-'''
+Highly recommend using Cocoapods (or manually), because automatic install may have conflicts in setting both camera and text recognition, if you have these kind of problems, follow the instructions unlink automatically install below
+···
 react-native unlink react-native-camera
-'''
-Then follow 'Mostly automatic install with CocoaPods' in RNCamera
+···
+
+To use Text recognition, you also need to setup Firebase, follow the instructions in https://firebase.google.com/docs/android/setup
+
 ## Running the tests
 
 Explain how to run the automated tests for this system
