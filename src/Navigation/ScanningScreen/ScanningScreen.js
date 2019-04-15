@@ -1,6 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// import { Container, Text, Thumbnail, Header, Content, Accordion } from "native-base";
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
 

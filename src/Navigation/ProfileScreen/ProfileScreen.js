@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, AsyncStorage } from 'react-native';
+import { StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, ListItem } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';

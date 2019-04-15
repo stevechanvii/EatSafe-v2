@@ -1,6 +1,4 @@
-# EatSafe
-
-One Paragraph of project description goes here
+# EatSafe V2.0
 
 The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 
@@ -10,7 +8,6 @@ from product wrapping, so that can analysis the allergens.
 ## Getting Started
 
 This App is proudly produced by team Hygieia
-More infromation comming soon 
 
 ### Prerequisites
 
@@ -37,6 +34,12 @@ npm install
 Go to ios folder, you may need to install pod first
 ```
 pod install
+```
+
+Install React Native Async Storage
+```
+yarn add @react-native-community/async-storage
+react-native link @react-native-community/async-storage
 ```
 
 Run android, you need to run Android simulator first
@@ -101,8 +104,11 @@ Useful Link
 * React Native Vector Icons: https://github.com/oblador/react-native-vector-icons
 * React Native Camera: https://github.com/react-native-community/react-native-camera
 * React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
+* React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Text Recognition: https://firebase.google.com/docs/ml-kit/recognize-text
+* Firebase for iOS: https://firebase.google.com/docs/ios/setup
+* Firebase for Android: https://firebase.google.com/docs/android/setup
 
 
 Thank you for all the communities and programmers who provide so amazing open source libraries. 

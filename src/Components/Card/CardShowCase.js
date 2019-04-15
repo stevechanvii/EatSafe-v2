@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, AsyncStorage } from 'react-native';
+import { Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, H2, Accordion } from 'native-base';
 import UnderScoreToJSX from '../Format/UnderScoreToJSX';
 import Icon from 'react-native-vector-icons/Feather';
