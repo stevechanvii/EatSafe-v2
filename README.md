@@ -9,7 +9,7 @@ from product wrapping, so that can analysis the allergens.
 
 ## Getting Started
 
-This App is proudly produced by team Hyieia
+This App is proudly produced by team Hygieia
 More infromation comming soon 
 
 ### Prerequisites
@@ -34,7 +34,7 @@ Download the code, install packages and dependencies
 npm install
 ```
 
-Go to ios folder, run
+Go to ios folder, you may need to install pod first
 ```
 pod install
 ```
@@ -55,12 +55,12 @@ Run iOS
 react-native run-ios
 ```
 If your camera not working, you need to setup RNCamera https://github.com/react-native-community/react-native-camera
-Highly recommend using Cocoapods (or manually), because automatic install may have conflicts in setting both camera and text recognition, if you have these kind of problems, follow the instructions unlink automatically install below
-···
+Highly recommend using Cocoapods (or manually), because automatic install may have conflicts in setting both camera and text recognition, if you have these kind of problems (duplicants), follow the instructions unlink automatically install below
+```
 react-native unlink react-native-camera
-···
+```
 
-To use Text recognition, you also need to setup Firebase, follow the instructions in https://firebase.google.com/docs/android/setup
+To use Text recognition, you also need to setup Firebase, or otherwise this app will connect my firebase, follow the instructions in https://firebase.google.com/docs/android/setup
 
 ## Running the tests
 
@@ -88,9 +88,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [React Native](https://facebook.github.io/react-native/docs/tutorial) - The app framework used
+* [Text Recognition](https://firebase.google.com/docs/ml-kit/recognize-text) - Machine Learning
 
 ## Contributing
 
@@ -106,11 +105,11 @@ Useful Link
 * Text Recognition: https://firebase.google.com/docs/ml-kit/recognize-text
 
 
-Thank you for the communities and programmers who provid so amazing open source libraries. 
+Thank you for all the communities and programmers who provide so amazing open source libraries. 
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use github for versioning. The first iteration of EatSafe please refer to https://github.com/stevechanvii/EatSafe For the versions available, see the [tags on this repository](https://github.com/stevechanvii/EatSafe-v2). 
 
 ## Authors
 
@@ -124,6 +123,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* Produced by Team Hygieia (Danyang Chen, Souvic Chaki, Santash Ashok Pawar, Lili Zhou, Zizhang Ba)
 * Inspiration
 * etc
