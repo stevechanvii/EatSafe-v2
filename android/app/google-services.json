@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "863619627693",
+    "firebase_url": "https://eatsafe-d683b.firebaseio.com",
+    "project_id": "eatsafe-d683b",
+    "storage_bucket": "eatsafe-d683b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863619627693:android:93fc79c2fbe54681",
+        "android_client_info": {
+          "package_name": "com.eatsafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863619627693-j4ji2lm43dkem05vin62u4rmdrb6rfo7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPvjD2z5KmpFjzdoK7Mm8CU7lw5otwNc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863619627693-j4ji2lm43dkem05vin62u4rmdrb6rfo7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "863619627693-gqo5cmknkn74ul47vdsun0nmr3364rub.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hygieia.eatsafe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
