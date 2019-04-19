@@ -32,9 +32,6 @@ export default class textRecognitionScreen extends Component {
     onTextRecognizedEvent = object => {
         const { textBlocks } = object;
         this.setState({ textBlocks });
-
-        // alert(event.type + '  ' +event.data);
-        // this.props.navigation.navigate('RecognitionResult', { textBlocks });
     };
 
     renderTextBlocks = () => (
@@ -97,41 +94,9 @@ export default class textRecognitionScreen extends Component {
 
         );
     }
-
-    // takePicture = async function (camera) {
-    //     const options = { quality: 0.5, base64: true };
-    //     const data = await camera.takePictureAsync(options);
-    //     //  eslint-disable-next-line
-    //     console.log(data.uri);
-    // };
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     flexDirection: 'column',
-    //     backgroundColor: 'black',
-    // },
-    // preview: {
-    //     flex: 1,
-    //     justifyContent: 'flex-end',
-    //     alignItems: 'center',
-    // },
-    // capture: {
-    //     flex: 0,
-    //     backgroundColor: '#fff',
-    //     borderRadius: 5,
-    //     padding: 15,
-    //     paddingHorizontal: 20,
-    //     alignSelf: 'center',
-    //     margin: 20,
-    // },
-    // textBlock: {
-    //     color: '#F00',
-    //     position: 'absolute',
-    //     textAlign: 'center',
-    //     backgroundColor: 'transparent',
-    //   }
     container: {
         flex: 1,
         paddingTop: 10,

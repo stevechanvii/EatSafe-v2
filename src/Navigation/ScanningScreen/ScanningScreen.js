@@ -1,22 +1,28 @@
 'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
-// import { Container, Text, Thumbnail, Header, Content, Accordion } from "native-base";
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Container, Text, Header, Content, Button, Icon, Left, Right, Body, Segment } from "native-base";
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
+import TextRecognitionScreen from './TextRecognitionScreen';
 
 
 export default class barCodeScanning extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     state = {
         barcode: null,
         showCamera: true,
         // true is scanner, false is text recognition
         scannerTextRecog: true,
-        focusedScreen: true
+        focusedScreen: true,
+        seg: 1
     };
 
-    toggleScannerTextRecog () {
-        this.setState({scannerTextRecog: !this.state.scannerTextRecog})
+    toggleScannerTextRecog() {
+        this.setState({ scannerTextRecog: !this.state.scannerTextRecog })
     }
 
     // Refer to react navigation lifecycle, everytime switch to another tab, 
@@ -24,12 +30,12 @@ export default class barCodeScanning extends Component {
     componentDidMount() {
         const { navigation } = this.props;
         navigation.addListener('willFocus', () =>
-          this.setState({ focusedScreen: true })
+            this.setState({ focusedScreen: true })
         );
         navigation.addListener('willBlur', () =>
-          this.setState({ focusedScreen: false })
+            this.setState({ focusedScreen: false })
         );
-      }
+    }
 
     onBarCodeEvent = (event) => {
         this.setState({
@@ -43,85 +49,82 @@ export default class barCodeScanning extends Component {
         });
     };
 
-    cameraView() {
+    scannerView() {
         return (
-            <View style={styles.container}>
-                <RNCamera
-                    style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.auto}
-                    captureAudio={false}
-                    permissionDialogTitle={'Permission to use camera'}
-                    permissionDialogMessage={'We need your permission to use your camera phone'}
-                    onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}
-                    barCodeTypes={[
-                        RNCamera.Constants.BarCodeType.aztec,
-                        RNCamera.Constants.BarCodeType.code128,
-                        RNCamera.Constants.BarCodeType.code39,
-                        RNCamera.Constants.BarCodeType.code39mod43,
-                        RNCamera.Constants.BarCodeType.code93,
-                        RNCamera.Constants.BarCodeType.ean13,
-                        RNCamera.Constants.BarCodeType.ean8,
-                        RNCamera.Constants.BarCodeType.pdf417
-                        ]}
-                    >
-                    <BarcodeMask width={300} height={100} /> 
 
-                </RNCamera>
-            </View>
+            <RNCamera
+                style={styles.preview}
+                type={RNCamera.Constants.Type.back}
+                flashMode={RNCamera.Constants.FlashMode.auto}
+                captureAudio={false}
+                permissionDialogTitle={'Permission to use camera'}
+                permissionDialogMessage={'We need your permission to use your camera phone'}
+                onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}
+                barCodeTypes={[
+                    RNCamera.Constants.BarCodeType.aztec,
+                    RNCamera.Constants.BarCodeType.code128,
+                    RNCamera.Constants.BarCodeType.code39,
+                    RNCamera.Constants.BarCodeType.code39mod43,
+                    RNCamera.Constants.BarCodeType.code93,
+                    RNCamera.Constants.BarCodeType.ean13,
+                    RNCamera.Constants.BarCodeType.ean8,
+                    RNCamera.Constants.BarCodeType.pdf417
+                ]}
+            >
+                <BarcodeMask width={300} height={100} />
+
+            </RNCamera>
+
+        );
+    };
+
+    segmentView() {
+        return (
+            <Container style={styles.container}>
+                <Header hasSegment>
+                    <Body>
+                        <Segment>
+                            <Button
+                                active={this.state.seg === 1 ? true : false}
+                                first
+                                onPress={() => this.setState({ seg: 1 })}
+                            >
+                                <Text>Scanner</Text>
+                            </Button>
+                            <Button
+                                last
+                                active={this.state.seg === 2 ? true : false}
+                                onPress={() => this.setState({ seg: 2 })}
+                            >
+                                <Text>Text Recognition</Text>
+                            </Button>
+                        </Segment>
+                    </Body>
+
+                </Header>
+                {this.state.seg === 1 && this.scannerView()}
+                {this.state.seg === 2 && <TextRecognitionScreen />}
+            </Container>
         );
     };
 
     render() {
-        // return (
-            // <View style={styles.container}>
-            //     <RNCamera
-            //         style={styles.preview}
-            //         type={RNCamera.Constants.Type.back}
-            //         flashMode={RNCamera.Constants.FlashMode.auto}
-            //         captureAudio={false}
-            //         permissionDialogTitle={'Permission to use camera'}
-            //         permissionDialogMessage={'We need your permission to use your camera phone'}
-            //         onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}
-            //         barCodeTypes={[
-            //             RNCamera.Constants.BarCodeType.aztec,
-            //             RNCamera.Constants.BarCodeType.code128,
-            //             RNCamera.Constants.BarCodeType.code39,
-            //             RNCamera.Constants.BarCodeType.code39mod43,
-            //             RNCamera.Constants.BarCodeType.code93,
-            //             RNCamera.Constants.BarCodeType.ean13,
-            //             RNCamera.Constants.BarCodeType.ean8,
-            //             RNCamera.Constants.BarCodeType.pdf417
-            //             ]}
-            //         >
-            //         <Button onPress={this.toggleScannerTextRecon} title="Learn More" />
-            //         {/* <BarcodeMask width={300} height={100} />  */}
+        const { focusedScreen } = this.state;
+        if (focusedScreen) {
+            return (this.segmentView());
+        } else {
+            return <Container />;
+        }
 
-            //     </RNCamera>
-            // </View>
-
-            const { focusedScreen } = this.state;
-            if (focusedScreen){
-                return (this.cameraView());
-              } else {
-                return <View />;
-              }
-        // );
     }
-
-    // takePicture = async function (camera) {
-    //     const options = { quality: 0.5, base64: true };
-    //     const data = await camera.takePictureAsync(options);
-    //     //  eslint-disable-next-line
-    //     console.log(data.uri);
-    // };
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'black',
+        // backgroundColor: 'black',
+        backgroundColor: "#fff"
     },
     preview: {
         flex: 1,

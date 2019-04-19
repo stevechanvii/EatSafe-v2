@@ -16,11 +16,11 @@ import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecogniti
 
 const DiaryStack = createStackNavigator({
   // temperally comment!!!
-  // Diary: { screen: DiaryScreen },
-  // Details: { screen: DetailsScreen },
+  Diary: { screen: DiaryScreen },
+  Details: { screen: DetailsScreen },
 
-  Diary: { screen: TextRecognitionScreen },
-  RecognitionResult: { screen: RecognitionResultScreen },
+  // Diary: { screen: TextRecognitionScreen },
+  // RecognitionResult: { screen: RecognitionResultScreen },
 });
 
 const ProfileStack = createStackNavigator({
@@ -36,9 +36,9 @@ const ScanningStack = createStackNavigator({
 
 export default createAppContainer(createBottomTabNavigator(
   {
-    // Diary: { screen: DiaryStack },
+    Diary: { screen: DiaryStack },
 
-    Diary: { screen: TextRecognitionScreen },
+    // Diary: { screen: TextRecognitionScreen },
 
     Scanning: { screen: ScanningStack },
     Report: { screen: ReportScreen },
