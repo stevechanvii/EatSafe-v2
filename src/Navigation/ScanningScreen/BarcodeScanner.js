@@ -10,15 +10,19 @@ const barcodeScanner = ({ navigation }) => {
             barcode: event.data
         });
     };
-    
+
     return (
         <RNCamera
             style={styles.preview}
             type={RNCamera.Constants.Type.back}
             flashMode={RNCamera.Constants.FlashMode.auto}
             captureAudio={false}
-            permissionDialogTitle={'Permission to use camera'}
-            permissionDialogMessage={'We need your permission to use your camera phone'}
+            androidCameraPermissionOptions={{
+                title: 'Permission to use camera',
+                message: 'We need your permission to use your camera',
+                buttonPositive: 'Ok',
+                buttonNegative: 'Cancel',
+            }}
             onBarCodeRead={this.onBarCodeEvent.bind(this)}
             barCodeTypes={[
                 RNCamera.Constants.BarCodeType.aztec,

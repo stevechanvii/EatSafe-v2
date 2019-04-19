@@ -5,28 +5,10 @@ import { RNCamera } from 'react-native-camera';
 // import BarcodeMask from 'react-native-barcode-mask';
 
 
-export default class textRecognitionScreen extends Component {
+class textRecognitionScreen extends Component {
     state = {
-        flash: 'off',
-        zoom: 0,
-        autoFocus: 'on',
-
-        depth: 0,
-        type: 'back',
-        whiteBalance: 'auto',
-        ratio: '16:9',
-        recordOptions: {
-            mute: false,
-            maxDuration: 5,
-            quality: RNCamera.Constants.VideoQuality['288p'],
-        },
-        isRecording: false,
-        canDetectFaces: false,
         canDetectText: true,
-        canDetectBarcode: false,
-        faces: [],
-        textBlocks: [],
-        barcodes: [],
+        textBlocks: []
     };
 
     onTextRecognizedEvent = object => {
@@ -75,8 +57,12 @@ export default class textRecognitionScreen extends Component {
                 type={RNCamera.Constants.Type.back}
                 flashMode={RNCamera.Constants.FlashMode.auto}
                 captureAudio={false}
-                permissionDialogTitle={'Permission to use camera'}
-                permissionDialogMessage={'We need your permission to use your camera phone'}
+                androidCameraPermissionOptions={{
+                    title: 'Permission to use camera',
+                    message: 'We need your permission to use your camera',
+                    buttonPositive: 'Ok',
+                    buttonNegative: 'Cancel',
+                }}
                 onTextRecognized={this.state.canDetectText ? this.onTextRecognizedEvent : null} >
                 <View style={{
                     backgroundColor: 'transparent',
@@ -115,27 +101,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    autoFocusBox: {
-        position: 'absolute',
-        height: 64,
-        width: 64,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: 'white',
-        opacity: 0.4,
-    },
     flipText: {
         color: 'white',
         fontSize: 15,
-    },
-    zoomText: {
-        position: 'absolute',
-        bottom: 70,
-        zIndex: 2,
-        left: 2,
-    },
-    picButton: {
-        backgroundColor: 'darkseagreen',
     },
     facesContainer: {
         position: 'absolute',
@@ -143,22 +111,6 @@ const styles = StyleSheet.create({
         right: 0,
         left: 0,
         top: 0,
-    },
-    face: {
-        padding: 10,
-        borderWidth: 2,
-        borderRadius: 2,
-        position: 'absolute',
-        borderColor: '#FFD700',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    faceText: {
-        color: '#FFD700',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        margin: 10,
-        backgroundColor: 'transparent',
     },
     text: {
         padding: 10,
@@ -175,3 +127,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
 });
+
+export default textRecognitionScreen;
