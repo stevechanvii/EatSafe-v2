@@ -4,14 +4,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import DetailsScreen from './src/Navigation/DetailsScreen';
 import DiaryScreen from './src/Navigation/DiaryScreen/DiaryScreen';
-import ScanningScreen from './src/Navigation/ScanningScreen/ScanningScreen';
+import ScannerSegScreen from './src/Navigation/ScanningScreen/ScannerSegScreen';
 import ReportScreen from './src/Navigation/ReportScreen/ReportScreen';
 import ProfileScreen from './src/Navigation/ProfileScreen/ProfileScreen';
 import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
 import ProductDetailScreen from './src/Navigation/ScanningScreen/ProductDetailScreen';
 import EditProfileScreen from './src/Navigation/ProfileScreen/EditProfileScreen';
 import RecognitionResultScreen from './src/Navigation/ScanningScreen/RecognitionResultScreen';
-import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecognitionScreen';
+import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecognition';
+import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
 
 
 const DiaryStack = createStackNavigator({
@@ -30,7 +31,8 @@ const ProfileStack = createStackNavigator({
 });
 
 const ScanningStack = createStackNavigator({
-  Scanning: { screen: ScanningScreen },
+  Scanning: { screen: ScannerSegScreen },
+  // Barcode: {screen: BarcodeScanner},
   ProductDetail: {screen: ProductDetailScreen}
 });
 

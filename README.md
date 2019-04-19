@@ -107,9 +107,8 @@ Useful Link
 * React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
 * React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-* Text Recognition: https://firebase.google.com/docs/ml-kit/recognize-text
-* Firebase for iOS: https://firebase.google.com/docs/ios/setup
-* Firebase for Android: https://firebase.google.com/docs/android/setup
+* Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
+* Firebase: https://firebase.google.com/docs/firestore/
 
 
 Thank you for all the communities and programmers who provide so amazing open source libraries. 
