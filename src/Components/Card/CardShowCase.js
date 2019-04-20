@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, H2, Accordion } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Button, Left, Body, H2, Accordion } from 'native-base';
 import UnderScoreToJSX from '../Format/UnderScoreToJSX';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -16,23 +16,23 @@ userAllergensAlert = async (productAllergens) => {
                 userAllergens.push(keys[index]);
             }
         });
+        console.log(userAllergens + ' userAllergens');
 
-        // search the allergen in the ingredients, if found then save the index in allergenIndex
-        let allergenIndex = [];
-        userAllergens.map((el, index) => {
-            const i = productAllergens.search(el);
-            if (i >= 0) {
-                allergenIndex.push(index)
+        // search the allergen in the ingredients, if found then save in allergenAlert
+        let allergenAlert = [];
+        userAllergens.map(el => {
+            if (productAllergens.search(el) >= 0) {
+                allergenAlert.push(el);
             }
-        })
+        });
 
-        // if index size greater than 0, then formate and alert
-        if (allergenIndex.length > 0) {
+        // if allergenAlert size greater than 0, then formate and alert
+        if (allergenAlert.length > 0) {
             let str = '';
-            for (i = 0; i < allergenIndex.length; i++) {
-                str += keys[allergenIndex[i]];
+            allergenAlert.map(el => {
+                str += el;
                 str += ' ';
-            }
+            });
             alert(`Allergens ${str}detected!`);
         }
 
@@ -40,7 +40,6 @@ userAllergensAlert = async (productAllergens) => {
         // read error
     }
 }
-
 
 // this is a stateless component which handle show case with pic and text
 const cardShowCase = (props) => {
