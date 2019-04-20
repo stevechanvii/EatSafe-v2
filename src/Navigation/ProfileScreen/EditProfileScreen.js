@@ -34,9 +34,9 @@ class editProfileScreen extends Component {
         console.log('save Handler invoked!');
         try {
             await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName.toString()));
-            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk.toString()));
-            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy.toString()));
-            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood.toString()));
+            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
+            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
+            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
         } catch (error) {
             // Error saving data
             console.log(error);
@@ -61,10 +61,10 @@ class editProfileScreen extends Component {
             // the value extract from database is JSON value, so need to convert to string and remove quote
             this.setState({
                 isLoading: false,
-                userName: values[0].toString().replace(/"/g, ''),
-                milk: values[1].toString().replace(/"/g, '') === 'true',
-                soy: values[2].toString().replace(/"/g, '') === 'true',
-                seafood: values[3].toString().replace(/"/g, '') === 'true'
+                userName: values[0] ? values[0].replace(/"/g, '') : '',
+                milk: JSON.parse(values[1]),
+                soy: JSON.parse(values[2]),
+                seafood: JSON.parse(values[3])
             });
         });
 
@@ -85,22 +85,6 @@ class editProfileScreen extends Component {
                             <Input placeholder={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} />
                         </Item>
                     </Form>
-                    {/* <Text>Date of Birth</Text>
-                    <DatePicker
-                        defaultDate={new Date(1990, 1, 1)}
-                        minimumDate={new Date(1900, 1, 1)}
-                        maximumDate={new Date(2019, 4, 9)}
-                        locale={"en"}
-                        timeZoneOffsetInMinutes={undefined}
-                        modalTransparent={false}
-                        animationType={"fade"}
-                        androidMode={"default"}
-                        placeHolderText="Select date"
-                        textStyle={{ color: "green" }}
-                        placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={this.setDate}
-                        disabled={false}
-                    /> */}
                     <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose allergies you suffering</Text>
                     <ListItem onPress={() => this.setState({ milk: !this.state.milk })}>
                         <CheckBox checked={this.state.milk} onPress={() => this.setState({ milk: !this.state.milk })} />

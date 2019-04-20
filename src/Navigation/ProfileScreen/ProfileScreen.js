@@ -46,10 +46,10 @@ class profileScreen extends Component {
             console.log(values + '1111');
             this.setState({
                 isLoading: false,
-                userName: values[0],
-                milk: values[1],
-                soy: values[2],
-                seafood: values[3]
+                userName: values[0] ? values[0].replace(/"/g, '') : '',
+                milk: JSON.parse(values[1]),
+                soy: JSON.parse(values[2]),
+                seafood: JSON.parse(values[3])
             });
         });
 
@@ -60,7 +60,7 @@ class profileScreen extends Component {
         if (this.state.isLoading) {
             return <Container><Text>Loading...</Text></Container>;
         }
-        console.log('render');
+        console.log(this.state.milk ? 'yes' : 'no', 'render milk');
 
         return (
             <Container>
@@ -71,16 +71,15 @@ class profileScreen extends Component {
                         </Row>
                         <Row style={styles.avatorRow}>
                             <Text>Hi, </Text>
-                            <Text>{this.state.userName ? this.state.userName.toString().replace(/"/g, '') : 'please setup profile'}</Text>
+                            <Text>{this.state.userName || this.state.userName !== '' ? this.state.userName : 'please setup profile'}</Text>
                         </Row>
                         <Row style={styles.allergyIcon}>
                             <Text>Allergens</Text>
                         </Row>
                         <Row style={styles.allergCheck}>
-                            {this.state.milk ? this.state.milk.toString() === 'true' ? <Badge info><Text>milk</Text></Badge> : null : null}
-                            {this.state.soy ? this.state.soy.toString() === 'true' ? <Badge info><Text>soy</Text></Badge> : null : null}
-                            {this.state.seafood ? this.state.seafood.toString() === 'true' ? <Badge info><Text>seafood</Text></Badge> : null : null}
-
+                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null }
+                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null }
+                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null }
                         </Row>
                         <Row style={styles.buttonRow}>
                             <Button info
