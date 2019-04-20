@@ -5,14 +5,15 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Le
 export default class recognitionResultScreen extends Component {
 
     state = {
-        isLoading: false
+        isLoading: false,
+        textList: []
     }
 
     componentDidMount() {
         const { navigation } = this.props;
         
         this.setState({
-            textBlocks: navigation.getParam('textBlocks', 'No-text')
+            textList: navigation.getParam('textList', 'No-text')
         })
     }
 
@@ -21,7 +22,7 @@ export default class recognitionResultScreen extends Component {
             <Container>
                 {/* <Header /> */}
                 <Content>
-                    <Text>{this.state.textBlocks.map(this.renderTextBlock)}</Text>
+                    {this.state.textList.map(el => (<Text>{el}</Text>))}
 
                 </Content>
             </Container>

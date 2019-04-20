@@ -14,7 +14,19 @@ class textRecognitionScreen extends Component {
     onTextRecognizedEvent = object => {
         const { textBlocks } = object;
         this.setState({ textBlocks });
+        console.log(object);
     };
+
+    buttonHandler = () => {
+        const textList = [];
+        this.state.textBlocks.map(el => {
+            textList.push(el.value);
+        });
+        console.log(textList);
+        this.props.navigation.navigate('RecognitionResult', {
+            textList: textList
+        });
+    }
 
     renderTextBlocks = () => (
         <View style={styles.facesContainer} pointerEvents="none">
@@ -64,12 +76,14 @@ class textRecognitionScreen extends Component {
                     buttonNegative: 'Cancel',
                 }}
                 onTextRecognized={this.state.canDetectText ? this.onTextRecognizedEvent : null} >
-                <View style={{
+                {/* <View style={{
                     backgroundColor: 'transparent',
                     flexDirection: 'row',
-                    justifyContent: 'space-around',
-                }}>
-                    <TouchableOpacity onPress={this.toggle('canDetectText')} style={styles.flipButton}>
+                    justifyContent: 'space-around'
+                }}> */}
+                <View style={styles.bottom}>
+                    {/* <TouchableOpacity onPress={this.toggle('canDetectText')} style={styles.flipButton}> */}
+                    <TouchableOpacity onPress={this.buttonHandler} style={styles.flipButton}>
                         <Text style={styles.flipText}>
                             {!canDetectText ? 'Detect Text' : 'Detecting Text'}
                         </Text>
@@ -126,6 +140,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    // bottom: {
+    //     flex: 1,
+    //     justifyContent: 'flex-end',
+    //     marginBottom: 36
+    //   },
+      bottom: {
+        position: 'absolute',
+        left: '30%',
+        bottom:'10%',
+        justifyContent: 'center', 
+        alignItems: 'center'
+      }
 });
 
 export default textRecognitionScreen;

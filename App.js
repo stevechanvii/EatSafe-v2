@@ -32,16 +32,13 @@ const ProfileStack = createStackNavigator({
 
 const ScanningStack = createStackNavigator({
   Scanning: { screen: ScannerSegScreen },
-  // Barcode: {screen: BarcodeScanner},
+  RecognitionResult: {screen: RecognitionResultScreen},
   ProductDetail: {screen: ProductDetailScreen}
 });
 
 export default createAppContainer(createBottomTabNavigator(
   {
     Diary: { screen: DiaryStack },
-
-    // Diary: { screen: TextRecognitionScreen },
-
     Scanning: { screen: ScanningStack },
     Report: { screen: ReportScreen },
     Profile: { screen: ProfileStack }
