@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Text, Header, Thumbnail, Content, H2 } from 'native-base';
+import { Container, Text, Header, Thumbnail, Content, H1 } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/logo.jpg';
 
@@ -19,7 +19,7 @@ export default class diaryScreen extends Component {
         <Grid>
           <Row size={3}>
             <Col size={2} style={{backgroundColor: '#00CE9F'}}><Text>L</Text></Col>
-            <Col size={5} ><Thumbnail large source={uri} /></Col>
+            <Col size={5} style={styles.datePicker}><Thumbnail large source={uri} /></Col>
             <Col size={2} style={{backgroundColor: '#00CE9F'}}><Text>R</Text></Col>
           </Row>
           <Row size={7} style={{backgroundColor: '#635DB7'}}></Row>
@@ -47,5 +47,9 @@ const styles = StyleSheet.create({
   },
   dairyField: {
     backgroundColor: '#DD9E2C'
+  },
+  datePicker: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
