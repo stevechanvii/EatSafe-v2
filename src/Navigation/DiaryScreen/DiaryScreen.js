@@ -22,7 +22,9 @@ export default class diaryScreen extends Component {
             <Col size={5} style={styles.datePicker}><Thumbnail large source={uri} /></Col>
             <Col size={2} style={{backgroundColor: '#00CE9F'}}><Text>R</Text></Col>
           </Row>
-          <Row size={7} style={{backgroundColor: '#635DB7'}}></Row>
+          <Row size={7} style={{backgroundColor: '#635DB7'}}>
+            <Text>Dairy</Text>
+          </Row>
         </Grid>
       </Container>
     );
