@@ -23,7 +23,7 @@ export default class diaryScreen extends Component {
             <Col size={2} style={{backgroundColor: '#00CE9F'}}><Text>R</Text></Col>
           </Row>
           <Row size={7} style={{backgroundColor: '#635DB7'}}>
-            <Text>Dairy</Text>
+            <Col style={{backgroundColor: '#00CE9F', height: 200}}></Col>
           </Row>
         </Grid>
       </Container>
