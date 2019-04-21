@@ -18,7 +18,7 @@ class profileScreen extends Component {
         seafood: false,
         isLoading: true,
         userName: '',
-        refresh: false
+        refresh: false 
 
     };
 
