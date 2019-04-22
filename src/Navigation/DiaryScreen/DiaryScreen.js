@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content } from 'native-base';
+import { Container, Text, Thumbnail, Content, Fab, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/Entypo';
 import uri from '../../asserts/logo.jpg';
@@ -13,7 +13,8 @@ export default class diaryScreen extends Component {
 
   state = {
     date: new Date(),
-  }
+    active: false
+  };
 
   getDay = date => {
     // const date = new Date();
@@ -28,13 +29,18 @@ export default class diaryScreen extends Component {
     }
     // alert(days[date.getDay()]);
     return days[date.getDay()];
-  }
+  };
 
   setDayHandler = operator => {
     const nextDay = this.state.date;
     nextDay.setDate(nextDay.getDate() + operator);
     this.setState({ date: nextDay });
-  }
+  };
+
+  addFabHandler = () => {
+    this.setState({ active: !this.state.active });
+    this.props.navigation.navigate('AddDairy');
+  };
 
   render() {
     return (
@@ -43,7 +49,7 @@ export default class diaryScreen extends Component {
           <Row size={3}>
             <Col size={2} style={styles.arrowBtn}>
               <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
-                <Icon name='chevron-thin-left' size={50} />
+                <Icon name='chevron-thin-left' size={50} color='#333745' />
               </TouchableOpacity>
             </Col>
             <Col size={5} style={styles.datePicker}>
@@ -52,7 +58,7 @@ export default class diaryScreen extends Component {
             </Col>
             <Col size={2} style={styles.arrowBtn}>
               <TouchableOpacity onPress={() => this.setDayHandler(1)}>
-                <Icon name='chevron-thin-right' size={50} />
+                <Icon name='chevron-thin-right' size={50} color='#333745' />
               </TouchableOpacity>
             </Col>
           </Row>
@@ -64,6 +70,20 @@ export default class diaryScreen extends Component {
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
             </Content>
+            <Fab
+              active={this.state.active}
+              direction="up"
+              containerStyle={{}}
+              style={styles.addFab}
+              position="bottomRight"
+              onPress={this.addFabHandler}>
+              <Icon name="add-to-list" />
+              
+              {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
+                <Icon name="github" />
+              </Button> */}
+
+            </Fab>
           </Row>
         </Grid>
       </Container>
@@ -103,6 +123,11 @@ const styles = StyleSheet.create({
   arrowBtn: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00CE9F'
+    backgroundColor: '#C7EFCF'
+  },
+  addFab: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#5067FF'
   }
 });
