@@ -11,20 +11,23 @@ class textRecognitionScreen extends Component {
         textBlocks: []
     };
 
+    allTextList = [];
+
     onTextRecognizedEvent = object => {
         const { textBlocks } = object;
         this.setState({ textBlocks });
+
         console.log(object);
+        // save all the text camera detected
+        textBlocks.map(el => {
+            this.allTextList.push(el.value);
+        });
+        
     };
 
     buttonHandler = () => {
-        const textList = [];
-        this.state.textBlocks.map(el => {
-            textList.push(el.value);
-        });
-        console.log(textList);
         this.props.navigation.navigate('RecognitionResult', {
-            textList: textList
+            textList: this.allTextList,
         });
     }
 

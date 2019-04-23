@@ -8,7 +8,7 @@ import uri from '../../asserts/logo.jpg';
 
 export default class diaryScreen extends Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Diary',
   };
 
   state = {
@@ -78,7 +78,7 @@ export default class diaryScreen extends Component {
               position="bottomRight"
               onPress={this.addFabHandler}>
               <Icon name="add-to-list" />
-              
+
               {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
                 <Icon name="github" />
               </Button> */}

@@ -22,7 +22,7 @@ export default class recognitionResultScreen extends Component {
             <Container>
                 {/* <Header /> */}
                 <Content>
-                    {this.state.textList.map(el => (<Text>{el}</Text>))}
+                    {this.state.textList.map(el => (<Text key={Math.random()}>{el}</Text>))}
 
                 </Content>
             </Container>
