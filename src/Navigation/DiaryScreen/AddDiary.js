@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H1, H2 } from 'native-base';
+import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,8 +14,10 @@ class addDiary extends Component {
     state = {
         selected: undefined,
         emotionSelected: 'Good',
+        isDateTimePickerVisible: false
     };
 
+    // symptom picker
     onValueChange = (value) => {
         this.setState({
             selected: value
@@ -25,6 +28,20 @@ class addDiary extends Component {
     emotionSelectedHandler = value => {
         this.setState({ emotionSelected: value });
     }
+
+    // date picker
+    showDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: true });
+    };
+
+    hideDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: false });
+    };
+
+    handleDatePicked = date => {
+        console.log("A date has been picked: ", date);
+        this.hideDateTimePicker();
+    };
 
     /*
      * data structure
@@ -97,6 +114,15 @@ class addDiary extends Component {
                                     <Icon name='access-time' size={20} />
                                     <Input placeholder='Time' />
                                 </Item>
+                                <Button info
+                                    onPress={this.showDateTimePicker}>
+                                    <Text>Date</Text>
+                                </Button>
+                                <DateTimePicker
+                                    isVisible={this.state.isDateTimePickerVisible}
+                                    onConfirm={this.handleDatePicked}
+                                    onCancel={this.hideDateTimePicker}
+                                />
 
                                 <Item style={styles.inputItem} >
                                     <Icon name='restaurant' size={20} />
