@@ -55,10 +55,15 @@ class addDiary extends Component {
 
     /*
      * data structure
-     * {date, [{time, [{'meal', 'Breakfast'},{'feel','Good'},{'food', 'bread'}, {'ingredients', 'wheat'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
-     *         {time, [{'meal', 'Dinner'},{'feel','Good'},{'food', 'milk'}, {'ingredients', 'milk'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
-     *         {time, [{'meal', 'Lunch'},{'feel','Good'},{'food', 'chocolate'}, {'ingredients', 'milk coco sugur'}, {'symptoms', 'itching skin'}, {'comments','Good'}]}
-     *        ]
+     * {'date', [{'Breakfast', [{1, [{'time', 819893720000}, {'feel','Good'},{'food', 'bread'}, {'ingredients', 'wheat'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
+     *                          {2, [{'time', 451243720000}, {'feel','Alful'},{'food', 'milk'}, {'ingredients', 'milk'}, {'symptoms', 'itching skin'}, {'comments','allergy'}]}
+     *                         ]
+     *           }
+     *           {'Lunch', [{1, [{'time', 232323720000}, {'feel','Good'},{'food', 'chocolate'}, {'ingredients', 'milk coco sugur'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
+     *                      {2, [{'time', 454214578000}, {'feel','Execlent'},{'food', 'pasta'}, {'ingredients', 'gluteen'}, {'symptoms', 'nothing wrong'}, {'comments',''}]}
+     *                         ]
+     *           }
+     *          ]
      * }
      */
 

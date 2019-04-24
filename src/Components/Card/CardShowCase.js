@@ -68,7 +68,7 @@ const cardShowCase = (props) => {
                     </CardItem>
                     <CardItem>
                         <Body>
-                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../asserts/allergies_image.jpg')}
+                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../assets/allergies_image.jpg')}
                                 style={{ height: 200, width: '100%', flex: 1 }} />
                         </Body>
                     </CardItem>

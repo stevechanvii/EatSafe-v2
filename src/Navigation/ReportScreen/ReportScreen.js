@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // import { Text, View } from 'react-native';
 import { Container, Text, Thumbnail, Header, Content, Accordion } from "native-base";
-import uri from '../../asserts/logo.jpg';
+import uri from '../../assets/logo.jpg';
 
 class reportScreen extends Component {
     static navigationOptions = {

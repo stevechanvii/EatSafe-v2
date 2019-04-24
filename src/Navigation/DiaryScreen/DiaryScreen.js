@@ -3,7 +3,9 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Fab, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/Entypo';
-import uri from '../../asserts/logo.jpg';
+import uri from '../../assets/logo.jpg';
+
+import MealCard from './MealCard/Card';
 
 
 export default class diaryScreen extends Component {
@@ -64,11 +66,13 @@ export default class diaryScreen extends Component {
           </Row>
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
+              <MealCard style={styles.records}/>
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
+
             </Content>
             <Fab
               active={this.state.active}
