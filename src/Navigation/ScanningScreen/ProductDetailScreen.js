@@ -30,7 +30,7 @@ class productDetailScreen extends Component {
                         barcode: barcode,
                         productName: responseJson.product.product_name,
                         // be careful bugs here, if product not exist, these won't found
-                        ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : 'Ingredients Not Found',
+                        ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : [{'text': 'Ingredients Not Found'}],
                         allergens: responseJson.product.allergens ? responseJson.product.allergens : 'Allergens Not Found',
                         image: responseJson.product.image_url ? responseJson.product.image_url : 'Image Not Found',
                         traces: responseJson.product.traces_tags ? responseJson.product.traces_tags : '',

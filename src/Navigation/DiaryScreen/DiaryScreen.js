@@ -39,7 +39,7 @@ export default class diaryScreen extends Component {
 
   addFabHandler = () => {
     this.setState({ active: !this.state.active });
-    this.props.navigation.navigate('AddDairy');
+    this.props.navigation.navigate('AddDairy', {date: this.state.date});
   };
 
   render() {

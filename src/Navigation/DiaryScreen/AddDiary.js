@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H1, H2 } from 'native-base';
+import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H3, H2 } from 'native-base';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -12,15 +12,24 @@ class addDiary extends Component {
     };
 
     state = {
-        selected: undefined,
+        SymptomSelected: "Feeling Well",
+        mealSelected: "Breakfast",
         emotionSelected: 'Good',
-        isDateTimePickerVisible: false
+        isDateTimePickerVisible: false,
+        date: this.props.navigation.state.params.date
     };
 
     // symptom picker
-    onValueChange = (value) => {
+    onSymptomChange = (value) => {
         this.setState({
-            selected: value
+            SymptomSelected: value
+        });
+    }
+
+    // meal picker
+    onMealChange = (value) => {
+        this.setState({
+            mealSelected: value
         });
     }
 
@@ -38,16 +47,17 @@ class addDiary extends Component {
         this.setState({ isDateTimePickerVisible: false });
     };
 
-    handleDatePicked = date => {
-        console.log("A date has been picked: ", date);
+    handleDatePicked = time => {
+        this.setState({ date: new Date(this.state.date.setTime(time.getTime())) });
+        console.log("new state time: ", this.state.date);
         this.hideDateTimePicker();
     };
 
     /*
      * data structure
-     * {date, [{time, [{'food', 'bread'}, {'ingredients', 'wheat'}, {'symptoms', 'nothing wrong'}]},
-     *         {time, [{'food', 'milk'}, {'ingredients', 'milk'}, {'symptoms', 'nothing wrong'}]},
-     *         {time, [{'food', 'chocolate'}, {'ingredients', 'milk coco sugur'}, {'symptoms', 'itching skin'}]}
+     * {date, [{time, [{'meal', 'Breakfast'},{'feel','Good'},{'food', 'bread'}, {'ingredients', 'wheat'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
+     *         {time, [{'meal', 'Dinner'},{'feel','Good'},{'food', 'milk'}, {'ingredients', 'milk'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
+     *         {time, [{'meal', 'Lunch'},{'feel','Good'},{'food', 'chocolate'}, {'ingredients', 'milk coco sugur'}, {'symptoms', 'itching skin'}, {'comments','Good'}]}
      *        ]
      * }
      */
@@ -63,7 +73,7 @@ class addDiary extends Component {
                     <Row size={3} >
                         <Grid style={styles.headRow}>
                             <Row size={1} style={{ alignItems: 'center', justifyContent: 'center' }} >
-                                <H1>Have a Good meal?</H1>
+                                <H2>Have a Good meal?</H2>
                             </Row>
                             <Row size={2} style={styles.emotionRow}>
                                 <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >
@@ -103,25 +113,31 @@ class addDiary extends Component {
                                 </TouchableOpacity>
                             </Row>
                             <Row size={1} style={{ alignItems: 'center', justifyContent: 'center' }} >
-                                <H2>{this.state.emotionSelected}</H2>
+                                <H3>{this.state.emotionSelected}</H3>
                             </Row>
                         </Grid>
                     </Row>
                     <Row size={7} >
                         <Content>
                             <Form>
-                                <Item style={styles.inputItem} >
-                                    <Icon name='access-time' size={20} />
-                                    <Input placeholder='Time' />
-                                </Item>
-                                <Button info
+                                <Button transparent iconLeft light style={styles.inputItem}
                                     onPress={this.showDateTimePicker}>
-                                    <Text>Date</Text>
+                                    <Icon name='access-time' size={20} />
+                                    <Text style={{ color: "black" }}>
+                                        {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
+                                    </Text>
+                                    <Text style={{ color: "black" }}>
+                                        {this.state.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
+                                    </Text>
                                 </Button>
+
                                 <DateTimePicker
                                     isVisible={this.state.isDateTimePickerVisible}
                                     onConfirm={this.handleDatePicked}
                                     onCancel={this.hideDateTimePicker}
+                                    mode='time'
+                                    titleIOS='Pick a Time'
+                                    date={this.state.date}
                                 />
 
                                 <Item style={styles.inputItem} >
@@ -129,6 +145,27 @@ class addDiary extends Component {
                                     <Input placeholder='Food' />
                                 </Item>
 
+                                <Item style={styles.inputItem} >
+                                    <EmotionIcon name='cupcake' size={20} />
+                                    <Picker
+                                        mode="dropdown"
+                                        // iosIcon={<Icon name="expand-more" />}
+                                        style={{}}
+                                        placeholder="Select your Meal"
+                                        iosHeader="Meal"
+                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderIconColor="#007aff"
+                                        selectedValue={this.state.mealSelected}
+                                        onValueChange={this.onMealChange.bind(this)}
+                                    >
+                                        <Picker.Item label="Breakfast" value="Breakfast" />
+                                        <Picker.Item label="Brunch" value="Brunch" />
+                                        <Picker.Item label="Lunch" value="Lunch" />
+                                        <Picker.Item label="Afternoon Tea" value="Afternoon Tea" />
+                                        <Picker.Item label="Dinner" value="Dinner" />
+                                        <Picker.Item label="Midnight Snack" value="Midnight Snack" />
+                                    </Picker>
+                                </Item>
 
                                 <Item style={styles.inputItem} >
                                     <Icon name='mode-edit' size={20} />
@@ -142,15 +179,16 @@ class addDiary extends Component {
                                         // iosIcon={<Icon name="expand-more" />}
                                         style={{}}
                                         placeholder="Select your Symptoms"
+                                        iosHeader="Symptoms"
                                         placeholderStyle={{ color: "#bfc6ea" }}
                                         placeholderIconColor="#007aff"
-                                        selectedValue={this.state.selected}
-                                        onValueChange={this.onValueChange.bind(this)}
+                                        selectedValue={this.state.SymptomSelected}
+                                        onValueChange={this.onSymptomChange.bind(this)}
                                     >
-                                        <Picker.Item label="Feeling Good" value="key0" />
-                                        <Picker.Item label="Itching Skin" value="key1" />
-                                        <Picker.Item label="Running Nose" value="key2" />
-                                        <Picker.Item label="Breath Difficuties" value="key3" />
+                                        <Picker.Item label="Feeling Well" value="Feeling Well" />
+                                        <Picker.Item label="Itching Skin" value="Itching Skin" />
+                                        <Picker.Item label="Running Nose" value="Running Nose" />
+                                        <Picker.Item label="Breath Difficuties" value="Breath Difficuties" />
                                     </Picker>
                                 </Item>
                                 <Item style={styles.inputItem} >
@@ -162,7 +200,7 @@ class addDiary extends Component {
 
 
                             <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={() => this.props.navigation.goBack()} >
-                                <Text>Save</Text>
+                                <Text>Create</Text>
                             </Button>
 
                         </Content>
@@ -194,6 +232,10 @@ const styles = StyleSheet.create({
     },
     emotion: {
         marginHorizontal: '2%',
+    },
+    picker: {
+        marginHorizontal: '3%',
+        marginTop: '3%',
     }
 });
 
