@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H3, H2 } from 'native-base';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -12,17 +13,20 @@ class addDiary extends Component {
     };
 
     state = {
-        SymptomSelected: "Feeling Well",
+        symptomSelected: "Feeling Well",
         mealSelected: "Breakfast",
         emotionSelected: 'Good',
         isDateTimePickerVisible: false,
-        date: this.props.navigation.state.params.date
+        date: this.props.navigation.state.params.date,
+        food: '',
+        ingredients: '',
+        comments: ''
     };
 
     // symptom picker
     onSymptomChange = (value) => {
         this.setState({
-            SymptomSelected: value
+            symptomSelected: value
         });
     }
 
@@ -55,21 +59,71 @@ class addDiary extends Component {
 
     /*
      * data structure
-     * {'date', [{'Breakfast', [{1, [{'time', 819893720000}, {'feel','Good'},{'food', 'bread'}, {'ingredients', 'wheat'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
-     *                          {2, [{'time', 451243720000}, {'feel','Alful'},{'food', 'milk'}, {'ingredients', 'milk'}, {'symptoms', 'itching skin'}, {'comments','allergy'}]}
+     * {'2642019': [{'Breakfast': [{0.1545: [{'time': date}, {'feel': 'Good'},{'food': 'bread'}, {'ingredients': 'wheat'}, {'symptoms': 'nothing wrong'}, {'comments': 'Good'}]},
+     *                          {0.5454: [{'time': date}, {'feel': 'Alful'},{'food': 'milk'}, {'ingredients': 'milk'}, {'symptoms': 'itching skin'}, {'comments': 'allergy'}]}
      *                         ]
      *           }
-     *           {'Lunch', [{1, [{'time', 232323720000}, {'feel','Good'},{'food', 'chocolate'}, {'ingredients', 'milk coco sugur'}, {'symptoms', 'nothing wrong'}, {'comments','Good'}]},
-     *                      {2, [{'time', 454214578000}, {'feel','Execlent'},{'food', 'pasta'}, {'ingredients', 'gluteen'}, {'symptoms', 'nothing wrong'}, {'comments',''}]}
+     *           {'Lunch': [{0.45745: [{'time': date}, {'feel': 'Good'},{'food': 'chocolate'}, {'ingredients': 'milk coco sugur'}, {'symptoms': 'nothing wrong'}, {'comments': 'Good'}]},
+     *                      {0.48874: [{'time': date}, {'feel': 'Execlent'},{'food': 'pasta'}, {'ingredients': 'gluteen'}, {'symptoms': 'nothing wrong'}, {'comments': ''}]}
      *                         ]
      *           }
      *          ]
      * }
      */
 
-    saveBtnHandler = () => {
+    // date key used by save and retrive data
+    dateKey = () => ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
 
+    saveBtnHandler = async () => {
+        console.log(this.state);
+        const saveObj = {
+            time: JSON.stringify(this.state.date),
+            feel: this.state.emotionSelected,
+            food: this.state.food,
+            ingredients: this.state.ingredients,
+            symptom: this.state.symptomSelected,
+            comments: this.state.comments
+        }
+
+        const dateKey = dateKey();
+
+        console.log('toDateString' + dateKey + ' toDateString');
+        try {
+            await AsyncStorage.getItem(dateKey).then(meals => {
+                // check meals is null, if is null create new obj and save
+                if (meals !== null) {
+                    console.log('have meals!');
+                } else {
+                    // create new object and save
+                    try {
+                        const obj = {
+                            [this.state.mealSelected]: {
+                                [Math.random()]: saveObj
+                            }
+                        }
+                        AsyncStorage.setItem(dateKey, JSON.stringify(obj));
+                    } catch (e) {
+                        console.log(e + ' 2');
+                    }
+                }
+            });
+        } catch (e) {
+            console.log(e + ' 1');
+        }
+        
+        this.props.navigation.goBack();
     };
+
+    getMeals = async () => {
+        const dateKey = dateKey();
+        try {
+            const value = await AsyncStorage.getItem(dateKey);
+            console.log(value + ' Saved value');
+        } catch (e) {
+            // read error
+        }
+
+    }
 
     render() {
         return (
@@ -147,7 +201,7 @@ class addDiary extends Component {
 
                                 <Item style={styles.inputItem} >
                                     <Icon name='restaurant' size={20} />
-                                    <Input placeholder='Food' />
+                                    <Input placeholder='Food' onChangeText={(text) => this.setState({ food: text })} />
                                 </Item>
 
                                 <Item style={styles.inputItem} >
@@ -174,7 +228,7 @@ class addDiary extends Component {
 
                                 <Item style={styles.inputItem} >
                                     <Icon name='mode-edit' size={20} />
-                                    <Input placeholder='Ingredients' />
+                                    <Input placeholder='Ingredients' onChangeText={(text) => this.setState({ ingredients: text })} />
                                 </Item>
 
                                 <Item style={styles.inputItem} >
@@ -187,7 +241,7 @@ class addDiary extends Component {
                                         iosHeader="Symptoms"
                                         placeholderStyle={{ color: "#bfc6ea" }}
                                         placeholderIconColor="#007aff"
-                                        selectedValue={this.state.SymptomSelected}
+                                        selectedValue={this.state.symptomSelected}
                                         onValueChange={this.onSymptomChange.bind(this)}
                                     >
                                         <Picker.Item label="Feeling Well" value="Feeling Well" />
@@ -198,13 +252,13 @@ class addDiary extends Component {
                                 </Item>
                                 <Item style={styles.inputItem} >
                                     <Icon name='comment' size={20} />
-                                    <Input placeholder='Comments' />
+                                    <Input placeholder='Comments' onChangeText={(text) => this.setState({ comments: text })} />
                                 </Item>
                             </Form>
 
 
 
-                            <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={() => this.props.navigation.goBack()} >
+                            <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
                                 <Text>Create</Text>
                             </Button>
 

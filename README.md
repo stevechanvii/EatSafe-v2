@@ -107,7 +107,7 @@ Useful Link
 * React Native Camera: https://github.com/react-native-community/react-native-camera
 * React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
 * React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
-* React Native Modal Datetiem picker (Be careful with the setup!): https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
+* React Native Modal Datetiem picker: https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
