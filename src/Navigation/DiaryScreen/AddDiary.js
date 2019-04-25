@@ -60,8 +60,8 @@ class addDiary extends Component {
     /*
      * data structure
      * {'2642019': [{'Breakfast': [{0.1545: [{'time': date}, {'feel': 'Good'},{'food': 'bread'}, {'ingredients': 'wheat'}, {'symptoms': 'nothing wrong'}, {'comments': 'Good'}]},
-     *                          {0.5454: [{'time': date}, {'feel': 'Alful'},{'food': 'milk'}, {'ingredients': 'milk'}, {'symptoms': 'itching skin'}, {'comments': 'allergy'}]}
-     *                         ]
+     *                             {0.5454: [{'time': date}, {'feel': 'Alful'},{'food': 'milk'}, {'ingredients': 'milk'}, {'symptoms': 'itching skin'}, {'comments': 'allergy'}]}
+     *                            ]
      *           }
      *           {'Lunch': [{0.45745: [{'time': date}, {'feel': 'Good'},{'food': 'chocolate'}, {'ingredients': 'milk coco sugur'}, {'symptoms': 'nothing wrong'}, {'comments': 'Good'}]},
      *                      {0.48874: [{'time': date}, {'feel': 'Execlent'},{'food': 'pasta'}, {'ingredients': 'gluteen'}, {'symptoms': 'nothing wrong'}, {'comments': ''}]}
@@ -72,10 +72,15 @@ class addDiary extends Component {
      */
 
     // date key used by save and retrive data
-    dateKey = () => ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
+    dateKeyGenerator = () => {
+        const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
+        return dateKey;
+    }
 
     saveBtnHandler = async () => {
         console.log(this.state);
+        const dateKey = this.dateKeyGenerator();
+
         const saveObj = {
             time: JSON.stringify(this.state.date),
             feel: this.state.emotionSelected,
@@ -85,37 +90,49 @@ class addDiary extends Component {
             comments: this.state.comments
         }
 
-        const dateKey = dateKey();
+        // this obj will be saved in database
+        const obj = {
+            [this.state.mealSelected]: {
+                [Math.random()]: saveObj
+            }
+        }
 
-        console.log('toDateString' + dateKey + ' toDateString');
         try {
             await AsyncStorage.getItem(dateKey).then(meals => {
                 // check meals is null, if is null create new obj and save
                 if (meals !== null) {
+                    // use mergeItem if the meal exist
                     console.log('have meals!');
+                    try {
+                        AsyncStorage.mergeItem(dateKey, JSON.stringify(obj));
+                    } catch (e) {
+                        console.log(e + ' 2');
+                    }
                 } else {
                     // create new object and save
                     try {
-                        const obj = {
-                            [this.state.mealSelected]: {
-                                [Math.random()]: saveObj
-                            }
-                        }
                         AsyncStorage.setItem(dateKey, JSON.stringify(obj));
                     } catch (e) {
-                        console.log(e + ' 2');
+                        console.log(e + ' 3');
                     }
                 }
             });
         } catch (e) {
             console.log(e + ' 1');
         }
-        
+
+        try {
+            const value = await AsyncStorage.getItem(dateKey);
+            console.log(value + ' Saved value');
+        } catch (e) {
+            // read error
+        }
+
         this.props.navigation.goBack();
     };
 
     getMeals = async () => {
-        const dateKey = dateKey();
+        const dateKey = this.dateKeyGenerator();
         try {
             const value = await AsyncStorage.getItem(dateKey);
             console.log(value + ' Saved value');
