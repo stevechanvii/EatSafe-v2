@@ -41,8 +41,24 @@ export default class diaryScreen extends Component {
 
   addFabHandler = () => {
     this.setState({ active: !this.state.active });
-    this.props.navigation.navigate('AddDairy', {date: this.state.date});
+    this.props.navigation.navigate('AddDairy', { date: this.state.date });
   };
+
+  dateKeyGenerator = () => {
+    const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
+    return dateKey;
+  }
+
+  getMeals = async () => {
+    const dateKey = this.dateKeyGenerator();
+    try {
+      const value = await AsyncStorage.getItem(dateKey);
+      console.log(value + ' Saved value');
+    } catch (e) {
+      // read error
+    }
+
+  }
 
   render() {
     return (
@@ -66,7 +82,7 @@ export default class diaryScreen extends Component {
           </Row>
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
-              <MealCard style={styles.records}/>
+              <MealCard style={styles.records} />
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
               <Col style={styles.records}></Col>
@@ -122,7 +138,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#00CE9F',
     height: 80,
     marginHorizontal: '3%',
-    marginTop: '3%'
+    marginTop: '3%',
+    borderRadius: 10
   },
   arrowBtn: {
     alignItems: 'center',
