@@ -6,8 +6,8 @@ import Meals from './Meals';
 
 const logo = require("../../../assets/logo.jpg");
 
-class NHCardImage extends Component {
-  render() {
+const NHCardImage = (props) => {
+
     return (
 
       <Content padder >
@@ -16,7 +16,7 @@ class NHCardImage extends Component {
             <Left>
               <Thumbnail source={logo} />
               <Body>
-                <Text>Breakfast</Text>
+                <Text>{props.meal}</Text>
                 <Text note>Breakfast</Text>
               </Body>
             </Left>
@@ -29,7 +29,7 @@ class NHCardImage extends Component {
       </Content>
 
     );
-  }
+
 }
 
 const styles = StyleSheet.create({

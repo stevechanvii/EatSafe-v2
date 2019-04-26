@@ -6,6 +6,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Preference from '../../Preferences/Preferences';
 
 class addDiaryScreen extends Component {
     static navigationOptions = {
@@ -230,14 +231,8 @@ class addDiaryScreen extends Component {
                                         placeholderStyle={{ color: "#bfc6ea" }}
                                         placeholderIconColor="#007aff"
                                         selectedValue={this.state.mealSelected}
-                                        onValueChange={this.onMealChange.bind(this)}
-                                    >
-                                        <Picker.Item label="Breakfast" value="Breakfast" />
-                                        <Picker.Item label="Brunch" value="Brunch" />
-                                        <Picker.Item label="Lunch" value="Lunch" />
-                                        <Picker.Item label="Afternoon Tea" value="Afternoon Tea" />
-                                        <Picker.Item label="Dinner" value="Dinner" />
-                                        <Picker.Item label="Midnight Snack" value="Midnight Snack" />
+                                        onValueChange={this.onMealChange.bind(this)}>
+                                        {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
                                     </Picker>
                                 </Item>
 
