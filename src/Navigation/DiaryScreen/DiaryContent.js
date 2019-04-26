@@ -11,7 +11,7 @@ const diaryContent = (props) => {
     Preference.Meals.map(meal => {
         if (meal in props.dairyResult) {
             cards.push(
-                <MealCard key={Math.random()} meal={meal} info={props.dairyResult[meal]} />
+                <MealCard key={meal} meal={meal} info={props.dairyResult[meal]} />
             );
         }
     });

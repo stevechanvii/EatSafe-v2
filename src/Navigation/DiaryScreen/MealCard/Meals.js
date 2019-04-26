@@ -3,24 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Button, Input, Icon, Body, Accordion, Right, Left, Title, View } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const dataArray = [
-  {
-    title: "Milk",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
-  },
-  {
-    title: "Second Element",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
-  },
-  {
-    title: "Third Element",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt itaque adipisci quisquam pariatur qui, reiciendis architecto quod sint incidunt labore nisi totam illum numquam non magnam praesentium, maxime quaerat!"
-  }
-];
+import Preference from '../../../Preferences/Preferences';
 
 class mealCard extends Component {
   _renderHeader(item, expanded) {
@@ -28,21 +11,20 @@ class mealCard extends Component {
       <Grid style={styles.grid}>
         <Col size={1} style={styles.emotionRow}>
           <EmotionIcon
-            name='emoticon-cool-outline'
+            name={Preference.Feelings[item.feel]}
             size={50}
-          // style={styles.emotion} 
           />
         </Col>
         <Col size={3}>
           <Grid>
             <Row style={styles.infoCol} >
               <Text style={{ fontWeight: "600", marginEnd: '2%' }}>
-                {item.title}
+                {item.food}
               </Text>
-              <Text note>12:00</Text>
+              <Text note>{item.time.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}</Text>
             </Row>
             <Row style={{ alignItems: "flex-start" }}>
-              <Text note>Feeling Well</Text>
+              <Text note>{item.symptom}</Text>
             </Row>
           </Grid>
         </Col>
@@ -56,18 +38,44 @@ class mealCard extends Component {
   }
   _renderContent(item) {
     return (
-      <Text
-        style={{
-          backgroundColor: "#e3f1f1",
-          padding: 10,
-          fontStyle: "italic"
-        }}
-      >
-        {item.content}
-      </Text>
+      <Grid>
+        <Row>
+          <Grid>
+            <Col size={2}></Col>
+            <Col size={3}>
+              <Text>Ingredients</Text>
+            </Col>
+            <Col size={5}>
+              <Text>{item.ingredients}</Text>
+            </Col>
+          </Grid>
+        </Row>
+        <Row>
+          <Grid>
+            <Col size={2}></Col>
+            <Col size={3}>
+              <Text>Comments</Text>
+            </Col>
+            <Col size={5}>
+              <Text>{item.comments}</Text>
+            </Col>
+          </Grid>
+        </Row>
+      </Grid>
     );
   }
   render() {
+    const dataArray = [];
+    Object.entries(this.props.info).forEach(([key, val]) => {
+      const obj = {
+        key: key,
+        ...val,
+        time: new Date(JSON.parse(val.time))
+      }
+      dataArray.push(obj);
+    });
+    console.log(dataArray);
+
     return (
       <Content padder >
         <Accordion

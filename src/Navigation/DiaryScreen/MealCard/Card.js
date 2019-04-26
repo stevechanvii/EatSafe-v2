@@ -17,13 +17,13 @@ const NHCardImage = (props) => {
               <Thumbnail source={logo} />
               <Body>
                 <Text>{props.meal}</Text>
-                <Text note>Breakfast</Text>
+                <Text note>Place Holder</Text>
               </Body>
             </Left>
           </CardItem>
 
           <CardItem cardBody style={styles.CardBody}>
-            <Meals />
+            <Meals info={props.info} />
           </CardItem>
         </Card>
       </Content>
