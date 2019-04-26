@@ -13,13 +13,13 @@ import EditProfileScreen from './src/Navigation/ProfileScreen/EditProfileScreen'
 import RecognitionResultScreen from './src/Navigation/ScanningScreen/RecognitionResultScreen';
 import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecognition';
 import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
-import AddDairy from './src/Navigation/DiaryScreen/AddDiary';
+import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
 
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
   Details: { screen: DetailsScreen },
-  AddDairy: { screen: AddDairy}
+  AddDairy: { screen: addDiaryScreen}
 });
 
 const ProfileStack = createStackNavigator({

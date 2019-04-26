@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-class addDiary extends Component {
+class addDiaryScreen extends Component {
     static navigationOptions = {
         title: 'Create Diary',
     };
@@ -123,7 +123,6 @@ class addDiary extends Component {
 
         try {
             const value = await AsyncStorage.getItem(dateKey);
-            console.log(value + ' Saved value');
         } catch (e) {
             // read error
         }
@@ -135,7 +134,6 @@ class addDiary extends Component {
         const dateKey = this.dateKeyGenerator();
         try {
             const value = await AsyncStorage.getItem(dateKey);
-            console.log(value + ' Saved value');
         } catch (e) {
             // read error
         }
@@ -315,4 +313,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default addDiary;
+export default addDiaryScreen;

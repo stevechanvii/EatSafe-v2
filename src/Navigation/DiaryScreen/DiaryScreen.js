@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Fab, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Entypo';
 import uri from '../../assets/logo.jpg';
 
 import MealCard from './MealCard/Card';
+import DiaryContent from './DiaryContent';
 
 
 export default class diaryScreen extends Component {
@@ -15,7 +17,9 @@ export default class diaryScreen extends Component {
 
   state = {
     date: new Date(),
-    active: false
+    active: false,
+    dairyResult: null,
+    afterAddNew: 0
   };
 
   getDay = date => {
@@ -33,10 +37,12 @@ export default class diaryScreen extends Component {
     return days[date.getDay()];
   };
 
+  // this method will set the date and extract the dariy data
   setDayHandler = operator => {
     const nextDay = this.state.date;
     nextDay.setDate(nextDay.getDate() + operator);
     this.setState({ date: nextDay });
+    this.getDariyResult();
   };
 
   addFabHandler = () => {
@@ -49,15 +55,27 @@ export default class diaryScreen extends Component {
     return dateKey;
   }
 
-  getMeals = async () => {
+  getDariyResult = async () => {
     const dateKey = this.dateKeyGenerator();
     try {
       const value = await AsyncStorage.getItem(dateKey);
-      console.log(value + ' Saved value');
+      this.setState({dairyResult: JSON.parse(value)});
+      console.log('dairy result '+ this.state.dairyResult);
     } catch (e) {
       // read error
+      console.log(e)
     }
+  }
 
+  // before dairy tab get focus, rerender this screen
+  componentDidMount() {
+    // https://github.com/react-navigation/react-navigation/issues/1617
+    // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
+    this._subscribe = this.props.navigation.addListener('didFocus', () => {
+      //  # do you update if need
+      this.getDariyResult();
+      this.setState({afterAddNew: this.state.afterAddNew + 1});
+    });
   }
 
   render() {
@@ -82,13 +100,9 @@ export default class diaryScreen extends Component {
           </Row>
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
-              <MealCard style={styles.records} />
-              <Col style={styles.records}></Col>
-              <Col style={styles.records}></Col>
-              <Col style={styles.records}></Col>
-              <Col style={styles.records}></Col>
-              <Col style={styles.records}></Col>
-
+              {this.state.dairyResult ? <DiaryContent dairyResult={this.state.dairyResult}/> : <Text>No dariy</Text>}
+              {/* <MealCard style={styles.records} /> */}
+              
             </Content>
             <Fab
               active={this.state.active}
