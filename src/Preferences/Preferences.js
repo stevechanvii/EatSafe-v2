@@ -14,9 +14,11 @@ const Feelings = {
     'Awful': 'emoticon-poop'
 };
 
-const Allergens = {
-
-};
+const Allergens = [
+    'Milk',
+    'Soy',
+    'Seafood',
+];
 
 const Symptoms = [
     'Diarrhea',

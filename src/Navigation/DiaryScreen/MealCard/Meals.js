@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, Input, Icon, Body, Accordion, Right, Left, Title, View } from 'native-base';
+import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Root, Accordion, Right, Left, Title, View } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Preference from '../../../Preferences/Preferences';
 
 class mealCard extends Component {
-  _renderHeader(item, expanded) {
+  state = {
+    clicked: null
+  }
+
+  actionSheetHandler = (index) => {
+    this.setState({clicked: index});
+    console.log('index ' + index);
+  }
+
+  _renderHeader = (item, expanded) => {
     return (
       <Grid style={styles.grid}>
         <Col size={1} style={styles.emotionRow}>
@@ -36,34 +45,54 @@ class mealCard extends Component {
       </Grid>
     );
   }
-  _renderContent(item) {
+
+  _renderContent = (item) => {
+    const BUTTONS = ["Modify", "Delete", "Cancel"];
+    const DESTRUCTIVE_INDEX = 1;
+    const CANCEL_INDEX = 2;
+
     return (
-      <Grid>
-        <Row>
-          <Grid>
-            <Col size={2}></Col>
-            <Col size={3}>
-              <Text>Ingredients</Text>
-            </Col>
-            <Col size={5}>
-              <Text>{item.ingredients}</Text>
-            </Col>
-          </Grid>
-        </Row>
-        <Row>
-          <Grid>
-            <Col size={2}></Col>
-            <Col size={3}>
-              <Text>Comments</Text>
-            </Col>
-            <Col size={5}>
-              <Text>{item.comments}</Text>
-            </Col>
-          </Grid>
-        </Row>
-      </Grid>
+      <Root>
+        <Grid onPress={() =>
+          ActionSheet.show(
+            {
+              options: BUTTONS,
+              cancelButtonIndex: CANCEL_INDEX,
+              destructiveButtonIndex: DESTRUCTIVE_INDEX,
+              title: "Select an option"
+            },
+            (buttonIndex) => {
+              this.actionSheetHandler(BUTTONS[buttonIndex]);
+            }
+          )
+        }>
+          <Row>
+            <Grid>
+              <Col size={2}></Col>
+              <Col size={3}>
+                <Text>Ingredients</Text>
+              </Col>
+              <Col size={5}>
+                <Text>{item.ingredients}</Text>
+              </Col>
+            </Grid>
+          </Row>
+          <Row>
+            <Grid>
+              <Col size={2}></Col>
+              <Col size={3}>
+                <Text>Comments</Text>
+              </Col>
+              <Col size={5}>
+                <Text>{item.comments}</Text>
+              </Col>
+            </Grid>
+          </Row>
+        </Grid>
+      </Root>
     );
   }
+  
   render() {
     const dataArray = [];
     Object.entries(this.props.info).forEach(([key, val]) => {
