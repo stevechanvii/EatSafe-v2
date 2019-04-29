@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Container, Text, Thumbnail, Content, Fab } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -57,12 +57,28 @@ export default class diaryScreen extends Component {
     this._subscribe = this.props.navigation.addListener('didFocus', () => {
       //  # do you update if need
       // this.getDariyResult();
-      this.setState({afterAddNew: this.state.afterAddNew + 1});
+      this.setState({ afterAddNew: this.state.afterAddNew + 1 });
     });
+  }
+
+  // https://facebook.github.io/react-native/docs/images.html
+  getIconURI = (day) => {
+    const uri = [
+      require('../../assets/icon/Mon.png'),
+      require('../../assets/icon/Tue.png'),
+      require('../../assets/icon/Wed.png'),
+      require('../../assets/icon/Thu.png'),
+      require('../../assets/icon/Fri.png'),
+      require('../../assets/icon/Sat.png'),
+      require('../../assets/icon/Sun.png'),
+    ]
+    return uri[day];
   }
 
   render() {
     const { navigation } = this.props;
+    const imgURI = this.getIconURI(this.state.date.getDay() - 1);
+
     return (
       <Container>
         <Grid>
@@ -73,8 +89,8 @@ export default class diaryScreen extends Component {
               </TouchableOpacity>
             </Col>
             <Col size={5} style={styles.datePicker}>
-              <Thumbnail large source={uri} />
-              <Text>{this.getDay(this.state.date)}</Text>
+              <Thumbnail large square source={imgURI} />
+              <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
             </Col>
             <Col size={2} style={styles.arrowBtn}>
               <TouchableOpacity onPress={() => this.setDayHandler(1)}>
@@ -86,9 +102,9 @@ export default class diaryScreen extends Component {
             <Content>
               {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
               <DiaryContent navi={navigation} date={this.state.date} />
-              
+
               {/* <MealCard style={styles.records} /> */}
-              
+
             </Content>
             <Fab
               active={this.state.active}
