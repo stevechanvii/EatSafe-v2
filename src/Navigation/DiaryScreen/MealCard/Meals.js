@@ -1,37 +1,62 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Root, Accordion, Right, Left, Title, View } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Preference from '../../../Preferences/Preferences';
 
 class mealCard extends Component {
   state = {
-    clicked: null
+    clicked: null,
+    mealDetails: this.props.info
   }
 
-  actionSheetHandler = (index) => {
+  actionSheetHandler = (index, sheetId) => {
     this.setState({ clicked: index });
-    console.log('index ' + index);
     if (index === 'Modify') {
       this.props.navi.navigate('AddDairy', { date: new Date() });
-      console.log(this.props.navi);
     } else if (index === 'Delete') {
-      this.deleteMeal();
+      this.deleteMeal(sheetId);
     }
   }
 
   // retrive the value, then find the object which need to remove, then save entire value
-  deleteMeal = async () => {
-    // const value = await AsyncStorage.getItem(theKey);
-    // if (value !== null) {
-    //   var index = array.indexOf(theItem);
-    //   if (index > -1) {
-    //     value.splice(index, 1);
-    //   }
-    // }
-    // AsyncStorage.setItem(theKey, value);
+  deleteMeal = async (sheetId) => {
+    const mealName = this.props.meal;
+    let dayValue = await AsyncStorage.getItem(this.props.dateKey);
+    dayValue = JSON.parse(dayValue);
+    if (dayValue !== null) {
+      // console.log('dayValue');
+      // console.log(dayValue);
+      if (dayValue[mealName] !== null) {
+        delete dayValue[mealName][sheetId];
+        // console.log('deleteMeal');
+        // console.log(dayValue);
+        // console.log(this.state.mealDetails);
+        // if ( dayValue[mealName] !== {}){
+        if (Object.keys(dayValue[mealName]).length === 0 && dayValue[mealName].constructor === Object){
+          delete dayValue[mealName];
+          AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
+          // console.log('null');
+          // console.log(dayValue[mealName]);
+        } else {
+          // console.log('not null');
+          // console.log(dayValue[mealName]);
+          AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
+          
+        }
+        // this.setState({ mealDetails: dayValue[mealName] });
+        this.props.refreshCards();
+
+      }
+    }
   }
+
+  // componentWillReceiveProps(newProps) {
+  //   this.setState({ mealDetails: this.props.info });
+  //   console.log('tttttttttt');
+  // }
 
   _renderHeader = (item, expanded) => {
     return (
@@ -71,19 +96,20 @@ class mealCard extends Component {
 
     return (
       <Root>
-        <Grid onPress={() =>
-          ActionSheet.show(
-            {
-              options: BUTTONS,
-              cancelButtonIndex: CANCEL_INDEX,
-              destructiveButtonIndex: DESTRUCTIVE_INDEX,
-              title: "Select an option"
-            },
-            (buttonIndex) => {
-              this.actionSheetHandler(BUTTONS[buttonIndex]);
-            }
-          )
-        }>
+        <Grid
+          onPress={() =>
+            ActionSheet.show(
+              {
+                options: BUTTONS,
+                cancelButtonIndex: CANCEL_INDEX,
+                destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                title: "Select an option"
+              },
+              (buttonIndex) => {
+                this.actionSheetHandler(BUTTONS[buttonIndex], item.key);
+              }
+            )
+          }>
           <Row>
             <Grid>
               <Col size={2}></Col>
@@ -113,6 +139,8 @@ class mealCard extends Component {
 
   render() {
     const dataArray = [];
+    // console.log(this.props.info);
+    // console.log(this.state.mealDetails);
     Object.entries(this.props.info).forEach(([key, val]) => {
       const obj = {
         key: key,
@@ -121,7 +149,9 @@ class mealCard extends Component {
       }
       dataArray.push(obj);
     });
-    console.log(dataArray);
+    // console.log('dataArray');
+    // console.log(dataArray);
+    // console.log('dateKey ' + this.props.dateKey);
 
     return (
       <Content padder >

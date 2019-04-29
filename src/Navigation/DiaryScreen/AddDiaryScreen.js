@@ -148,7 +148,7 @@ class addDiaryScreen extends Component {
                     <Row size={3} >
                         <Grid style={styles.headRow}>
                             <Row size={1} style={{ alignItems: 'center', justifyContent: 'center' }} >
-                                <H2>Have a Good meal?</H2>
+                                <H3>How do you feel after the meal?</H3>
                             </Row>
                             <Row size={2} style={styles.emotionRow}>
                                 <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >

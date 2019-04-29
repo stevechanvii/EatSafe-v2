@@ -8,27 +8,32 @@ const logo = require("../../../assets/logo.jpg");
 
 const NHCardImage = (props) => {
 
-    return (
+  return (
 
-      <Content padder >
-        <Card style={styles.mb}>
-          <CardItem style={styles.CardHeader}>
-            <Left>
-              <Thumbnail source={logo} />
-              <Body>
-                <Text>{props.meal}</Text>
-                <Text note>Place Holder</Text>
-              </Body>
-            </Left>
-          </CardItem>
+    <Content padder >
+      <Card style={styles.mb}>
+        <CardItem style={styles.CardHeader}>
+          <Left>
+            <Thumbnail source={logo} />
+            <Body>
+              <Text>{props.meal}</Text>
+              <Text note>Place Holder</Text>
+            </Body>
+          </Left>
+        </CardItem>
 
-          <CardItem cardBody style={styles.CardBody} >
-            <Meals meal={props.meal} info={props.info} navi={props.navi} />
-          </CardItem>
-        </Card>
-      </Content>
+        <CardItem cardBody style={styles.CardBody} >
+          <Meals
+            meal={props.meal}
+            info={props.info}
+            navi={props.navi}
+            dateKey={props.dateKey}
+            refreshCards={props.refresh} />
+        </CardItem>
+      </Card>
+    </Content>
 
-    );
+  );
 
 }
 
