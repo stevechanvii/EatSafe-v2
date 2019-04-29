@@ -18,7 +18,7 @@ class profileScreen extends Component {
         seafood: false,
         isLoading: true,
         userName: '',
-        refresh: false 
+        refresh: false
 
     };
 
@@ -77,14 +77,20 @@ class profileScreen extends Component {
                             <Text>Allergens</Text>
                         </Row>
                         <Row style={styles.allergCheck}>
-                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null }
-                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null }
-                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null }
+                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
+                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
+                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
                         </Row>
                         <Row style={styles.buttonRow}>
                             <Button info
                                 onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
                                 <Text>Setup Profile</Text>
+                            </Button>
+                        </Row>
+                        <Row style={styles.buttonRow}>
+                            <Button info
+                                onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
+                                <Text>Knowledge Card</Text>
                             </Button>
                         </Row>
 
@@ -107,7 +113,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     buttonRow: {
-        height: 200,
+        // height: 200,
+        marginTop: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -14,24 +14,26 @@ import RecognitionResultScreen from './src/Navigation/ScanningScreen/Recognition
 import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecognition';
 import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
 import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
+import knowledgeCard from './src/Navigation/ProfileScreen/KnowledgeCard';
 
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
   Details: { screen: DetailsScreen },
-  AddDairy: { screen: addDiaryScreen},
+  AddDairy: { screen: addDiaryScreen },
 });
 
 const ProfileStack = createStackNavigator({
-  Profile: {screen: ProfileScreen},
+  Profile: { screen: ProfileScreen },
   SomeWhereElse: { screen: SomeWhereElseScreen },
-  EditProfile: { screen: EditProfileScreen}
+  EditProfile: { screen: EditProfileScreen },
+  KnowledgeCard: { screen: knowledgeCard }
 });
 
 const ScanningStack = createStackNavigator({
   Scanning: { screen: ScannerSegScreen },
-  RecognitionResult: {screen: RecognitionResultScreen},
-  ProductDetail: {screen: ProductDetailScreen}
+  RecognitionResult: { screen: RecognitionResultScreen },
+  ProductDetail: { screen: ProductDetailScreen }
 });
 
 export default createAppContainer(createBottomTabNavigator(
