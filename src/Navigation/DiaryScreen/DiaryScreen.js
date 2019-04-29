@@ -8,7 +8,7 @@ import uri from '../../assets/logo.jpg';
 
 import MealCard from './MealCard/Card';
 import DiaryContent from './DiaryContent';
-
+ 
 
 export default class diaryScreen extends Component {
   static navigationOptions = {
