@@ -11,8 +11,26 @@ class mealCard extends Component {
   }
 
   actionSheetHandler = (index) => {
-    this.setState({clicked: index});
+    this.setState({ clicked: index });
     console.log('index ' + index);
+    if (index === 'Modify') {
+      this.props.navi.navigate('AddDairy', { date: new Date() });
+      console.log(this.props.navi);
+    } else if (index === 'Delete') {
+      this.deleteMeal();
+    }
+  }
+
+  // retrive the value, then find the object which need to remove, then save entire value
+  deleteMeal = async () => {
+    // const value = await AsyncStorage.getItem(theKey);
+    // if (value !== null) {
+    //   var index = array.indexOf(theItem);
+    //   if (index > -1) {
+    //     value.splice(index, 1);
+    //   }
+    // }
+    // AsyncStorage.setItem(theKey, value);
   }
 
   _renderHeader = (item, expanded) => {
@@ -92,7 +110,7 @@ class mealCard extends Component {
       </Root>
     );
   }
-  
+
   render() {
     const dataArray = [];
     Object.entries(this.props.info).forEach(([key, val]) => {

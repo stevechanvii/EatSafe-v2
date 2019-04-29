@@ -14,15 +14,12 @@ import RecognitionResultScreen from './src/Navigation/ScanningScreen/Recognition
 import TextRecognitionScreen from './src/Navigation/ScanningScreen/TextRecognition';
 import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
 import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
-import MealCard from './src/Navigation/DiaryScreen/MealCard/Meals';
 
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
   Details: { screen: DetailsScreen },
   AddDairy: { screen: addDiaryScreen},
-  // Testing
-  Meal: {screen: MealCard}
 });
 
 const ProfileStack = createStackNavigator({

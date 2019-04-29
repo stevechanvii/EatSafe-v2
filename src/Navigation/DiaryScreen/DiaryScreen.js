@@ -42,7 +42,7 @@ export default class diaryScreen extends Component {
     const nextDay = this.state.date;
     nextDay.setDate(nextDay.getDate() + operator);
     this.setState({ date: nextDay });
-    this.getDariyResult();
+    // this.getDariyResult();
   };
 
   addFabHandler = () => {
@@ -50,35 +50,19 @@ export default class diaryScreen extends Component {
     this.props.navigation.navigate('AddDairy', { date: this.state.date });
   };
 
-  dateKeyGenerator = () => {
-    const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
-    return dateKey;
-  }
-
-  getDariyResult = async () => {
-    const dateKey = this.dateKeyGenerator();
-    try {
-      const value = await AsyncStorage.getItem(dateKey);
-      this.setState({dairyResult: JSON.parse(value)});
-      console.log('dairy result '+ this.state.dairyResult);
-    } catch (e) {
-      // read error
-      console.log(e)
-    }
-  }
-
   // before dairy tab get focus, rerender this screen
   componentDidMount() {
     // https://github.com/react-navigation/react-navigation/issues/1617
     // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
     this._subscribe = this.props.navigation.addListener('didFocus', () => {
       //  # do you update if need
-      this.getDariyResult();
+      // this.getDariyResult();
       this.setState({afterAddNew: this.state.afterAddNew + 1});
     });
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
         <Grid>
@@ -100,7 +84,9 @@ export default class diaryScreen extends Component {
           </Row>
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
-              {this.state.dairyResult ? <DiaryContent dairyResult={this.state.dairyResult}/> : <Text>No dariy</Text>}
+              {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
+              <DiaryContent navi={navigation} date={this.state.date} />
+              
               {/* <MealCard style={styles.records} /> */}
               
             </Content>

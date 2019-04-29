@@ -22,8 +22,8 @@ const NHCardImage = (props) => {
             </Left>
           </CardItem>
 
-          <CardItem cardBody style={styles.CardBody}>
-            <Meals info={props.info} />
+          <CardItem cardBody style={styles.CardBody} >
+            <Meals meal={props.meal} info={props.info} navi={props.navi} />
           </CardItem>
         </Card>
       </Content>
