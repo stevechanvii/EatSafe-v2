@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Fab } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import AsyncStorage from '@react-native-community/async-storage';
+import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
 import uri from '../../assets/logo.jpg';
 
@@ -19,22 +19,38 @@ export default class diaryScreen extends Component {
     date: new Date(),
     active: false,
     dairyResult: null,
-    afterAddNew: 0
+    afterAddNew: 0,
+    isDateTimePickerVisible: false
   };
 
   getDay = date => {
     // const date = new Date();
     const days = {
-      0: 'Sun',
       1: 'Mon',
       2: 'Tue',
       3: 'Wed',
       4: 'Thu',
       5: 'Fri',
-      6: 'Sat'
+      6: 'Sat',
+      7: 'Sun',
     }
     // alert(days[date.getDay()]);
     return days[date.getDay()];
+  };
+
+  // date picker
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+  handleDatePicked = date => {
+    this.setState({ date: new Date(date) });
+    console.log("A date has been picked: ", date);
+    this.hideDateTimePicker();
   };
 
   // this method will set the date and extract the dariy data
@@ -77,7 +93,7 @@ export default class diaryScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-    const imgURI = this.getIconURI(this.state.date.getDay() - 1);
+    const imgURI = this.getIconURI(this.state.date.getDay());
 
     return (
       <Container>
@@ -89,8 +105,16 @@ export default class diaryScreen extends Component {
               </TouchableOpacity>
             </Col>
             <Col size={5} style={styles.datePicker}>
-              <Thumbnail large square source={imgURI} />
+              <TouchableOpacity onPress={this.showDateTimePicker}>
+                <Thumbnail large square source={imgURI} />
+              </TouchableOpacity>
+
               <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
+              <DateTimePicker
+                isVisible={this.state.isDateTimePickerVisible}
+                onConfirm={this.handleDatePicked}
+                onCancel={this.hideDateTimePicker}
+              />
             </Col>
             <Col size={2} style={styles.arrowBtn}>
               <TouchableOpacity onPress={() => this.setDayHandler(1)}>
