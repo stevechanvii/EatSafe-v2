@@ -32,7 +32,7 @@ export default class diaryScreen extends Component {
       4: 'Thu',
       5: 'Fri',
       6: 'Sat',
-      7: 'Sun',
+      0: 'Sun',
     }
     // alert(days[date.getDay()]);
     return days[date.getDay()];
@@ -80,13 +80,13 @@ export default class diaryScreen extends Component {
   // https://facebook.github.io/react-native/docs/images.html
   getIconURI = (day) => {
     const uri = [
+      require('../../assets/icon/Sun.png'),
       require('../../assets/icon/Mon.png'),
       require('../../assets/icon/Tue.png'),
       require('../../assets/icon/Wed.png'),
       require('../../assets/icon/Thu.png'),
       require('../../assets/icon/Fri.png'),
       require('../../assets/icon/Sat.png'),
-      require('../../assets/icon/Sun.png'),
     ]
     return uri[day];
   }
@@ -125,8 +125,9 @@ export default class diaryScreen extends Component {
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
               {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
+              {console.log('come from DiaryContent ' + this.state.date)}
               <DiaryContent navi={navigation} date={this.state.date} />
-
+              
               {/* <MealCard style={styles.records} /> */}
 
             </Content>

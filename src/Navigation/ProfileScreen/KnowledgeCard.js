@@ -42,10 +42,10 @@ const cards =
         },
         {
             name: 'Allergy Vs intolerance',
-            Head1: 'Allergy',
-            Text1: '\nAllergy occurs when a persons immune system reacts to substances in the environment that are harmless for most people.immune system makes antibodies that identify a particular allergen as harmful, even though it isnt. When you come into contact with the allergen, your immune systems reaction can inflame your skin, sinuses, airways or digestive system.',
-            // Head2: '\nIntolerance',
-            // Text6: '\nIt is easy to confuse food intolerance and food allergy.Intolerances do not involve the body’s immune system unlike food allergy and Coeliac Disease.After eating, some people complain of symptoms like headaches, bloating or mouth ulcers but these are not caused by allergies.Food intolerances are slower in onset and are not life threatening. The most common food chemicals to upset sensitive people are glutamate, amines and salicylates. \n',
+            // Head1: 'Allergy',
+            // Text1: '\nAllergy occurs when a persons immune system reacts to substances in the environment that are harmless for most people.immune system makes antibodies that identify a particular allergen as harmful, even though it isnt. When you come into contact with the allergen, your immune systems reaction can inflame your skin, sinuses, airways or digestive system.',
+            Head2: '\nIntolerance',
+            Text6: '\nIt is easy to confuse food intolerance and food allergy.Intolerances do not involve the body’s immune system unlike food allergy and Coeliac Disease.After eating, some people complain of symptoms like headaches, bloating or mouth ulcers but these are not caused by allergies.Food intolerances are slower in onset and are not life threatening. The most common food chemicals to upset sensitive people are glutamate, amines and salicylates. \n',
             image: require('../../assets/img/intolerance1.jpg'),
         },
         {
@@ -80,8 +80,8 @@ const cards =
             Text2: 'Present the card to the chef or manager.',
             // Text3: '\n\nDownload and print the template and keep along with you when eating out.',
             // Text4: '\n\nClick the following link and access the Checfs card template provided by Allergy & Anaphylaxis Australia ',
-            // Text11: 'https://allergyfacts.org.au/images/pdf/AAA_Chef_Card_Template_2018_editable.pdf',
-            // Text12: '\n\nClick Here To Access the Chef Card',
+            Text11: 'https://allergyfacts.org.au/images/pdf/AAA_Chef_Card_Template_2018_editable.pdf',
+            Text12: '\n\nClick Here To Access the Chef Card',
             image: require('../../assets/img/chef_card.png'),
         },
 
@@ -91,8 +91,8 @@ export default class KnowledgeCard extends Component {
     render() {
         return (
             <Container>
-                <Content>
-                {/* <View> */}
+                {/* <Content> */}
+                <View>
                     <DeckSwiper
                         ref={(c) => this._deckSwiper = c}
                         dataSource={cards}
@@ -139,8 +139,8 @@ export default class KnowledgeCard extends Component {
                             </Card>
                         }
                     />
-                {/* </View> */}
-                </Content>
+                </View>
+                {/* </Content> */}
                 <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 0, left: 0, right: 0, justifyContent: 'space-between', padding: 1 }}>
                     <Button info iconLeft onPress={() => this._deckSwiper._root.swipeLeft()}>
                         <Icon name="arrow-back" />

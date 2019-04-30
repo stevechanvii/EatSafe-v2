@@ -35,7 +35,7 @@ class diaryContent extends Component {
     componentWillReceiveProps(newProps) {
         this.setState({date: newProps.date});
         this.getDariyResult();
-        console.log('componentWillReceiveProps count!!!');
+        // console.log('componentWillReceiveProps count!!!');
         
     }
 
@@ -44,9 +44,9 @@ class diaryContent extends Component {
         // this.setState({
         //     dairyResult: props.updatedResult
         // });
-        console.log('refreshFunction in Diary Content1111' );
+        // console.log('refreshFunction in Diary Content1111' );
         this.getDariyResult();
-        console.log('refreshFunction in Diary Content' );
+        // console.log('refreshFunction in Diary Content' );
     }
     
 
@@ -61,7 +61,8 @@ class diaryContent extends Component {
     //   }
 
     render() {
-        console.log('render!!!');
+        console.log('Diary Content Render!!!');
+        console.log(this.props.date);
         const cards = [];
         if (this.state.dairyResult !== null) {
             Preference.Meals.map(meal => {

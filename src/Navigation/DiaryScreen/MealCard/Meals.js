@@ -90,9 +90,13 @@ class mealCard extends Component {
   }
 
   _renderContent = (item) => {
-    const BUTTONS = ["Modify", "Delete", "Cancel"];
-    const DESTRUCTIVE_INDEX = 1;
-    const CANCEL_INDEX = 2;
+    // const BUTTONS = ["Modify", "Delete", "Cancel"];
+    // const DESTRUCTIVE_INDEX = 1;
+    // const CANCEL_INDEX = 2;
+
+    const BUTTONS = ["Delete", "Cancel"];
+    const DESTRUCTIVE_INDEX = 0;
+    const CANCEL_INDEX = 1;
 
     return (
       <Root>

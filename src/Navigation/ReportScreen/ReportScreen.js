@@ -14,7 +14,8 @@ class reportScreen extends Component {
     
     state = {
         afterAddNew: 0,
-        data: new Date()
+        data: new Date(),
+        ingredientObj: {}
     }
 
     componentDidMount() {
@@ -24,6 +25,8 @@ class reportScreen extends Component {
             //  # do you update if need
             // this.getDariyResult();
             this.setState({ afterAddNew: this.state.afterAddNew + 1 });
+            this.getDariyResult();
+            // console.log('componentDidMount in ReportScreen');
         });
     }
 
@@ -52,9 +55,9 @@ class reportScreen extends Component {
                         const daysData = JSON.parse(daysList[1]);
                         Preferene.Meals.map(meal => {
                             if (meal in daysData) {
-                                console.log(daysData[meal]);
+                                // console.log(daysData[meal]);
                                 Object.entries(daysData[meal]).forEach(([key, val]) => {
-                                    console.log(val);
+                                    // console.log(val);
                                     ingredientsList.push(val['ingredients']);
                                 });
                                 
@@ -68,7 +71,7 @@ class reportScreen extends Component {
             console.log(e);
         }
 
-        console.log(ingredientsList);
+        // console.log(ingredientsList);
 
         ingredientObj = {};
         ingredientsList.map(ingredient => {
@@ -79,17 +82,24 @@ class reportScreen extends Component {
             }
         });
 
-        console.log(ingredientObj);
+        // console.log(ingredientObj);
+        this.setState({ingredientObj: ingredientObj});
+        // console.log('hellllllllo');
 
     }
 
     render() {
-        this.getDariyResult();
+        // console.log('report');
+        const reportList = [];
+        Object.entries(this.state.ingredientObj).forEach(([key, val]) => {
+            reportList.push(<Text key={Math.random()} >{key} appears {val} times</Text>);
+        });
         return (
             <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <Thumbnail large source={uri} />
                 <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text>
-                <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text>
+                {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
+                {reportList}
             </Container>
         );
     }
