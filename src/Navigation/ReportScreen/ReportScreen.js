@@ -69,6 +69,18 @@ class reportScreen extends Component {
         }
 
         console.log(ingredientsList);
+
+        ingredientObj = {};
+        ingredientsList.map(ingredient => {
+            if (ingredient in ingredientObj) {
+                ingredientObj[ingredient] = ingredientObj[ingredient] + 1;
+            } else {
+                ingredientObj[ingredient] = 1;
+            }
+        });
+
+        console.log(ingredientObj);
+
     }
 
     render() {
