@@ -111,6 +111,24 @@ Useful Link
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
+* String Similarity: https://github.com/aceakash/string-similarity
+
+Guidance
+* https://github.com/okgrow/react-native-copilot
+* https://github.com/frichti/react-native-tips
+
+Splash Screen
+* https://github.com/fuyaode/react-native-app-intro
+* https://github.com/crazycodeboy/react-native-splash-screen
+* https://github.com/Jacse/react-native-app-intro-slider
+
+3D touch
+* https://github.com/jordanbyron/react-native-quick-actions
+
+Charts
+* https://github.com/wuxudong/react-native-charts-wrapper
+
+
 
 
 Thank you for all the communities and programmers who provide so amazing open source libraries. 
@@ -133,4 +151,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 
 * Produced by Team Hygieia (Danyang Chen, Souvic Chaki, Santash Ashok Pawar, Lili Zhou, Zizhang Ba)
 * Inspiration
-* etc
+* Some icons from icons8 (https://icons8.com/license), read the license before using.
