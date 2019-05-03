@@ -49,7 +49,7 @@ export default class diaryScreen extends Component {
 
   handleDatePicked = date => {
     this.setState({ date: new Date(date) });
-    console.log("A date has been picked: ", date);
+    // console.log("A date has been picked in Diary Screen: ", date);
     this.hideDateTimePicker();
   };
 
@@ -114,6 +114,8 @@ export default class diaryScreen extends Component {
                 isVisible={this.state.isDateTimePickerVisible}
                 onConfirm={this.handleDatePicked}
                 onCancel={this.hideDateTimePicker}
+                date={this.state.date}
+                maximumDate={new Date()}
               />
             </Col>
             <Col size={2} style={styles.arrowBtn}>
@@ -125,7 +127,7 @@ export default class diaryScreen extends Component {
           <Row size={7} style={{ backgroundColor: '#635DB7' }}>
             <Content>
               {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
-              {console.log('come from DiaryContent ' + this.state.date)}
+              {/* {console.log('come from DiaryContent ' + this.state.date)} */}
               <DiaryContent navi={navigation} date={this.state.date} />
               
               {/* <MealCard style={styles.records} /> */}

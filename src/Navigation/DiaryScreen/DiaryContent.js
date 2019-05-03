@@ -14,6 +14,7 @@ class diaryContent extends Component {
     };
 
     dateKeyGenerator = () => {
+        // console.log('dateKeyGenerator ' + this.state)
         const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
         return dateKey;
     }
@@ -33,8 +34,10 @@ class diaryContent extends Component {
 
     // NO LONGER SUPPORT IN FUTURE!!! TRY static getDerivedStateFromProps()
     componentWillReceiveProps(newProps) {
-        this.setState({date: newProps.date});
-        this.getDariyResult();
+        // one problem is that setState is a sync function, if we setState then get driy Result, the date have'nt been update
+        this.setState({date: newProps.date}, () => {
+            this.getDariyResult();
+        });
         // console.log('componentWillReceiveProps count!!!');
         
     }
@@ -61,8 +64,8 @@ class diaryContent extends Component {
     //   }
 
     render() {
-        console.log('Diary Content Render!!!');
-        console.log(this.props.date);
+        // console.log('Diary Content Render!!!');
+        // console.log(this.props.date);
         const cards = [];
         if (this.state.dairyResult !== null) {
             Preference.Meals.map(meal => {

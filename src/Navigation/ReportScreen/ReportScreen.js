@@ -44,7 +44,7 @@ class reportScreen extends Component {
         //     dateKeys = [3042019, 2942019, 2842019, 2742019, 2642019, 2542019, 2442019]
         //     console.log(dateKeys);
         // }
-        const dateKeys = ['3042019', '2942019', '2842019', '2742019', '2642019', '2542019', '2442019'];
+        const dateKeys = ['352019', '252019', '152019', '3042019', '2942019', '2842019', '2742019'];
         let values;
         let ingredientsList = [];
         try {
