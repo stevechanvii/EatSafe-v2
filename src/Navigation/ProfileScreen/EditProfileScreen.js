@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { View, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, DatePicker, ListItem, CheckBox, Button, Body } from 'native-base';
+import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../assets/avatar_square.jpg';
 
@@ -11,6 +11,9 @@ class editProfileScreen extends Component {
     static navigationOptions = {
         title: 'Edit Profile',
     };
+    // static navigationOptions = {
+    //     header: null
+    // }
 
     constructor(props) {
         super(props);
@@ -74,14 +77,24 @@ class editProfileScreen extends Component {
     render() {
         return (
             <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
-                {/* <Header /> */}
+                {/* <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='menu' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Edit Profile</Title>
+                    </Body>
+                    <Right />
+                </Header> */}
                 <Content>
                     <Thumbnail large source={uri} style={{ alignSelf: 'center', margin: 20 }} />
                     <Text style={{ alignSelf: 'center' }}>Hi, Welcome to EatSafe,</Text>
                     <Text style={{ alignSelf: 'center' }}>The information will only be saved locally</Text>
                     <Form>
                         <Item floatingLabel>
-                            <Label style={this.state.userName === '' ? {} : styles.hidden }>Username</Label>
+                            <Label style={this.state.userName === '' ? {} : styles.hidden}>Username</Label>
                             <Input placeholder={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} />
                         </Item>
                     </Form>

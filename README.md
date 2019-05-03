@@ -128,6 +128,10 @@ Splash Screen
 Charts
 * https://github.com/wuxudong/react-native-charts-wrapper
 
+icon
+* https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
+
+
 
 
 

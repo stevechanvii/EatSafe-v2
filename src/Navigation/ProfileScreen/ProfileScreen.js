@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, ListItem } from 'native-base';
+import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../assets/avatar_square.jpg';
 
 
 class profileScreen extends Component {
+    // static navigationOptions = {
+    //     title: 'Profile',
+    // };
     static navigationOptions = {
-        title: 'Profile',
-    };
+        header: null
+    }
 
     state = {
         milk: false,
@@ -64,6 +67,11 @@ class profileScreen extends Component {
 
         return (
             <Container>
+                <Header>
+                    <Body>
+                        <Title>Profile</Title>
+                    </Body>
+                </Header>
                 <Content>
                     <Grid>
                         <Row style={styles.avatorRow}>

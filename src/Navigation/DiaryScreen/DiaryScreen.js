@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Fab, Toast, Root } from 'native-base';
+import { Container, Text, Thumbnail, Content, Fab, Toast, Root, Button, Header, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
@@ -11,9 +11,12 @@ import DiaryContent from './DiaryContent';
 
 
 export default class diaryScreen extends Component {
+  // static navigationOptions = {
+  //   title: 'Diary',
+  // };
   static navigationOptions = {
-    title: 'Diary',
-  };
+    header: null
+  }
 
   state = {
     date: new Date(),
@@ -98,6 +101,11 @@ export default class diaryScreen extends Component {
     return (
       <Root>
         <Container>
+          <Header>
+            <Body>
+              <Title>Dairy</Title>
+            </Body>
+          </Header>
           <Grid>
             <Row size={3}>
               <Col size={2} style={styles.arrowBtn}>
@@ -123,9 +131,10 @@ export default class diaryScreen extends Component {
                 {/* <TouchableOpacity onPress={() => this.setDayHandler(1)}> */}
                 <TouchableOpacity
                   onPress={this.state.date.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0) ?
-                    () => this.setDayHandler(1) : () => Toast.show({
-                      text: 'Do you have time machine?',
-                      textStyle: {textAlign: 'center'}
+                    () => this.setDayHandler(1) :
+                    () => Toast.show({
+                      text: 'Time machine is developing!',
+                      textStyle: { textAlign: 'center' }
                     })}>
                   <Icon name='chevron-thin-right' size={50} color='#333745' />
                 </TouchableOpacity>
@@ -140,22 +149,24 @@ export default class diaryScreen extends Component {
                 {/* <MealCard style={styles.records} /> */}
 
               </Content>
-              <Fab
-                active={this.state.active}
-                direction="up"
-                containerStyle={{}}
-                style={styles.addFab}
-                position="bottomRight"
-                onPress={this.addFabHandler}>
-                <Icon name="add-to-list" />
 
-                {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
-                <Icon name="github" />
-              </Button> */}
-
-              </Fab>
             </Row>
           </Grid>
+          <Fab
+            active={this.state.active}
+            direction="up"
+            containerStyle={{}}
+            style={styles.addFab}
+            position="bottomRight"
+            // onPress={this.addFabHandler}>
+            onPress={() => this.setState({ active: !this.state.active })}>
+            <Icon name="add-to-list" />
+
+            <Button disabled style={{ backgroundColor: '#DD5144' }}>
+              <Icon name="github" />
+            </Button>
+
+          </Fab>
         </Container>
       </Root>
     );

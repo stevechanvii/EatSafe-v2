@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // import { Text, View } from 'react-native';
-import { Container, Text, Thumbnail, Header, Content, Accordion } from "native-base";
+import { Container, Text, Thumbnail, Header, Content, Tab, Tabs, Body, Title } from "native-base";
 import uri from '../../assets/logo.jpg';
 import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
@@ -9,9 +9,9 @@ import Preferene from '../../Preferences/Preferences';
 class reportScreen extends Component {
     static navigationOptions = {
         title: 'Report',
-        
+
     };
-    
+
     state = {
         afterAddNew: 0,
         data: new Date(),
@@ -50,8 +50,8 @@ class reportScreen extends Component {
         try {
             values = await AsyncStorage.multiGet(dateKeys);
             values.map(daysList => {
-                if (daysList){
-                    if (daysList[1]){
+                if (daysList) {
+                    if (daysList[1]) {
                         const daysData = JSON.parse(daysList[1]);
                         Preferene.Meals.map(meal => {
                             if (meal in daysData) {
@@ -60,7 +60,7 @@ class reportScreen extends Component {
                                     // console.log(val);
                                     ingredientsList.push(val['ingredients']);
                                 });
-                                
+
                             }
                         });
                     }
@@ -83,7 +83,7 @@ class reportScreen extends Component {
         });
 
         // console.log(ingredientObj);
-        this.setState({ingredientObj: ingredientObj});
+        this.setState({ ingredientObj: ingredientObj });
         // console.log('hellllllllo');
 
     }
@@ -95,11 +95,28 @@ class reportScreen extends Component {
             reportList.push(<Text key={Math.random()} >{key} appears {val} times</Text>);
         });
         return (
-            <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Thumbnail large source={uri} />
-                <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text>
-                {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
-                {reportList}
+            <Container>
+                <Header hasTabs>
+                    <Body>
+                        <Title>Report</Title>
+                    </Body>
+                </Header>
+                <Tabs>
+                    <Tab heading="Daily" style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Thumbnail large source={uri} />
+                        <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text>
+                        {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
+                        {reportList}
+                    </Tab>
+                    <Tab heading="Monthly">
+                        <Text>Tab 2</Text>
+                    </Tab>
+                    <Tab heading="Yearly">
+                        <Text>Tab 3</Text>
+                    </Tab>
+                </Tabs>
+
+
             </Container>
         );
     }
