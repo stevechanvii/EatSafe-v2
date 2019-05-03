@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Fab } from 'native-base';
+import { Container, Text, Thumbnail, Content, Fab, Toast, Root } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
@@ -8,7 +8,7 @@ import uri from '../../assets/logo.jpg';
 
 import MealCard from './MealCard/Card';
 import DiaryContent from './DiaryContent';
- 
+
 
 export default class diaryScreen extends Component {
   static navigationOptions = {
@@ -96,60 +96,68 @@ export default class diaryScreen extends Component {
     const imgURI = this.getIconURI(this.state.date.getDay());
 
     return (
-      <Container>
-        <Grid>
-          <Row size={3}>
-            <Col size={2} style={styles.arrowBtn}>
-              <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
-                <Icon name='chevron-thin-left' size={50} color='#333745' />
-              </TouchableOpacity>
-            </Col>
-            <Col size={5} style={styles.datePicker}>
-              <TouchableOpacity onPress={this.showDateTimePicker}>
-                <Thumbnail large square source={imgURI} />
-              </TouchableOpacity>
+      <Root>
+        <Container>
+          <Grid>
+            <Row size={3}>
+              <Col size={2} style={styles.arrowBtn}>
+                <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
+                  <Icon name='chevron-thin-left' size={50} color='#333745' />
+                </TouchableOpacity>
+              </Col>
+              <Col size={5} style={styles.datePicker}>
+                <TouchableOpacity onPress={this.showDateTimePicker}>
+                  <Thumbnail large square source={imgURI} />
+                </TouchableOpacity>
 
-              <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
-              <DateTimePicker
-                isVisible={this.state.isDateTimePickerVisible}
-                onConfirm={this.handleDatePicked}
-                onCancel={this.hideDateTimePicker}
-                date={this.state.date}
-                maximumDate={new Date()}
-              />
-            </Col>
-            <Col size={2} style={styles.arrowBtn}>
-              <TouchableOpacity onPress={() => this.setDayHandler(1)}>
-                <Icon name='chevron-thin-right' size={50} color='#333745' />
-              </TouchableOpacity>
-            </Col>
-          </Row>
-          <Row size={7} style={{ backgroundColor: '#635DB7' }}>
-            <Content>
-              {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
-              {/* {console.log('come from DiaryContent ' + this.state.date)} */}
-              <DiaryContent navi={navigation} date={this.state.date} />
-              
-              {/* <MealCard style={styles.records} /> */}
+                <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
+                <DateTimePicker
+                  isVisible={this.state.isDateTimePickerVisible}
+                  onConfirm={this.handleDatePicked}
+                  onCancel={this.hideDateTimePicker}
+                  date={this.state.date}
+                  maximumDate={new Date()}
+                />
+              </Col>
+              <Col size={2} style={styles.arrowBtn}>
+                {/* <TouchableOpacity onPress={() => this.setDayHandler(1)}> */}
+                <TouchableOpacity
+                  onPress={this.state.date.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0) ?
+                    () => this.setDayHandler(1) : () => Toast.show({
+                      text: 'Do you have time machine?',
+                      textStyle: {textAlign: 'center'}
+                    })}>
+                  <Icon name='chevron-thin-right' size={50} color='#333745' />
+                </TouchableOpacity>
+              </Col>
+            </Row>
+            <Row size={7} style={{ backgroundColor: '#635DB7' }}>
+              <Content>
+                {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
+                {/* {console.log('come from DiaryContent ' + this.state.date)} */}
+                <DiaryContent navi={navigation} date={this.state.date} />
 
-            </Content>
-            <Fab
-              active={this.state.active}
-              direction="up"
-              containerStyle={{}}
-              style={styles.addFab}
-              position="bottomRight"
-              onPress={this.addFabHandler}>
-              <Icon name="add-to-list" />
+                {/* <MealCard style={styles.records} /> */}
 
-              {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
+              </Content>
+              <Fab
+                active={this.state.active}
+                direction="up"
+                containerStyle={{}}
+                style={styles.addFab}
+                position="bottomRight"
+                onPress={this.addFabHandler}>
+                <Icon name="add-to-list" />
+
+                {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
                 <Icon name="github" />
               </Button> */}
 
-            </Fab>
-          </Row>
-        </Grid>
-      </Container>
+              </Fab>
+            </Row>
+          </Grid>
+        </Container>
+      </Root>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Root, Accordion, Right, Left, Title, View } from 'native-base';
+import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Accordion, Right, Left, Title, View } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -99,7 +99,6 @@ class mealCard extends Component {
     const CANCEL_INDEX = 1;
 
     return (
-      <Root>
         <Grid
           onPress={() =>
             ActionSheet.show(
@@ -137,7 +136,6 @@ class mealCard extends Component {
             </Grid>
           </Row>
         </Grid>
-      </Root>
     );
   }
 
