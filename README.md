@@ -108,6 +108,7 @@ Useful Link
 * React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
 * React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
 * React Native Modal Datetiem picker: https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
+* React Native Floating Action: https://github.com/santomegonzalo/react-native-floating-action#readme
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
@@ -130,9 +131,6 @@ Charts
 
 icon
 * https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
-
-float button
-* https://github.com/santomegonzalo/react-native-floating-action#readme
 
 
 

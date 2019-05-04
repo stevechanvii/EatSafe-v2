@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Fab, Toast, Root, Button, Header, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import { FloatingAction } from 'react-native-floating-action';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
 import uri from '../../assets/logo.jpg';
@@ -64,9 +65,12 @@ export default class diaryScreen extends Component {
     // this.getDariyResult();
   };
 
-  addFabHandler = () => {
-    this.setState({ active: !this.state.active });
-    this.props.navigation.navigate('AddDairy', { date: this.state.date });
+  floatingActionHandler = (name) => {
+    if (name === 'btn_input') {
+      this.props.navigation.navigate('AddDairy', { date: this.state.date });
+    } else if (name === 'btn_scan') {
+      this.props.navigation.navigate('Scanning', { header: 'Create Dairy' });
+    }
   };
 
   // before dairy tab get focus, rerender this screen
@@ -97,6 +101,20 @@ export default class diaryScreen extends Component {
   render() {
     const { navigation } = this.props;
     const imgURI = this.getIconURI(this.state.date.getDay());
+
+    const actions = [{
+      text: 'Add by Input',
+      icon: <Icon name='github' size={20} />,
+      name: 'btn_input',
+      position: 2,
+      color: '#DD5144'
+    }, {
+      text: 'Add by Scanning',
+      icon: require('../../assets/img/ic_language_white.png'),
+      name: 'btn_scan',
+      position: 1,
+      color: '#E63462'
+    }];
 
     return (
       <Root>
@@ -152,21 +170,10 @@ export default class diaryScreen extends Component {
 
             </Row>
           </Grid>
-          <Fab
-            active={this.state.active}
-            direction="up"
-            containerStyle={{}}
-            style={styles.addFab}
-            position="bottomRight"
-            onPress={this.addFabHandler}>
-            {/* onPress={() => this.setState({ active: !this.state.active })}> */}
-            <Icon name="add-to-list" />
-
-            {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
-              <Icon name="github" />
-            </Button> */}
-
-          </Fab>
+          
+          <FloatingAction
+            actions={actions}
+            onPressItem={(name) => { this.floatingActionHandler(name) }} />
         </Container>
       </Root>
     );
