@@ -89,7 +89,7 @@ class reportScreen extends Component {
     }
 
     render() {
-        // console.log('report');
+        // console.log('report'); 
         const reportList = [];
         Object.entries(this.state.ingredientObj).forEach(([key, val]) => {
             reportList.push(<Text key={Math.random()} >{key} appears {val} times</Text>);

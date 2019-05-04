@@ -158,13 +158,13 @@ export default class diaryScreen extends Component {
             containerStyle={{}}
             style={styles.addFab}
             position="bottomRight"
-            // onPress={this.addFabHandler}>
-            onPress={() => this.setState({ active: !this.state.active })}>
+            onPress={this.addFabHandler}>
+            {/* onPress={() => this.setState({ active: !this.state.active })}> */}
             <Icon name="add-to-list" />
 
-            <Button disabled style={{ backgroundColor: '#DD5144' }}>
+            {/* <Button disabled style={{ backgroundColor: '#DD5144' }}>
               <Icon name="github" />
-            </Button>
+            </Button> */}
 
           </Fab>
         </Container>
