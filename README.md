@@ -132,6 +132,14 @@ Charts
 icon
 * https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
 
+input
+* https://github.com/halilb/react-native-textinput-effects
+* https://github.com/n4kz/react-native-material-textfield
+
+resource
+* https://github.com/jondot/awesome-react-native
+
+
 
 
 

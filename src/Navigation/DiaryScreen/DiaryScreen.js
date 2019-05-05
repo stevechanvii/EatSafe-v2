@@ -21,7 +21,6 @@ export default class diaryScreen extends Component {
 
   state = {
     date: new Date(),
-    active: false,
     dairyResult: null,
     afterAddNew: 0,
     isDateTimePickerVisible: false
@@ -67,9 +66,12 @@ export default class diaryScreen extends Component {
 
   floatingActionHandler = (name) => {
     if (name === 'btn_input') {
+      // console.log('floatingActionHandler ' + this.state.date);
       this.props.navigation.navigate('AddDairy', { date: this.state.date });
     } else if (name === 'btn_scan') {
-      this.props.navigation.navigate('Scanning', { header: 'Create Dairy' });
+      // pass isAddDairy to scanner
+      // this.props.navigation.navigate('Scanning', { isAddDairy: true });
+      this.props.navigation.navigate('Scanning', {date: new Date()});
     }
   };
 
@@ -102,6 +104,7 @@ export default class diaryScreen extends Component {
     const { navigation } = this.props;
     const imgURI = this.getIconURI(this.state.date.getDay());
 
+    // define the float action button
     const actions = [{
       text: 'Add by Input',
       icon: <Icon name='github' size={20} />,
@@ -135,20 +138,21 @@ export default class diaryScreen extends Component {
                 <TouchableOpacity onPress={this.showDateTimePicker}>
                   <Thumbnail large square source={imgURI} />
                 </TouchableOpacity>
-
+                {/* {console.log('TouchableOpacity ' + this.state.date)} */}
                 <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
                 <DateTimePicker
                   isVisible={this.state.isDateTimePickerVisible}
                   onConfirm={this.handleDatePicked}
                   onCancel={this.hideDateTimePicker}
                   date={this.state.date}
+                  titleIOS='Pick a Date'
                   maximumDate={new Date()}
                 />
               </Col>
               <Col size={2} style={styles.arrowBtn}>
                 {/* <TouchableOpacity onPress={() => this.setDayHandler(1)}> */}
                 <TouchableOpacity
-                  onPress={this.state.date.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0) ?
+                  onPress={this.state.date.toDateString() < new Date().toDateString() ?
                     () => this.setDayHandler(1) :
                     () => Toast.show({
                       text: 'Time machine is developing!',
@@ -167,10 +171,9 @@ export default class diaryScreen extends Component {
                 {/* <MealCard style={styles.records} /> */}
 
               </Content>
-
             </Row>
           </Grid>
-          
+
           <FloatingAction
             actions={actions}
             onPressItem={(name) => { this.floatingActionHandler(name) }} />

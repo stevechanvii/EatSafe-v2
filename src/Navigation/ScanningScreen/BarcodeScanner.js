@@ -7,7 +7,8 @@ const barcodeScanner = ({ navigation }) => {
     onBarCodeEvent = (event) => {
         navigation.navigate('ProductDetail', {
             barcodeType: event.type,
-            barcode: event.data
+            barcode: event.data,
+            navigation: navigation
         });
     };
 

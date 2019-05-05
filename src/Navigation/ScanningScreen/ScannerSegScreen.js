@@ -29,6 +29,8 @@ class scannerSegScreen extends Component {
     }
 
     segmentView() {
+        // console.log(this.props.navigation.getParam('isAddDairy', false))
+        // console.log(this.props.navigation.state.params);
         return (
             <Container style={styles.container}>
                 <Header hasSegment>
@@ -50,7 +52,7 @@ class scannerSegScreen extends Component {
                     </Body>
 
                 </Header>
-
+                {/* {console.log(this.props.navigation.getParam('isAddDairy', false))} */}
                 {this.state.seg === 1 && <BarcodeScanner navigation={this.props.navigation} />}
                 {this.state.seg === 2 && <TextRecognition navigation={this.props.navigation} />}
             </Container>

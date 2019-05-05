@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
-import CardShowCase from '../../Components/Card/CardShowCase';
-import ProductNotFound from '../../Components/Card/ProductNotFound';
+import CardShowCase from './Card/CardShowCase';
+import ProductNotFound from './Card/ProductNotFound';
 
 // import { Text, View, Button } from 'react-native';
 
@@ -71,7 +71,7 @@ class productDetailScreen extends Component {
         }
 
         return (
-            <CardShowCase productDetail={this.state} />
+            <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
         );
     }
 }

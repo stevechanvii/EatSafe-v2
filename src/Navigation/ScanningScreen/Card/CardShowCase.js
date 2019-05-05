@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Content, Card, CardItem, Text, Button, Left, Body, H2, Accordion } from 'native-base';
-import UnderScoreToJSX from '../Format/UnderScoreToJSX';
+import UnderScoreToJSX from '../../../Components/Format/UnderScoreToJSX';
 import Icon from 'react-native-vector-icons/Feather';
 
 userAllergensAlert = async (productAllergens) => {
@@ -68,7 +68,7 @@ const cardShowCase = (props) => {
                     </CardItem>
                     <CardItem>
                         <Body>
-                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../assets/allergies_image.jpg')}
+                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../../assets/allergies_image.jpg')}
                                 style={{ height: 200, width: '100%', flex: 1 }} />
                         </Body>
                     </CardItem>
@@ -101,6 +101,17 @@ const cardShowCase = (props) => {
                     expandedIcon="remove"
                     animation={true}
                 />
+                <Button info onPress={() => {
+                    props.navigation.navigate(
+                        'CreateDairy',
+                        {
+                            navigation: props.navigation,
+                            name: props.productDetail.productName.toString(),
+                            ingredients: props.productDetail.ingredients
+                        });
+                }} >
+                    <Text>Add {props.productDetail.productName.toString()} to dairy</Text>
+                </Button>
             </Content>
         </Container>
     );
