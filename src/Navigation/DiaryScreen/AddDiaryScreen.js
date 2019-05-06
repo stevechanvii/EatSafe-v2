@@ -6,6 +6,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Kohana } from 'react-native-textinput-effects';
 import Preference from '../../Preferences/Preferences';
 
 class addDiaryScreen extends Component {
@@ -194,96 +195,115 @@ class addDiaryScreen extends Component {
                             </Grid>
                         </Row>
                         <Row size={7} >
-                            {/* <Content> */}
-                            <Form>
-                                <TouchableOpacity
-                                    onPress={this.showDateTimePicker}>
-                                    <View style={styles.timePicker}>
-                                        <Icon name='access-time' size={20} />
-                                        <Text style={{ color: "black", marginLeft: 5 }}>
-                                            {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
-                                        </Text>
-                                        <Text style={{ color: "black", marginLeft: 5 }}>
-                                            {this.state.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
+                            <Grid style={{ backgroundColor: '#b792a6' }}>
+                                <Form style={styles.card2}>
+                                    <TouchableOpacity
+                                        onPress={this.showDateTimePicker}>
+                                        <View style={styles.timePicker}>
+                                            <Icon name='access-time' size={20} />
+                                            <Text style={{ color: "black", marginLeft: 5 }}>
+                                                {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
+                                            </Text>
+                                            <Text style={{ color: "black", marginLeft: 5 }}>
+                                                {this.state.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
+                                            </Text>
+                                        </View>
+                                    </TouchableOpacity>
 
-                                <DateTimePicker
-                                    isVisible={this.state.isDateTimePickerVisible}
-                                    onConfirm={this.handleDatePicked}
-                                    onCancel={this.hideDateTimePicker}
-                                    minuteInterval={5}
-                                    maximumDate={new Date()}
-                                    mode='time'
-                                    titleIOS='Pick a Time'
-                                    date={this.state.date}
-                                />
+                                    <DateTimePicker
+                                        isVisible={this.state.isDateTimePickerVisible}
+                                        onConfirm={this.handleDatePicked}
+                                        onCancel={this.hideDateTimePicker}
+                                        minuteInterval={5}
+                                        maximumDate={new Date()}
+                                        mode='time'
+                                        titleIOS='Pick a Time'
+                                        date={this.state.date}
+                                    />
 
-                                {/* <View style={{width: '40%'}}> */}
-                                <Item style={styles.inputItem} >
-                                    <EmotionIcon name='cupcake' size={20} />
-                                    <Picker
-                                        mode="dropdown"
-                                        // iosIcon={<Icon name="expand-more" />}
-                                        style={{}}
-                                        placeholder="Select your Meal"
-                                        iosHeader="Meal"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={this.state.mealSelected}
-                                        onValueChange={this.onMealChange.bind(this)}>
-                                        {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
-                                    </Picker>
-                                </Item>
-                                {/* </View> */}
+                                    <Item picker style={styles.inputItem} >
+                                        <EmotionIcon name='cupcake' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <Picker
+                                            mode="dropdown"
+                                            iosIcon={<Icon name="expand-more" size={40} />}
+                                            style={{ width: '75%' }}
+                                            placeholder="Select your Meal"
+                                            iosHeader="Meal"
+                                            placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
+                                            placeholderIconColor="#f4d29a"
+                                            textStyle={{ color: "#91627b", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            selectedValue={this.state.mealSelected}
+                                            onValueChange={this.onMealChange.bind(this)}>
+                                            {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
+                                        </Picker>
+                                    </Item>
 
-                                <Item style={styles.inputItem} >
-                                    <Icon name='do-not-disturb' size={20} />
-                                    <Picker
-                                        mode="dropdown"
-                                        // iosIcon={<Icon name="expand-more" />}
-                                        style={{}}
-                                        placeholder="Select your Symptoms"
-                                        iosHeader="Symptoms"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={this.state.symptomSelected}
-                                        onValueChange={this.onSymptomChange.bind(this)}
-                                    >
-                                        <Picker.Item label="Feeling Well" value="Feeling Well" />
-                                        <Picker.Item label="Itching Skin" value="Itching Skin" />
-                                        <Picker.Item label="Running Nose" value="Running Nose" />
-                                        <Picker.Item label="Breath Difficuties" value="Breath Difficuties" />
-                                    </Picker>
-                                </Item>
-                                {/* </View> */}
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='restaurant' size={20} />
-                                    <Input placeholder='Food' onChangeText={(text) => this.setState({ food: text })} />
-                                </Item>
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='mode-edit' size={20} />
-                                    <Input placeholder='Ingredients' onChangeText={(text) => this.setState({ ingredients: text })} />
-                                </Item>
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='comment' size={20} />
-                                    <Input placeholder='Comments' onChangeText={(text) => this.setState({ comments: text })} />
-                                </Item>
-
-                                <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
-                                    <Text>Create</Text>
-                                </Button>
-                            </Form>
-
-                            {/* </Content> */}
+                                    <Item picker style={styles.inputItem} >
+                                        <Icon name='do-not-disturb' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <Picker
+                                            mode="dropdown"
+                                            iosIcon={<Icon name="expand-more" size={40} />}
+                                            style={{ width: '75%' }}
+                                            placeholder="Select your Symptoms"
+                                            iosHeader="Symptoms"
+                                            placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
+                                            placeholderIconColor="#f4d29a"
+                                            textStyle={{ color: "#91627b", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            selectedValue={this.state.symptomSelected}
+                                            onValueChange={this.onSymptomChange.bind(this)}
+                                        >
+                                            <Picker.Item label="Feeling Well" value="Feeling Well" />
+                                            <Picker.Item label="Itching Skin" value="Itching Skin" />
+                                            <Picker.Item label="Running Nose" value="Running Nose" />
+                                            <Picker.Item label="Breath Difficuties" value="Breath Difficuties" />
+                                        </Picker>
+                                    </Item>
+                                    <Kohana
+                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        label={'Food Name'}
+                                        iconClass={Icon}
+                                        iconName={'restaurant'}
+                                        iconColor={'#f4d29a'}
+                                        iconSize={30}
+                                        labelStyle={{ color: '#91627b' }}
+                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        // multiline={true}
+                                        onChangeText={(text) => this.setState({ food: text })}
+                                        useNativeDriver
+                                    />
+                                    <Kohana
+                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        label={'Ingredients'}
+                                        iconClass={Icon}
+                                        iconName={'mode-edit'}
+                                        iconColor={'#f4d29a'}
+                                        iconSize={30}
+                                        labelStyle={{ color: '#91627b' }}
+                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        onChangeText={(text) => this.setState({ ingredients: text })}
+                                        useNativeDriver
+                                    />
+                                    <Kohana
+                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        label={'Comments'}
+                                        iconClass={Icon}
+                                        iconName={'comment'}
+                                        iconSize={30}
+                                        iconColor={'#f4d29a'}
+                                        labelStyle={{ color: '#91627b' }}
+                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        onChangeText={(text) => this.setState({ comments: text })}
+                                        useNativeDriver
+                                    />
+                                    <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
+                                        <Text>Create</Text>
+                                    </Button>
+                                </Form>
+                            </Grid>
                         </Row>
                     </Grid>
                 </Content>
-            </Container>
+            </Container >
         );
     };
 
@@ -291,7 +311,11 @@ class addDiaryScreen extends Component {
 
 const styles = StyleSheet.create({
     inputItem: {
-        margin: 5
+        // margin: 5,
+        backgroundColor: '#f9f5ed',
+        marginTop: 4,
+        marginLeft: 0,
+
     },
     headRow: {
         alignItems: 'center',
@@ -314,7 +338,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: "row",
         marginTop: 10,
-    }
+    },
+    card2: {
+        padding: 16,
+        flex: 1,
+    },
+    input: {
+        marginTop: 4,
+    },
 });
 
 export default addDiaryScreen;

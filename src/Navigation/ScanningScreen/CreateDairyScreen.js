@@ -143,6 +143,11 @@ class createDairyScreen extends Component {
     }
 
     render() {
+        let ingredientString = '';
+        this.props.navigation.getParam('ingredients', [{'text': 'Ingredients Not Found'}]).map(el => {
+            ingredientString += el.text;
+            ingredientString += ', ';
+        });
         return (
             <Container>
                 <Content>
@@ -268,7 +273,7 @@ class createDairyScreen extends Component {
 
                                 <Item style={styles.inputItem} >
                                     <Icon name='mode-edit' size={20} />
-                                    <Input placeholder='Ingredients' onChangeText={(text) => this.setState({ ingredients: text })} />
+                                    <Input placeholder={ingredientString} onChangeText={(text) => this.setState({ ingredients: text })} />
                                 </Item>
 
                                 <Item style={styles.inputItem} >
@@ -277,7 +282,7 @@ class createDairyScreen extends Component {
                                 </Item>
 
                                 <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
-                                    <Text>Create</Text>
+                                    <Text>Create {this.state.food} Dairy</Text>
                                 </Button>
                             </Form>
 

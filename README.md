@@ -108,7 +108,9 @@ Useful Link
 * React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
 * React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
 * React Native Modal Datetiem picker: https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
+* React Native Textinput Effects:https://github.com/halilb/react-native-textinput-effects
 * React Native Floating Action: https://github.com/santomegonzalo/react-native-floating-action#readme
+* React Native Modal: https://github.com/react-native-community/react-native-modal
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
