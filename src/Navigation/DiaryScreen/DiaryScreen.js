@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Fab, Toast, Root, Button, Header, Body, Title } from 'native-base';
+import { Container, Text, Thumbnail, Content, Fab, Toast, Root, Button, Body, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { FloatingAction } from 'react-native-floating-action';
+import Header from '../../Components/Header';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
-import uri from '../../assets/logo.jpg';
-
-import MealCard from './MealCard/Card';
+import Theme from '../../Styles/Theme';
 import DiaryContent from './DiaryContent';
 
 
@@ -123,12 +122,8 @@ export default class diaryScreen extends Component {
     return (
       <Root>
         <Container>
-          <Header style={{backgroundColor: '#FF5E5B'}} >
-            <Body>
-              <Title>Dairy</Title>
-            </Body>
-          </Header>
-          <Grid style={{backgroundColor: '#F7F7F7'}} >
+          <Header title='Dairy' />
+          <Grid style={Theme.body} >
             <Row size={2}>
               <Col size={2} style={styles.arrowBtn}>
                 <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
@@ -179,7 +174,7 @@ export default class diaryScreen extends Component {
           <FloatingAction
             actions={actions}
             onPressItem={(name) => { this.floatingActionHandler(name) }}
-            color='#FF5E5B' />
+            color='#E55934' />
         </Container>
       </Root>
     );

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-
-import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import { Container, Header, Left, Right, Title, Body, Icon, Text, Button } from 'native-base';
+import Theme from '../../Styles/Theme';
 import CardShowCase from './Card/CardShowCase';
 import ProductNotFound from './Card/ProductNotFound';
 
-// import { Text, View, Button } from 'react-native';
-
 class productDetailScreen extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     state = {
         isLoading: true
     }
@@ -30,12 +33,12 @@ class productDetailScreen extends Component {
                         barcode: barcode,
                         productName: responseJson.product.product_name,
                         // be careful bugs here, if product not exist, these won't found
-                        ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : [{'text': 'Ingredients Not Found'}],
+                        ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : [{ 'text': 'Ingredients Not Found' }],
                         allergens: responseJson.product.allergens ? responseJson.product.allergens : 'Allergens Not Found',
                         image: responseJson.product.image_url ? responseJson.product.image_url : 'Image Not Found',
                         traces: responseJson.product.traces_tags ? responseJson.product.traces_tags : '',
                         categories: responseJson.product.categories_tags ? responseJson.product.categories_tags : '',
-                        nutrientLevel: responseJson.product.nutrient_levels ? responseJson.product.nutrient_levels: 'Nutrient Level Not Found',
+                        nutrientLevel: responseJson.product.nutrient_levels ? responseJson.product.nutrient_levels : 'Nutrient Level Not Found',
                         genericName: responseJson.product.generic_name ? responseJson.product.generic_name : ''
                     }, function () {
 
@@ -71,7 +74,21 @@ class productDetailScreen extends Component {
         }
 
         return (
-            <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
+            <Container>
+                <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
+                    <Left>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                            <Icon name="arrow-back" style={Theme.back} />
+                            <Text style={Theme.back}>Back</Text>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Scanner Result</Title>
+                    </Body>
+                    <Right />
+                </Header>
+                <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
+            </Container>
         );
     }
 }

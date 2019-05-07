@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Content, Card, CardItem, Text, Button, Left, Body, H2, Accordion } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Button, H2, Accordion, Left, Right, Title, Header, Body, Icon } from 'native-base';
 import UnderScoreToJSX from '../../../Components/Format/UnderScoreToJSX';
-import Icon from 'react-native-vector-icons/Feather';
+import Theme from '../../../Styles/Theme';
+import Feather from 'react-native-vector-icons/Feather';
 
 userAllergensAlert = async (productAllergens) => {
     const keys = ['milk', 'soy', 'seafood'];
@@ -41,6 +42,13 @@ userAllergensAlert = async (productAllergens) => {
     }
 }
 
+
+navigationOptions = {
+    headerStyle: {
+      backgroundColor: 'red',
+    },
+}
+
 // this is a stateless component which handle show case with pic and text
 const cardShowCase = (props) => {
     const productAllergens = props.productDetail.allergens.toString();
@@ -53,8 +61,20 @@ const cardShowCase = (props) => {
     }
 
     return (
-        <Container>
-            {/* <Header /> */}
+        // <Container>
+        //     {/* <Header /> */}
+        //     {/* <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
+        //             <Left>
+        //                 <Button transparent onPress={() => props.navigation.goBack()}>
+        //                     <Icon name="arrow-back" style={Theme.back} />
+        //                     <Text style={Theme.back}>Back</Text>
+        //                 </Button>
+        //             </Left>
+        //             <Body>
+        //                 <Title>Create Diary</Title>
+        //             </Body>
+        //             <Right />
+        //         </Header> */}
             <Content>
                 <Card style={{ flex: 1 }}>
                     <CardItem>
@@ -75,7 +95,7 @@ const cardShowCase = (props) => {
                     <CardItem>
                         <Left>
                             <Button transparent >
-                                <Icon name="alert-circle" size={16} color='red' />
+                                <Feather name="alert-circle" size={16} color='red' />
                                 <Text style={{ color: "black", fontSize: 16 }}>ALLERGENS</Text>
                             </Button>
                         </Left>
@@ -86,7 +106,7 @@ const cardShowCase = (props) => {
                     <CardItem>
                         <Left>
                             <Button transparent >
-                                <Icon name="alert-circle" size={16} color='red' />
+                                <Feather name="alert-circle" size={16} color='red' />
                                 <Text style={{ color: "black", fontSize: 15 }}>TRACES</Text>
                             </Button>
                         </Left>
@@ -97,7 +117,7 @@ const cardShowCase = (props) => {
                 </Card>
                 <Accordion
                     dataArray={[{ title: "Ingredients", content: <UnderScoreToJSX ingredients={props.productDetail.ingredients} /> }]}
-                    icon="add"
+                    Feather="add"
                     expandedIcon="remove"
                     animation={true}
                 />
@@ -113,7 +133,7 @@ const cardShowCase = (props) => {
                     <Text>Add {props.productDetail.productName.toString()} to dairy</Text>
                 </Button>
             </Content>
-        </Container>
+        // </Container>
     );
 }
 

@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Accordion, Right, Left, Title, View } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Preference from '../../../Preferences/Preferences';
 
 class mealCard extends Component {
@@ -82,8 +82,8 @@ class mealCard extends Component {
         </Col>
         <Col size={1} style={styles.expandBth} >
           {expanded
-            ? <Icon style={{ fontSize: 18 }} name="remove-circle" />
-            : <Icon style={{ fontSize: 18 }} name="add-circle" />}
+            ? <MaterialIcons size={25} name="expand-less" />
+            : <MaterialIcons size={25} name="expand-more" />}
         </Col>
       </Grid>
     );
@@ -115,23 +115,21 @@ class mealCard extends Component {
           }>
           <Row>
             <Grid>
-              <Col size={2}></Col>
-              <Col size={3}>
-                <Text>Ingredients</Text>
+              <Col size={1} >
+              <Thumbnail small source={require('../../../assets/icons8-savouring-delicious-food-face-100.png')} />
               </Col>
-              <Col size={5}>
-                <Text>{item.ingredients}</Text>
-              </Col>
-            </Grid>
-          </Row>
-          <Row>
-            <Grid>
-              <Col size={2}></Col>
-              <Col size={3}>
-                <Text>Comments</Text>
-              </Col>
-              <Col size={5}>
-                <Text>{item.comments}</Text>
+              <Col size={6} >
+              <Grid>
+                <Row>
+                  <Col size={2} ><Text>Ingredients</Text></Col>
+                  <Col size={4} ><Text>{item.ingredients}</Text></Col>
+                </Row>
+                <Row>
+                  <Col size={2} ><Text>Comments</Text></Col>
+                  <Col size={4} ><Text>{item.comments}</Text></Col>
+                </Row>
+
+              </Grid>
               </Col>
             </Grid>
           </Row>
@@ -174,6 +172,7 @@ const styles = StyleSheet.create({
   grid: {
     // backgroundColor: "#F3FFBD",
     paddingVertical: 10,
+    marginTop: 5,
     borderTopWidth: 1,
     borderColor: '#DFDFDF'
   },

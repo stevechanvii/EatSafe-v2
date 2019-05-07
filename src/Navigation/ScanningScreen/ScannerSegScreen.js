@@ -1,7 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Text, Header, Button, Body, Segment } from "native-base";
+import { Container, Text, Button, Segment, Left, Right, Title, Header, Body, Icon } from "native-base";
+import Theme from '../../Styles/Theme';
 import TextRecognition from './TextRecognition';
 import BarcodeScanner from './BarcodeScanner';
 
@@ -33,9 +34,10 @@ class scannerSegScreen extends Component {
         // console.log(this.props.navigation.state.params);
         return (
             <Container style={styles.container}>
-                <Header hasSegment>
-                    <Body>
-                        <Segment>
+            <Header hasSegment androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
+                {/* <Header hasSegment> */}
+                    <Body style={Theme.headerBar}>
+                        <Segment style={Theme.headerBar}>
                             <Button
                                 active={this.state.seg === 1 ? true : false}
                                 first

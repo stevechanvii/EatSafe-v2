@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H3, H2, View } from 'native-base';
+import { Container, Text, Title, Content, Button, Left, Item, Form, Picker, H3, Right, View, Body, Header, Icon } from 'native-base';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
+import Theme from '../../Styles/Theme';
 import Preference from '../../Preferences/Preferences';
 
 class addDiaryScreen extends Component {
+    // static navigationOptions = {
+    //     title: 'Create Diary',
+    // };
     static navigationOptions = {
-        title: 'Create Diary',
-    };
+        header: null
+    }
 
     state = {
         symptomSelected: "Feeling Well",
@@ -145,45 +149,57 @@ class addDiaryScreen extends Component {
     render() {
         return (
             <Container>
+                <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
+                    <Left>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                            <Icon name="arrow-back" style={Theme.back} />
+                            <Text style={Theme.back}>Back</Text>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Create Diary</Title>
+                    </Body>
+                    <Right />
+                </Header>
                 {/* <Content contentContainerStyle={{ flex: 1 }}> */}
                 <Content>
-                    <Grid>
-                        <Row size={3} >
+                    <Grid style={Theme.body} >
+                        <Row size={3} > 
                             <Grid style={styles.headRow}>
                                 <Row size={1} style={{ alignItems: 'center', justifyContent: 'center', margin: 15 }} >
                                     <H3>How do you feel after the meal?</H3>
                                 </Row>
                                 <Row size={2} style={styles.emotionRow}>
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >
-                                        <EmotionIcon
+                                        <MaterialCommunityIcons
                                             name='emoticon-cool-outline'
                                             size={50}
                                             style={styles.emotion}
                                             color={this.state.emotionSelected === 'Excellent' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('Good')} >
-                                        <EmotionIcon
+                                        <MaterialCommunityIcons
                                             name='emoticon-happy-outline'
                                             size={50}
                                             style={styles.emotion}
                                             color={this.state.emotionSelected === 'Good' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('So So')} >
-                                        <EmotionIcon
+                                        <MaterialCommunityIcons
                                             name='emoticon-neutral-outline'
                                             size={50}
                                             style={styles.emotion}
                                             color={this.state.emotionSelected === 'So So' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('Not Well')} >
-                                        <EmotionIcon
+                                        <MaterialCommunityIcons
                                             name='emoticon-sad-outline'
                                             size={50}
                                             style={styles.emotion}
                                             color={this.state.emotionSelected === 'Not Well' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('Awful')} >
-                                        <EmotionIcon
+                                        <MaterialCommunityIcons
                                             name='emoticon-poop'
                                             size={50}
                                             style={styles.emotion}
@@ -196,12 +212,13 @@ class addDiaryScreen extends Component {
                             </Grid>
                         </Row>
                         <Row size={7} >
-                            <Grid style={{ backgroundColor: '#b792a6' }}>
+                            {/* <Grid style={{ backgroundColor: '#b792a6' }}> */}
+                            <Grid>
                                 <Form style={styles.card2}>
                                     <TouchableOpacity
                                         onPress={this.showDateTimePicker}>
                                         <View style={styles.timePicker}>
-                                            <Icon name='access-time' size={20} />
+                                            <MaterialIcons name='access-time' size={20} />
                                             <Text style={{ color: "black", marginLeft: 5 }}>
                                                 {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
                                             </Text>
@@ -223,10 +240,10 @@ class addDiaryScreen extends Component {
                                     />
 
                                     <Item picker style={styles.inputItem} >
-                                        <EmotionIcon name='cupcake' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <MaterialCommunityIcons name='cupcake' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
                                         <Picker
                                             mode="dropdown"
-                                            iosIcon={<Icon name="expand-more" size={40} />}
+                                            iosIcon={<MaterialIcons name="expand-more" size={40} />}
                                             style={{ width: '75%' }}
                                             placeholder="Select your Meal"
                                             iosHeader="Meal"
@@ -240,10 +257,10 @@ class addDiaryScreen extends Component {
                                     </Item>
 
                                     <Item picker style={styles.inputItem} >
-                                        <Icon name='do-not-disturb' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <MaterialCommunityIcons name='do-not-disturb' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
                                         <Picker
                                             mode="dropdown"
-                                            iosIcon={<Icon name="expand-more" size={40} />}
+                                            iosIcon={<MaterialIcons name="expand-more" size={40} />}
                                             style={{ width: '75%' }}
                                             placeholder="Select your Symptoms"
                                             iosHeader="Symptoms"
@@ -262,7 +279,7 @@ class addDiaryScreen extends Component {
                                     <Kohana
                                         style={[styles.input, { backgroundColor: '#f9f5ed' }]}
                                         label={'Food Name'}
-                                        iconClass={Icon}
+                                        iconClass={MaterialIcons}
                                         iconName={'restaurant'}
                                         iconColor={'#f4d29a'}
                                         iconSize={30}
@@ -275,7 +292,7 @@ class addDiaryScreen extends Component {
                                     <Kohana
                                         style={[styles.input, { backgroundColor: '#f9f5ed' }]}
                                         label={'Ingredients'}
-                                        iconClass={Icon}
+                                        iconClass={MaterialIcons}
                                         iconName={'mode-edit'}
                                         iconColor={'#f4d29a'}
                                         iconSize={30}
@@ -287,7 +304,7 @@ class addDiaryScreen extends Component {
                                     <Kohana
                                         style={[styles.input, { backgroundColor: '#f9f5ed' }]}
                                         label={'Comments'}
-                                        iconClass={Icon}
+                                        iconClass={MaterialIcons}
                                         iconName={'comment'}
                                         iconSize={30}
                                         iconColor={'#f4d29a'}
@@ -321,7 +338,7 @@ const styles = StyleSheet.create({
     headRow: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#E63462'
+        // backgroundColor: '#E63462'
     },
     emotionRow: {
         alignItems: 'center',

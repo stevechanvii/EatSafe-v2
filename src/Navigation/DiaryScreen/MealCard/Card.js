@@ -14,7 +14,7 @@ const NHCardImage = (props) => {
       <Card style={styles.mb}>
         <CardItem style={styles.CardHeader}>
           <Left>
-            <Thumbnail source={logo} />
+            <Thumbnail source={logo} square style={{width: 50, height: 50}} />
             <Body>
               <Text>{props.meal}</Text>
               {/* <Text note>Place Holder</Text> */}
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
   mb: {
     // marginBottom: 10,
     borderRadius: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    backgroundColor: '#ffffff'
   },
   content: {
     // marginVertical: 5,
