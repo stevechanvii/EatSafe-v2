@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Content, Text } from 'native-base';
+import { Content, Text, View } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import MealCard from './MealCard/Card';
@@ -87,9 +87,9 @@ class diaryContent extends Component {
             );
         }
         return (
-            <Content>
+            <View>
                 {cards}
-            </Content>
+            </View>
         );
     }
 }

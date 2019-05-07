@@ -61,13 +61,13 @@ class mealCard extends Component {
   _renderHeader = (item, expanded) => {
     return (
       <Grid style={styles.grid}>
-        <Col size={1} style={styles.emotionRow}>
+        {/* <Col size={1} style={styles.emotionRow}>
           <EmotionIcon
             name={Preference.Feelings[item.feel]}
             size={50}
           />
-        </Col>
-        <Col size={3}>
+        </Col> */}
+        <Col size={4}>
           <Grid>
             <Row style={styles.infoCol} >
               <Text style={{ fontWeight: "600", marginEnd: '2%' }}>
@@ -163,6 +163,7 @@ class mealCard extends Component {
           expanded={true}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
+          style={styles.Accordion}
         />
       </Content>
     );
@@ -171,11 +172,15 @@ class mealCard extends Component {
 
 const styles = StyleSheet.create({
   grid: {
-    backgroundColor: "#F3FFBD"
+    // backgroundColor: "#F3FFBD",
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderColor: '#DFDFDF'
   },
   emotionRow: {
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   emotion: {
     marginHorizontal: '2%',
@@ -188,6 +193,10 @@ const styles = StyleSheet.create({
   expandBth: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  Accordion: {
+    borderWidth: 0,
+    
   }
 });
 

@@ -90,7 +90,8 @@ export default class diaryScreen extends Component {
   getIconURI = (day) => {
     const uri = [
       require('../../assets/icon/Sun.png'),
-      require('../../assets/icon/Mon.png'),
+      // require('../../assets/icon/Mon.png'),
+      require('../../assets/icon/icons8-monday-64-2.png'),
       require('../../assets/icon/Tue.png'),
       require('../../assets/icon/Wed.png'),
       require('../../assets/icon/Thu.png'),
@@ -122,13 +123,13 @@ export default class diaryScreen extends Component {
     return (
       <Root>
         <Container>
-          <Header>
+          <Header style={{backgroundColor: '#FF5E5B'}} >
             <Body>
               <Title>Dairy</Title>
             </Body>
           </Header>
-          <Grid>
-            <Row size={3}>
+          <Grid style={{backgroundColor: '#F7F7F7'}} >
+            <Row size={2}>
               <Col size={2} style={styles.arrowBtn}>
                 <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
                   <Icon name='chevron-thin-left' size={50} color='#333745' />
@@ -162,7 +163,8 @@ export default class diaryScreen extends Component {
                 </TouchableOpacity>
               </Col>
             </Row>
-            <Row size={7} style={{ backgroundColor: '#635DB7' }}>
+            {/* <Row size={8} style={{ backgroundColor: '#635DB7' }}> */}
+            <Row size={8} >
               <Content>
                 {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
                 {/* {console.log('come from DiaryContent ' + this.state.date)} */}
@@ -176,7 +178,8 @@ export default class diaryScreen extends Component {
 
           <FloatingAction
             actions={actions}
-            onPressItem={(name) => { this.floatingActionHandler(name) }} />
+            onPressItem={(name) => { this.floatingActionHandler(name) }}
+            color='#FF5E5B' />
         </Container>
       </Root>
     );
@@ -204,7 +207,8 @@ const styles = StyleSheet.create({
   },
   datePicker: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // backgroundColor: 
   },
   records: {
     backgroundColor: '#00CE9F',
@@ -216,7 +220,7 @@ const styles = StyleSheet.create({
   arrowBtn: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#C7EFCF'
+    // backgroundColor: '#C7EFCF'
   },
   addFab: {
     alignItems: 'center',

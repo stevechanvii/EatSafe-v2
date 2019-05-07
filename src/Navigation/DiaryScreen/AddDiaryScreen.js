@@ -145,6 +145,7 @@ class addDiaryScreen extends Component {
     render() {
         return (
             <Container>
+                {/* <Content contentContainerStyle={{ flex: 1 }}> */}
                 <Content>
                     <Grid>
                         <Row size={3} >
@@ -337,7 +338,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "row",
-        marginTop: 10,
+        margin: 10,
     },
     card2: {
         padding: 16,

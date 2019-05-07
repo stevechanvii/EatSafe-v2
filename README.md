@@ -129,7 +129,7 @@ Splash Screen
 * https://github.com/jordanbyron/react-native-quick-actions
 
 Charts
-* https://github.com/wuxudong/react-native-charts-wrapper
+* https://github.com/wuxudong/react-native-charts-wrapper 
 
 icon
 * https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
