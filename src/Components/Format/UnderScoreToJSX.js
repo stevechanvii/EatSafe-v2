@@ -11,7 +11,7 @@ const underScoreToJSX = (props) => {
     ingredients = ingredients.replace(/_/g,' ').replace(/ +/g,' ').trim().slice(0, -1);
 
     return (
-        <Text note style={{ color: "black", fontSize: 15 }}>{ingredients}</Text>
+        <Text note>{ingredients}</Text>
     );
 }
 

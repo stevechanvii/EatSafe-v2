@@ -5,6 +5,7 @@ import { Container, Text, Button, Segment, Left, Right, Title, Header, Body, Ico
 import Theme from '../../Styles/Theme';
 import TextRecognition from './TextRecognition';
 import BarcodeScanner from './BarcodeScanner';
+import ProductDetailScreen from './ProductDetailScreen';
 
 // this is a segment screen of scanner tab, it will navigate to seg 1 (BarcodeScanner) and seg 2 (TextRecognition)
 class scannerSegScreen extends Component {
@@ -54,8 +55,10 @@ class scannerSegScreen extends Component {
                     </Body>
 
                 </Header>
-                {/* {console.log(this.props.navigation.getParam('isAddDairy', false))} */}
                 {this.state.seg === 1 && <BarcodeScanner navigation={this.props.navigation} />}
+                
+                {/* testing
+                {this.state.seg === 1 && <ProductDetailScreen navigation={this.props.navigation} />} */}
                 {this.state.seg === 2 && <TextRecognition navigation={this.props.navigation} />}
             </Container>
         );

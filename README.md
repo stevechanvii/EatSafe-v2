@@ -115,6 +115,7 @@ Useful Link
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
 * String Similarity: https://github.com/aceakash/string-similarity
+* Open Food Fact: https://en.wiki.openfoodfacts.org/API/Read/Product
 
 Guidance
 * https://github.com/okgrow/react-native-copilot

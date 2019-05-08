@@ -18,6 +18,9 @@ class productDetailScreen extends Component {
         const { navigation } = this.props;
         const barcode = navigation.getParam('barcode', 'NO-Code');
         return fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode.toString()}.json`)
+        
+        // testing
+        // return fetch(`https://world.openfoodfacts.org/api/v0/product/93600057.json`)
             .then((response) => response.json())
             .then((responseJson) => {
 
@@ -25,21 +28,23 @@ class productDetailScreen extends Component {
                     this.setState({
                         isLoading: false,
                         barcode: barcode,
-                        productName: null
+                        productName: false
                     });
                 } else {
                     this.setState({
                         isLoading: false,
                         barcode: barcode,
-                        productName: responseJson.product.product_name,
+                        productName: responseJson.product.product_name ? responseJson.product.product_name : false,
                         // be careful bugs here, if product not exist, these won't found
                         ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : [{ 'text': 'Ingredients Not Found' }],
-                        allergens: responseJson.product.allergens ? responseJson.product.allergens : 'Allergens Not Found',
+                        // ingredients: responseJson.product.ingredients_text_with_allergens ? responseJson.product.ingredients_text_with_allergens : false,
+                        allergens: responseJson.product.allergens ? responseJson.product.allergens : false,
                         image: responseJson.product.image_url ? responseJson.product.image_url : 'Image Not Found',
                         traces: responseJson.product.traces_tags ? responseJson.product.traces_tags : '',
-                        categories: responseJson.product.categories_tags ? responseJson.product.categories_tags : '',
+                        categories: responseJson.product.categories_tags ? responseJson.product.categories_tags : false,
                         nutrientLevel: responseJson.product.nutrient_levels ? responseJson.product.nutrient_levels : 'Nutrient Level Not Found',
-                        genericName: responseJson.product.generic_name ? responseJson.product.generic_name : ''
+                        genericName: responseJson.product.generic_name ? responseJson.product.generic_name : false,
+                        brands: responseJson.product.brands ? responseJson.product.brands : false
                     }, function () {
 
                     });
@@ -67,7 +72,7 @@ class productDetailScreen extends Component {
         // cobnst barcodeType = navigation.getParam('arcodeType', 'NO-Type');
         // const barcode = navigation.getParam('barcode', 'NO-Code');
 
-        if (this.state.productName === null) {
+        if (this.state.productName === false) {
             return (
                 <ProductNotFound barcode={this.state.barcode} />
             )
@@ -83,7 +88,7 @@ class productDetailScreen extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Scanner Result</Title>
+                        <Title style={Theme.title}>Scanner</Title>
                     </Body>
                     <Right />
                 </Header>
