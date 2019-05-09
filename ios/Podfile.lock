@@ -110,6 +110,8 @@ PODS:
     - React
     - react-native-camera/RCT
     - react-native-camera/RN
+  - react-native-netinfo (2.0.10):
+    - React
   - React/Core (0.59.3):
     - yoga (= 0.59.3.React)
   - React/CxxBridge (0.59.3):
@@ -162,6 +164,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - react-native-camera/TextDetector (from `../node_modules/react-native-camera`)
+  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -203,6 +206,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-netinfo:
+    :path: "../node_modules/@react-native-community/netinfo"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNVectorIcons:
@@ -232,10 +237,11 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   React: b52fdb80565505b7e4592b313a38868f5df51641
   react-native-camera: bee3af7b742a3a1de4c5188ee50adacc08bc32e6
+  react-native-netinfo: c5a291927e79059bf35169097b2ff0db71418134
   RNCAsyncStorage: 078b2b4f8a3c47c8d084e9206689d6c6f62e1a4b
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 1a492113f66a35e9e583bb0434f4b8cc668dd839
 
-PODFILE CHECKSUM: 97f1c6a5f4813cca38a0833768f08cc32759431c
+PODFILE CHECKSUM: f6d976cc3d8f7a5db67d6e9a2f44379a84a1d72b
 
 COCOAPODS: 1.6.1

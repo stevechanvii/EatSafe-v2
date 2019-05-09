@@ -151,13 +151,6 @@ class scannerResultCard extends Component {
                         </Left>
                     </CardItem>
                 </Card>
-
-                {/* <Accordion
-                dataArray={[{ title: "Ingredients", content: <UnderScoreToJSX ingredients={this.props.productDetail.ingredients} /> }]}
-                Feather="add"
-                expandedIcon="remove"
-                animation={true}
-            /> */}
                 <Button
                     style={styles.addDiaryBtn}
                     onPress={() => {
