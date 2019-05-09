@@ -131,8 +131,8 @@ class scannerResultCard extends Component {
                                                 {productAllergens ? <Text note>{LanguageFilter(productAllergens).join(', ')}</Text> : <View />}
                                                 <Modal
                                                     isVisible={this.state.isModalVisible}
-                                                    animationIn="slideInLeft"
-                                                    animationOut="slideOutRight"
+                                                    animationIn="slideInUp"
+                                                    animationOut="slideOutDown"
                                                 >
                                                     {this.renderModalContent()}
                                                 </Modal>

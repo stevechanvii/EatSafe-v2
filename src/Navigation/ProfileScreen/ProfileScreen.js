@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
+import { Container, Content, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
+import Header from '../../Components/Header';
+import Theme from '../../Styles/Theme';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import uri from '../../assets/avatar_square.jpg';
+import uri from '../../assets/logo.jpg';
 
 
 class profileScreen extends Component {
@@ -63,57 +65,70 @@ class profileScreen extends Component {
         if (this.state.isLoading) {
             return <Container><Text>Loading...</Text></Container>;
         }
-        console.log(this.state.milk ? 'yes' : 'no', 'render milk');
 
         return (
             <Container>
-                <Header>
-                    <Body>
-                        <Title>Profile</Title>
-                    </Body>
-                </Header>
-                <Content>
-                    <Grid>
-                        <Row style={styles.avatorRow}>
-                            <Thumbnail large source={uri} />
-                        </Row>
-                        <Row style={styles.avatorRow}>
-                            <Text>Hi, </Text>
-                            <Text>{this.state.userName || this.state.userName !== '' ? this.state.userName : 'please setup profile'}</Text>
-                        </Row>
-                        <Row style={styles.allergyIcon}>
-                            <Text>Allergens</Text>
-                        </Row>
-                        <Row style={styles.allergCheck}>
-                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
-                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
-                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
-                        </Row>
-                        <Row style={styles.buttonRow}>
-                            <Button info
-                                onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
-                                <Text>Setup Profile</Text>
-                            </Button>
-                        </Row>
-                        <Row style={styles.buttonRow}>
-                            <Button info
-                                onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
-                                <Text>Knowledge Card</Text>
-                            </Button>
-                        </Row>
-
-                    </Grid>
-                </Content>
+                <Header title='Profile' />
+                <Grid style={Theme.body}>
+                    <Row size={4}>
+                        <Grid style={styles.gridCenter}>
+                            <Row style={styles.avatorRow}><Thumbnail large source={uri} /></Row>
+                            <Row>
+                                <Text>Hi, </Text>
+                                <Text>{this.state.userName || this.state.userName !== '' ? this.state.userName : 'please setup profile'}</Text>
+                            </Row>
+                            <Row>
+                                <Text>Allergens</Text>
+                                {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
+                                {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
+                                {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
+                            </Row>
+                            <Row>
+                                <Text>Intolerance</Text>
+                            </Row>
+                        </Grid>
+                    </Row>
+                    <Row size={6}>
+                        <Grid>
+                            <Row size={1}>
+                                <Grid>
+                                    <Col size={1} style={styles.gridCenter}><Text>1</Text></Col>
+                                    <Col size={1} style={styles.gridCenter}><Text>2</Text></Col>
+                                </Grid>
+                            </Row>
+                            <Row size={1}>
+                                <Grid>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <Button info
+                                            onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
+                                            <Text>Setup Profile</Text>
+                                        </Button>
+                                    </Col>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <Button info
+                                            onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
+                                            <Text>Knowledge Card</Text>
+                                        </Button>
+                                    </Col>
+                                </Grid>
+                            </Row>
+                        </Grid>
+                    </Row>
+                </Grid>
             </Container>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    avatorRow: {
-        height: 100,
+    gridCenter: {
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    avatorRow: {
+        height: 100,
+        // justifyContent: 'center',
+        // alignItems: 'center'
     },
     allergCheck: {
         height: 100,

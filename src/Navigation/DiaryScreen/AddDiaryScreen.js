@@ -170,6 +170,7 @@ class addDiaryScreen extends Component {
                                     <H3>How do you feel after the meal?</H3>
                                 </Row>
                                 <Row size={2} style={styles.emotionRow}>
+                                {/* https://icons8.com/icon/pack/messaging/ios */}
                                     <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >
                                         <MaterialCommunityIcons
                                             name='emoticon-cool-outline'

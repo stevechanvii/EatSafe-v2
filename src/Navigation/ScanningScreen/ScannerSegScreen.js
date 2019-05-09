@@ -42,14 +42,20 @@ class scannerSegScreen extends Component {
                             <Button
                                 active={this.state.seg === 1 ? true : false}
                                 first
-                                onPress={() => this.setState({ seg: 1 })}>
-                                <Text>Scanner</Text>
+                                onPress={() => this.setState({ seg: 1 })}
+                                style={{backgroundColor: this.state.seg === 1 ? "#E55934" : undefined,
+                                borderColor: "#E55934",}}>
+                                <Text style={{color: '#FFFFFF'}}>Scanner</Text>
+                                {/* <Text style={{ color: this.state.seg === 1 ? "#FFF" : "black" }}>Scanner</Text> */}
                             </Button>
                             <Button
                                 last
                                 active={this.state.seg === 2 ? true : false}
-                                onPress={() => this.setState({ seg: 2 })}>
-                                <Text>Text Recognition</Text>
+                                onPress={() => this.setState({ seg: 2 })}
+                                style={{backgroundColor: this.state.seg === 2 ? "#E55934" : undefined,
+                                borderColor: "#E55934",}}>
+                                <Text style={{color: '#FFFFFF'}}>Text Recognition</Text>
+                                {/* <Text style={{ color: this.state.seg === 2 ? "#FFF" : "black" }}>Text Recognition</Text> */}
                             </Button>
                         </Segment>
                     </Body>
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-    }
+    },
 });
 
 export default scannerSegScreen;

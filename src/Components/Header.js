@@ -5,7 +5,7 @@ import Theme from '../Styles/Theme';
 const header = (props) => (
     <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
         <Body>
-            <Title>{props.title}</Title>
+            <Title style={Theme.title}>{props.title}</Title>
         </Body>
     </Header>
 );
