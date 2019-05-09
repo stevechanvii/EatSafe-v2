@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet,Modal } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Content, Card, CardItem, Text, Button, H2, Accordion, Left, Body, View } from 'native-base';
-import UnderScoreToJSX from '../../../Components/Format/UnderScoreToJSX';
+// import UnderScoreToJSX from '../../../Components/Format/UnderScoreToJSX';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import LanguageFilter from '../../../Utils/LanguageFilter';
 import Theme from '../../../Styles/Theme';
@@ -36,7 +36,18 @@ userAllergensAlert = async (productAllergens) => {
                 str += el;
                 str += ' ';
             });
-            alert(`Allergens ${str}detected!`);
+            // alert(`Allergens ${str}detected!`);
+
+            // return (
+            //     <Modal animationType="slide"
+            //     transparent={false}
+            //     visible={this.state.modalVisible}
+            //     onRequestClose={() => {
+            //       Alert.alert('Modal has been closed.');
+            //     }}>
+            //         <View>hello</View>
+            //     </Modal>
+            // );
         }
 
     } catch (e) {
@@ -45,11 +56,11 @@ userAllergensAlert = async (productAllergens) => {
 }
 
 
-navigationOptions = {
-    headerStyle: {
-        backgroundColor: 'red',
-    },
-}
+// navigationOptions = {
+//     headerStyle: {
+//         backgroundColor: 'red',
+//     },
+// }
 
 // this is a stateless component which handle show case with pic and text
 const cardShowCase = (props) => {

@@ -56,9 +56,9 @@ class scannerSegScreen extends Component {
 
                 </Header>
                 {this.state.seg === 1 && <BarcodeScanner navigation={this.props.navigation} />}
-                
-                {/* testing
-                {this.state.seg === 1 && <ProductDetailScreen navigation={this.props.navigation} />} */}
+
+                {/* testing */}
+                {/* {this.state.seg === 1 && <ProductDetailScreen navigation={this.props.navigation} />} */}
                 {this.state.seg === 2 && <TextRecognition navigation={this.props.navigation} />}
             </Container>
         );

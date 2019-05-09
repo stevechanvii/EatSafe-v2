@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { Container, Header, Left, Right, Title, Body, Icon, Text, Button } from 'native-base';
 import Theme from '../../Styles/Theme';
-import CardShowCase from './Card/CardShowCase';
+// import CardShowCase from './Card/CardShowCase';
 import ProductNotFound from './Card/ProductNotFound';
+import ScannerResultCard from './Card/ScannerResultCard';
 
 class productDetailScreen extends Component {
     static navigationOptions = {
@@ -14,11 +15,12 @@ class productDetailScreen extends Component {
         isLoading: true
     }
 
-    componentDidMount() {
+    // componentDidMount() {
+    componentWillMount() {
         const { navigation } = this.props;
         const barcode = navigation.getParam('barcode', 'NO-Code');
         return fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode.toString()}.json`)
-        
+
         // testing
         // return fetch(`https://world.openfoodfacts.org/api/v0/product/93600057.json`)
             .then((response) => response.json())
@@ -26,7 +28,7 @@ class productDetailScreen extends Component {
 
                 if (responseJson.status_verbose.toString() === 'product not found') {
                     this.setState({
-                        isLoading: false,
+                        isLoading: false, 
                         barcode: barcode,
                         productName: false
                     });
@@ -92,7 +94,10 @@ class productDetailScreen extends Component {
                     </Body>
                     <Right />
                 </Header>
-                <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
+                {/* <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} /> */}
+                
+                {/* testing */}
+                <ScannerResultCard productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
             </Container>
         );
     }
