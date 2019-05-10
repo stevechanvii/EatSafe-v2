@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Content, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
+import { Container, View, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
 import Header from '../../Components/Header';
 import Theme from '../../Styles/Theme';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import AboutUsSVG from '../../assets/svg/AboutUsSVG'
 import uri from '../../assets/logo.jpg';
 
 
@@ -116,8 +117,9 @@ class profileScreen extends Component {
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity>
-                                            <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} />
-                                            <Text>About</Text>
+                                            {/* <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} /> */}
+                                            <AboutUsSVG />
+                                            <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>
                                 </Grid>

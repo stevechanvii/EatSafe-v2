@@ -1,4 +1,5 @@
 // this method will generate the date key based on the format: 10 May 2019 -> 20190510
+// import this file, then use fileName(date) to call this function
 const dateKeyGenerator = (date) => {
     const year = date.getFullYear();
     // month is from 0-11, so we plus 1

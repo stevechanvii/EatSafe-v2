@@ -20,6 +20,9 @@ pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
+
+pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
 #   target 'EatSafeTests' do
 #     inherit! :search_paths
 #     # Pods for testing
@@ -45,6 +48,7 @@ pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/ne
     'Core',
     'CxxBridge', # Include this for RN >= 0.47
     'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTImage',
     'RCTText',
     'RCTNetwork',
     'RCTWebSocket', # Needed for debugging
