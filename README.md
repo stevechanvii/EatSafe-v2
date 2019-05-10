@@ -168,4 +168,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 
 * Produced by Team Hygieia (Danyang Chen, Souvic Chaki, Santash Ashok Pawar, Lili Zhou, Zizhang Ba)
 * Inspiration
-* Some icons from icons8 (https://icons8.com/license), read the license before using.
+* Some icons from icons8 (https://icons8.com/license), read the license before using, https://stackoverflow.com/questions/38830568/how-to-show-svg-file-on-react-native guide for how to use svg in project

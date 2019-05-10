@@ -70,7 +70,7 @@ class profileScreen extends Component {
         return (
             <Container>
                 <Header title='Profile' />
-                <Grid style={Theme.body}>
+                <Grid style={Theme.body} >
                     <Row size={4}>
                         <Grid style={styles.gridCenter}>
                             <Row style={styles.avatorRow}><Thumbnail large source={uri} /></Row>
@@ -96,12 +96,12 @@ class profileScreen extends Component {
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
-                                            <Thumbnail square source={require('../../assets/icon/icons8-administrator-male-100.png')} />
+                                            <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-administrator-male-100.png')} />
                                             <Text>Account</Text>
                                         </TouchableOpacity>
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
-                                        <Thumbnail square source={require('../../assets/icon/icons8-settings-100.png')} />
+                                        <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-settings-100.png')} />
                                         <Text>Setting</Text>
                                     </Col>
                                 </Grid>
@@ -111,14 +111,14 @@ class profileScreen extends Component {
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
-                                            <Thumbnail square source={require('../../assets/icon/icons8-study-100.png')} />
-                                            <Text>KnowledgeCard</Text>
+                                            <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-study-100.png')} />
+                                            <Text>Knowledge Card</Text>
                                         </TouchableOpacity>
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity>
                                             {/* <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} /> */}
-                                            <AboutUsSVG />
+                                            <AboutUsSVG style={styles.iconCenter} />
                                             <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>
@@ -135,7 +135,10 @@ class profileScreen extends Component {
 const styles = StyleSheet.create({
     gridCenter: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+    iconCenter: {
+        alignSelf: 'center',
     },
     avatorRow: {
         height: 100,
