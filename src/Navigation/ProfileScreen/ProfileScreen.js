@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Content, Thumbnail, Text, Button, Badge, Body, Title, ListItem } from 'native-base';
 import Header from '../../Components/Header';
@@ -92,23 +92,33 @@ class profileScreen extends Component {
                         <Grid>
                             <Row size={1}>
                                 <Grid>
-                                    <Col size={1} style={styles.gridCenter}><Text>1</Text></Col>
-                                    <Col size={1} style={styles.gridCenter}><Text>2</Text></Col>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
+                                            <Thumbnail square source={require('../../assets/icon/icons8-administrator-male-100.png')} />
+                                            <Text>Account</Text>
+                                        </TouchableOpacity>
+                                    </Col>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <Thumbnail square source={require('../../assets/icon/icons8-settings-100.png')} />
+                                        <Text>Setting</Text>
+                                    </Col>
                                 </Grid>
                             </Row>
                             <Row size={1}>
                                 <Grid>
                                     <Col size={1} style={styles.gridCenter}>
-                                        <Button info
-                                            onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
-                                            <Text>Setup Profile</Text>
-                                        </Button>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
+                                            <Thumbnail square source={require('../../assets/icon/icons8-study-100.png')} />
+                                            <Text>KnowledgeCard</Text>
+                                        </TouchableOpacity>
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
-                                        <Button info
-                                            onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
-                                            <Text>Knowledge Card</Text>
-                                        </Button>
+                                        <TouchableOpacity>
+                                            <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} />
+                                            <Text>About</Text>
+                                        </TouchableOpacity>
                                     </Col>
                                 </Grid>
                             </Row>

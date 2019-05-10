@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
+import DateKeyGenerator from '../../Utils/DateKeyGenerator';
 import Theme from '../../Styles/Theme';
 import Preference from '../../Preferences/Preferences';
 
@@ -77,7 +78,7 @@ class addDiaryScreen extends Component {
      * }
      */
 
-    // date key used by save and retrive data
+    // date key used by save and retrive data, eg. 10 May 2019 -> 1052019, 10 Dec 2019 -> 10122019
     dateKeyGenerator = () => {
         const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
         return dateKey;
