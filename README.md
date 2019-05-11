@@ -117,6 +117,7 @@ Useful Link
 * Firebase: https://firebase.google.com/docs/firestore/
 * String Similarity: https://github.com/aceakash/string-similarity
 * Open Food Fact: https://en.wiki.openfoodfacts.org/API/Read/Product
+* React Native Mail: https://github.com/chirag04/react-native-mail
 
 Guidance
 * https://github.com/okgrow/react-native-copilot
@@ -142,6 +143,9 @@ input
 
 resource
 * https://github.com/jondot/awesome-react-native
+
+touch id
+https://github.com/naoufal/react-native-touch-id
 
 
 

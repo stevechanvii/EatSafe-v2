@@ -6,7 +6,7 @@ import { Container, View, Thumbnail, Text, Button, Badge, Body, Title, ListItem 
 import Header from '../../Components/Header';
 import Theme from '../../Styles/Theme';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import AboutUsSVG from '../../assets/svg/AboutUsSVG'
+import AboutUsSVG from '../../assets/svg/about_us_svg'
 import uri from '../../assets/logo.jpg';
 
 
