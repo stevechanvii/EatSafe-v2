@@ -16,7 +16,7 @@ import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
 import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
 import knowledgeCard from './src/Navigation/ProfileScreen/KnowledgeCard';
 import createDiaryScreen from './src/Navigation/ScanningScreen/CreateDairyScreen';
-
+import SendEmail from './src/Navigation/ProfileScreen/SendEmail';
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
@@ -28,7 +28,10 @@ const ProfileStack = createStackNavigator({
   Profile: { screen: ProfileScreen },
   SomeWhereElse: { screen: SomeWhereElseScreen },
   EditProfile: { screen: EditProfileScreen },
-  KnowledgeCard: { screen: knowledgeCard }
+  KnowledgeCard: { screen: knowledgeCard },
+
+  // testing
+  SendEmail: {screen: SendEmail},
 });
 
 const ScanningStack = createStackNavigator({
