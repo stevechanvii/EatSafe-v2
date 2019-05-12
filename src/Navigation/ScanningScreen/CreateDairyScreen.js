@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Preference from '../../Preferences/Preferences';
-import DateKeyGenerator from '../../Utils/DateKeyGenerator';
+import KeyGenerator from '../../Utils/KeyGenerator';
 
 class createDairyScreen extends Component {
     static navigationOptions = {
@@ -76,7 +76,7 @@ class createDairyScreen extends Component {
 
     saveBtnHandler = async () => {
         console.log(this.state);
-        const dateKey = DateKeyGenerator(this.state.date);
+        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
 
         const saveObj = {
             time: JSON.stringify(this.state.date),
@@ -128,7 +128,7 @@ class createDairyScreen extends Component {
     };
 
     getMeals = async () => {
-        const dateKey = DateKeyGenerator(this.state.date);
+        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
         try {
             const value = await AsyncStorage.getItem(dateKey);
         } catch (e) {

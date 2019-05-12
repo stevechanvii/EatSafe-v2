@@ -5,7 +5,7 @@ import { Container, Text, Thumbnail, Header, Content, Tab, Tabs, Body, Title } f
 import uri from '../../assets/logo.jpg';
 import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
-import DateKeyGenerator from '../../Utils/DateKeyGenerator';
+import KeyGenerator from '../../Utils/KeyGenerator';
 
 class reportScreen extends Component {
     static navigationOptions = {
@@ -40,7 +40,7 @@ class reportScreen extends Component {
         //     dateKeys = [3042019, 2942019, 2842019, 2742019, 2642019, 2542019, 2442019]
         //     console.log(dateKeys);
         // }
-        const dateKeys = ['20190512', '20190511', '20190510', '20190509', '20190508', '20190507', '20190506'];
+        const dateKeys = KeyGenerator.monthKeyGenerator(5, 2019);
         let values;
         let ingredientsList = [];
         try {

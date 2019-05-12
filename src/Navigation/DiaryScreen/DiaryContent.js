@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Content, Text, View } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
-import DateKeyGenerator from '../../Utils/DateKeyGenerator';
+import KeyGenerator from '../../Utils/KeyGenerator';
 import MealCard from './MealCard/Card';
 import Preference from '../../Preferences/Preferences';
 
@@ -14,7 +14,7 @@ class diaryContent extends Component {
     };
 
     getDariyResult = async () => {
-        const dateKey = DateKeyGenerator(this.props.date);
+        const dateKey = KeyGenerator.dateKeyGenerator(this.props.date);
         // console.log('DiaryContent getDariyResult' + dateKey);
         try {
             const value = await AsyncStorage.getItem(dateKey);
@@ -67,7 +67,7 @@ class diaryContent extends Component {
                     cards.push(
                         <MealCard
                             key={meal}
-                            dateKey={DateKeyGenerator(this.props.date)}
+                            dateKey={KeyGenerator.dateKeyGenerator(this.props.date)}
                             meal={meal}
                             info={this.state.dairyResult[meal]}
                             navi={this.props.navi} 

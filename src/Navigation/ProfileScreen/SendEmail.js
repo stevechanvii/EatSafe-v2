@@ -2,26 +2,30 @@ import React, { Component } from 'react';
 import { Platform, View, Alert, Button } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-community/async-storage';
-import DateKeyGenerator from '../../Utils/DateKeyGenerator';
+import KeyGenerator from '../../Utils/KeyGenerator';
 
 export default class sendEmail extends Component {
 
     getDariyResult = async () => {
         // console.log('DiaryContent getDariyResult' + dateKey);
-        const dateKey = DateKeyGenerator(new Date());
+        const dateKey = KeyGenerator.monthKeyGenerator(5, 2019);
         try {
-            const value = await AsyncStorage.getItem(dateKey);
+            const value = await AsyncStorage.multiGet(dateKey);
             console.log(value);
             // this.setState({ dairyResult: JSON.parse(value) });
             let dairy = [];
-            Object.entries(JSON.parse(value)).forEach(([key, value]) => {
-                let obj = {'meal': key};
-                Object.entries(value).forEach(([key, value]) => {
-                    obj = {...obj, ...value, time: JSON.parse(value.time)}
-                    dairy.push(obj);
-                });
+            value.map(el => {
+                if (el[1]) {
+                    Object.entries(JSON.parse(el[1])).forEach(([key, value]) => {
+                        let obj = { 'meal': key };
+                        Object.entries(value).forEach(([key, value]) => {
+                            obj = { ...obj, ...value, time: new Date(JSON.parse(value.time)).toLocaleString() }
+                            dairy.push(obj);
+                        });
+                    });
+                }
             });
-            
+
             // this.formatedDiary = dairy;
             // console.log(this.formatedDiary);
             this.createCSV(dairy);
@@ -38,7 +42,7 @@ export default class sendEmail extends Component {
     createCSV = (dairy) => {
         const { Parser } = require('json2csv');
         const fields = ['meal', 'comments', 'time', 'feel', 'ingredients', 'symptom', 'food'];
-     
+
         const json2csvParser = new Parser({ fields });
         // console.log(this.formatedDiary);
         console.log(dairy);
@@ -55,12 +59,12 @@ export default class sendEmail extends Component {
         // create a path you want to write to
         // :warning: on iOS, you cannot write into `RNFS.MainBundlePath`,
         // but `RNFS.DocumentDirectoryPath` exists on both platforms and is writable
-        if (Platform.OS === 'ios'){
+        if (Platform.OS === 'ios') {
             var path = RNFS.DocumentDirectoryPath + '/data.csv';
         } else {
             var path = RNFS.ExternalDirectoryPath + '/data.csv';
         }
-        
+
         // write the file
         RNFS.writeFile(path, CSVFile, 'utf8')
             .then((success) => {
@@ -102,7 +106,6 @@ export default class sendEmail extends Component {
     }
 
     render() {
-        // this.createCSV();
         return (
             <View>
                 <Button

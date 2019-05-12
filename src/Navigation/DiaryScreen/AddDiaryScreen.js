@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
-import DateKeyGenerator from '../../Utils/DateKeyGenerator';
+import KeyGenerator from '../../Utils/KeyGenerator';
 import Theme from '../../Styles/Theme';
 import Preference from '../../Preferences/Preferences';
 
@@ -80,7 +80,7 @@ class addDiaryScreen extends Component {
 
     saveBtnHandler = async () => {
         console.log(this.state);
-        const dateKey = DateKeyGenerator(this.state.date);
+        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
 
         const saveObj = {
             time: JSON.stringify(this.state.date),
@@ -132,7 +132,7 @@ class addDiaryScreen extends Component {
     };
 
     getMeals = async () => {
-        const dateKey = DateKeyGenerator(this.state.date);
+        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
         try {
             const value = await AsyncStorage.getItem(dateKey);
         } catch (e) {
