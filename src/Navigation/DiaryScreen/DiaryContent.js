@@ -24,7 +24,7 @@ class diaryContent extends Component {
         // console.log('DiaryContent getDariyResult' + dateKey);
         try {
             const value = await AsyncStorage.getItem(dateKey);
-            // console.log('getDariyResult' + value);
+            console.log(value);
             this.setState({ dairyResult: JSON.parse(value) });
         } catch (e) {
             // read error

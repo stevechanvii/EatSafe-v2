@@ -118,7 +118,8 @@ Useful Link
 * String Similarity: https://github.com/aceakash/string-similarity
 * Open Food Fact: https://en.wiki.openfoodfacts.org/API/Read/Product
 * React Native Mail: https://github.com/chirag04/react-native-mail
-* React Native FS: https://github.com/itinance/react-native-fs
+* React Native File System: https://github.com/itinance/react-native-fs
+* JSON to CSV: https://github.com/zemirco/json2csv
 
 Guidance
 * https://github.com/okgrow/react-native-copilot
