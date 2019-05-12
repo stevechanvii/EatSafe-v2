@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, Button } from 'react-native';
+import { Platform, View, Alert, Button } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-community/async-storage';
 import DateKeyGenerator from '../../Utils/DateKeyGenerator';
@@ -55,8 +55,12 @@ export default class sendEmail extends Component {
         // create a path you want to write to
         // :warning: on iOS, you cannot write into `RNFS.MainBundlePath`,
         // but `RNFS.DocumentDirectoryPath` exists on both platforms and is writable
-        var path = RNFS.DocumentDirectoryPath + '/data.csv';
-
+        if (Platform.OS === 'ios'){
+            var path = RNFS.DocumentDirectoryPath + '/data.csv';
+        } else {
+            var path = RNFS.ExternalDirectoryPath + '/data.csv';
+        }
+        
         // write the file
         RNFS.writeFile(path, CSVFile, 'utf8')
             .then((success) => {
@@ -80,7 +84,7 @@ export default class sendEmail extends Component {
             body: '<b>Hi, this is your data from EatSafe</b>',
             isHTML: true,
             attachment: {
-                path: RNFS.DocumentDirectoryPath + '/data.csv',  // The absolute path of the file from which to read data.
+                path: (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/data.csv',
                 type: 'csv',   // Mime Type: jpg, png, doc, ppt, html, pdf, csv
                 name: 'EatSafe_data.csv',   // Optional: Custom filename for attachment
             }
