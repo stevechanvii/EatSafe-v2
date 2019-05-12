@@ -5,6 +5,7 @@ import { Container, Text, Thumbnail, Header, Content, Tab, Tabs, Body, Title } f
 import uri from '../../assets/logo.jpg';
 import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
+import DateKeyGenerator from '../../Utils/DateKeyGenerator';
 
 class reportScreen extends Component {
     static navigationOptions = {
@@ -30,11 +31,6 @@ class reportScreen extends Component {
         });
     }
 
-    dateKeyGenerator = () => {
-        const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
-        return dateKey;
-    }
-
     getDariyResult = async () => {
         // const dateKey = this.dateKeyGenerator();
         // // console.log('DiaryContent getDariyResult' + dateKey);
@@ -44,7 +40,7 @@ class reportScreen extends Component {
         //     dateKeys = [3042019, 2942019, 2842019, 2742019, 2642019, 2542019, 2442019]
         //     console.log(dateKeys);
         // }
-        const dateKeys = ['352019', '252019', '152019', '3042019', '2942019', '2842019', '2742019'];
+        const dateKeys = ['20190512', '20190511', '20190510', '20190509', '20190508', '20190507', '20190506'];
         let values;
         let ingredientsList = [];
         try {

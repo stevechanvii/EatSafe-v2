@@ -7,6 +7,7 @@ import Header from '../../Components/Header';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Icon from 'react-native-vector-icons/Entypo';
 import Theme from '../../Styles/Theme';
+import DateKeyGenerator from '../../Utils/DateKeyGenerator';
 import DiaryContent from './DiaryContent';
 
 
@@ -148,7 +149,7 @@ export default class diaryScreen extends Component {
               <Col size={2} style={styles.arrowBtn}>
                 {/* <TouchableOpacity onPress={() => this.setDayHandler(1)}> */}
                 <TouchableOpacity
-                  onPress={this.state.date.toDateString() < new Date().toDateString() ?
+                  onPress={DateKeyGenerator(this.state.date) < DateKeyGenerator(new Date()) ?
                     () => this.setDayHandler(1) :
                     () => Toast.show({
                       text: 'Time machine is developing!',

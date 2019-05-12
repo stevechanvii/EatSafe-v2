@@ -62,9 +62,10 @@ class productDetailScreen extends Component {
                     )
                     .catch((error) => {
                         console.error(error);
+                        this.setState({ isLostnetwork: true });
                     });
             } else {
-                this.setState({ isLostnetwork: true })
+                this.setState({ isLostnetwork: true });
             }
         });
     }

@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import { View, Alert, Button } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-community/async-storage';
+import DateKeyGenerator from '../../Utils/DateKeyGenerator';
 
 export default class sendEmail extends Component {
-    // formatedDiary = [];
-
-    dateKeyGenerator = (date) => {
-        // console.log('dateKeyGenerator ' + this.state)
-        const dateKey = ('' + date.getDate() + (date.getMonth() + 1) + date.getFullYear()).trim();
-        return dateKey;
-    }
 
     getDariyResult = async () => {
-        const dateKey = this.dateKeyGenerator(new Date());
         // console.log('DiaryContent getDariyResult' + dateKey);
+        const dateKey = DateKeyGenerator(new Date());
         try {
             const value = await AsyncStorage.getItem(dateKey);
             console.log(value);
@@ -23,7 +17,7 @@ export default class sendEmail extends Component {
             Object.entries(JSON.parse(value)).forEach(([key, value]) => {
                 let obj = {'meal': key};
                 Object.entries(value).forEach(([key, value]) => {
-                    obj = {...obj, ...value}
+                    obj = {...obj, ...value, time: JSON.parse(value.time)}
                     dairy.push(obj);
                 });
             });

@@ -78,15 +78,9 @@ class addDiaryScreen extends Component {
      * }
      */
 
-    // date key used by save and retrive data, eg. 10 May 2019 -> 1052019, 10 Dec 2019 -> 10122019
-    dateKeyGenerator = () => {
-        const dateKey = ('' + this.state.date.getDate() + (this.state.date.getMonth() + 1) + this.state.date.getFullYear()).trim();
-        return dateKey;
-    }
-
     saveBtnHandler = async () => {
         console.log(this.state);
-        const dateKey = this.dateKeyGenerator();
+        const dateKey = DateKeyGenerator(this.state.date);
 
         const saveObj = {
             time: JSON.stringify(this.state.date),
@@ -138,7 +132,7 @@ class addDiaryScreen extends Component {
     };
 
     getMeals = async () => {
-        const dateKey = this.dateKeyGenerator();
+        const dateKey = DateKeyGenerator(this.state.date);
         try {
             const value = await AsyncStorage.getItem(dateKey);
         } catch (e) {
