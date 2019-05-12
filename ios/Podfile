@@ -23,6 +23,8 @@ pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/ne
 
 pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+pod 'RNFS', :path => '../node_modules/react-native-fs'
+
 #   target 'EatSafeTests' do
 #     inherit! :search_paths
 #     # Pods for testing

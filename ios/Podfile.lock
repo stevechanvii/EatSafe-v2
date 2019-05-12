@@ -100,11 +100,11 @@ PODS:
   - Protobuf (3.7.0)
   - React (0.59.3):
     - React/Core (= 0.59.3)
-  - react-native-camera/RCT (2.6.0):
+  - react-native-camera/RCT (2.7.0):
     - React
-  - react-native-camera/RN (2.6.0):
+  - react-native-camera/RN (2.7.0):
     - React
-  - react-native-camera/TextDetector (2.6.0):
+  - react-native-camera/TextDetector (2.7.0):
     - Firebase/MLVision
     - Firebase/MLVisionTextModel
     - React
@@ -157,6 +157,8 @@ PODS:
     - React/RCTBlob
   - RNCAsyncStorage (1.3.2):
     - React
+  - RNFS (2.13.3):
+    - React
   - RNSVG (9.4.0):
     - React
   - RNVectorIcons (6.4.2):
@@ -179,6 +181,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -217,6 +220,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
@@ -245,13 +250,14 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   React: b52fdb80565505b7e4592b313a38868f5df51641
-  react-native-camera: bee3af7b742a3a1de4c5188ee50adacc08bc32e6
+  react-native-camera: f8e015d66949d8ed81ff5f31d5b8ebdd9c8302ac
   react-native-netinfo: c5a291927e79059bf35169097b2ff0db71418134
   RNCAsyncStorage: 078b2b4f8a3c47c8d084e9206689d6c6f62e1a4b
+  RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
   RNSVG: 9cb6e958c4b6a1f58185ac72a350b148947d6fed
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 1a492113f66a35e9e583bb0434f4b8cc668dd839
 
-PODFILE CHECKSUM: 94f55725d08f090f5845bf4a0e849fd77c3a5183
+PODFILE CHECKSUM: 8188d696a49b867e714477547a4b5d6a741e29b3
 
 COCOAPODS: 1.6.1
