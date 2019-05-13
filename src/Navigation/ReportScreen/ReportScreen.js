@@ -6,6 +6,7 @@ import uri from '../../assets/logo.jpg';
 import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
 import KeyGenerator from '../../Utils/KeyGenerator';
+import WeeklyReport from './WeeklyReport';
 
 class reportScreen extends Component {
     static navigationOptions = {
@@ -19,16 +20,20 @@ class reportScreen extends Component {
         ingredientObj: {}
     }
 
+    // componentDidMount() {
+    //     // https://github.com/react-navigation/react-navigation/issues/1617
+    //     // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
+    //     this._subscribe = this.props.navigation.addListener('didFocus', () => {
+    //         //  # do you update if need
+    //         // this.getDariyResult();
+    //         this.setState({ afterAddNew: this.state.afterAddNew + 1 });
+    //         this.getDariyResult();
+    //         // console.log('componentDidMount in ReportScreen');
+    //     });
+    // }
+
     componentDidMount() {
-        // https://github.com/react-navigation/react-navigation/issues/1617
-        // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
-        this._subscribe = this.props.navigation.addListener('didFocus', () => {
-            //  # do you update if need
-            // this.getDariyResult();
-            this.setState({ afterAddNew: this.state.afterAddNew + 1 });
-            this.getDariyResult();
-            // console.log('componentDidMount in ReportScreen');
-        });
+        this.getDariyResult();
     }
 
     getDariyResult = async () => {
@@ -85,7 +90,7 @@ class reportScreen extends Component {
     }
 
     render() {
-        // console.log('report'); 
+        console.log('report'); 
         const reportList = [];
         Object.entries(this.state.ingredientObj).forEach(([key, val]) => {
             reportList.push(<Text key={Math.random()} >{key} appears {val} times</Text>);
@@ -98,11 +103,16 @@ class reportScreen extends Component {
                     </Body>
                 </Header>
                 <Tabs>
+                    {console.log('1')}
                     <Tab heading="Daily" style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <Thumbnail large source={uri} />
-                        <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text>
+                        {/* <Thumbnail large source={uri} />
+                        <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text> */}
                         {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
+                        {console.log(reportList)}
                         {reportList}
+                        <WeeklyReport />
+                        {console.log('3')}
+                        
                     </Tab>
                     <Tab heading="Monthly">
                         <Text>Tab 2</Text>
