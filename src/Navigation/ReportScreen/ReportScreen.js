@@ -137,7 +137,7 @@ class reportScreen extends Component {
                         activeTabStyle={{ backgroundColor: '#FA7921' }}
                         activeTextStyle={{ color: '#F4F4F4', fontWeight: 'bold' }}
                         style={[Theme.body, { alignItems: 'center', justifyContent: 'center' }]}>
-                        <Text>Tab 3</Text>
+                        <Text>$9.9 to unlock yearly report!</Text>
                     </Tab>
                 </Tabs>
 

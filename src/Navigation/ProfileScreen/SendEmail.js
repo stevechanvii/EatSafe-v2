@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Platform, View, Alert, Button } from 'react-native';
+import { Platform, Alert, Image, StyleSheet } from 'react-native';
+import { Container, Text, Button } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import HeaderGoBack from '../../Components/HeaderGoBack';
+import Theme from '../../Styles/Theme';
 
-export default class sendEmail extends Component {
+class sendEmail extends Component {
+    static navigationOptions = {
+        header: null
+    }
 
     getDariyResult = async () => {
         // console.log('DiaryContent getDariyResult' + dateKey);
@@ -109,14 +115,41 @@ export default class sendEmail extends Component {
 
     render() {
         return (
-            <View>
-                <Button
-                    onPress={this.handleEmail}
-                    title="Email Me"
-                    color="#841584"
-                    accessabilityLabel="Purple Email Me Button"
-                />
-            </View>
+            <Container>
+                <HeaderGoBack navigation={this.props.navigation} title='Export Data' />
+                <Grid style={Theme.body}>
+                    <Row size={4} style={styles.rowCenter} >
+                        <Image source={require('../../assets/icon/icons8-export-csv-100.png')} />
+                    </Row>
+                    <Row size={6}>
+                        <Grid>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    Export the data in CSV format by Email
+                        </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Button
+                                    onPress={this.handleEmail}
+                                    style={Theme.button} >
+                                    <Text>Send Email</Text>
+                                </Button>
+                            </Row>
+                        </Grid>
+
+
+                    </Row>
+                </Grid>
+            </Container>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    rowCenter: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+});
+
+export default sendEmail;

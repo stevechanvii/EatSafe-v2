@@ -16,6 +16,11 @@ export default {
         color: '#F4F4F4',
     },
     button: {
-        backgroundColor: '#F4F4F4',
+        backgroundColor: '#FB9D5D',
+        marginTop: 5,
+        alignSelf: 'center',
+        width: '90%',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 };

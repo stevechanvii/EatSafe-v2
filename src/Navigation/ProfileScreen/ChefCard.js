@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { View, Alert, Button, Platform } from 'react-native';
+import { Platform, Alert, Image, StyleSheet } from 'react-native';
+import { Container, Text, Button } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import Mailer from 'react-native-mail';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderGoBack from '../../Components/HeaderGoBack';
+import Theme from '../../Styles/Theme';
 
-export default class chefCard extends Component {
-
+class chefCard extends Component {
+  static navigationOptions = {
+    header: null
+  }
+  
   componentWillMount() {
     this.userAllergens();
   }
@@ -197,14 +203,41 @@ export default class chefCard extends Component {
 
   render() {
     return (
-      <View>
-        <Button
-          onPress={this.handleEmail}
-          title="Email Me"
-          color="#841584"
-          accessabilityLabel="Purple Email Me Button"
-        />
-      </View>
+      <Container>
+        <HeaderGoBack navigation={this.props.navigation} title='Chef Card' />
+        <Grid style={Theme.body}>
+          <Row size={4} style={styles.rowCenter} >
+            <Image source={require('../../assets/icon/icons8-pdf-100.png')} />
+          </Row>
+          <Row size={6}>
+            <Grid>
+              <Row style={styles.rowCenter}>
+                <Text>
+                  Email your conditions to chef in PDF format
+                </Text>
+              </Row>
+              <Row style={styles.rowCenter}>
+                <Button
+                  onPress={this.handleEmail}
+                  style={Theme.button} >
+                  <Text>Send Email</Text>
+                </Button>
+              </Row>
+            </Grid>
+
+
+          </Row>
+        </Grid>
+      </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rowCenter: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
+
+export default chefCard;

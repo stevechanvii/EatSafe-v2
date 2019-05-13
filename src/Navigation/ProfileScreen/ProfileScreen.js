@@ -102,7 +102,7 @@ class profileScreen extends Component {
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('ChefCard')}>
+                                            onPress={() => this.props.navigation.navigate('Setting')}>
                                             <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-settings-100.png')} />
                                             <Text>Setting</Text>
                                         </TouchableOpacity>
@@ -120,7 +120,7 @@ class profileScreen extends Component {
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('SendEmail')}>
+                                            onPress={() => this.props.navigation.navigate('AboutUs')}>
                                             {/* <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} /> */}
                                             <AboutUsSVG style={styles.iconCenter} />
                                             <Text>About Us</Text>
