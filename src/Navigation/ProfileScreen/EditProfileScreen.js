@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-
 import { View, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../assets/avatar_square.jpg';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
 
 class editProfileScreen extends Component {
-    static navigationOptions = {
-        title: 'Edit Profile',
-    };
     // static navigationOptions = {
-    //     header: null
-    // }
+    //     title: 'Edit Profile',
+    // };
+    static navigationOptions = {
+        header: null
+    }
 
     constructor(props) {
         super(props);
@@ -76,18 +76,8 @@ class editProfileScreen extends Component {
 
     render() {
         return (
-            <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
-                {/* <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Edit Profile</Title>
-                    </Body>
-                    <Right />
-                </Header> */}
+            <Container>
+                <HeaderGoBack navigation={this.props.navigation} title='Edit Profile' />
                 <Content>
                     <Thumbnail large source={uri} style={{ alignSelf: 'center', margin: 20 }} />
                     <Text style={{ alignSelf: 'center' }}>Hi, Welcome to EatSafe,</Text>

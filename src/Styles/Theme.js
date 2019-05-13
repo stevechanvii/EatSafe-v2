@@ -1,6 +1,7 @@
 export default {
     headerBar: {
         backgroundColor: '#FA7921',
+        borderBottomWidth: 0,
     },
     body: {
         backgroundColor: '#F4F4F4',

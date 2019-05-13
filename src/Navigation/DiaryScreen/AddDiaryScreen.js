@@ -9,6 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Kohana } from 'react-native-textinput-effects';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import Theme from '../../Styles/Theme';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 import Preference from '../../Preferences/Preferences';
 
 class addDiaryScreen extends Component {
@@ -144,18 +145,8 @@ class addDiaryScreen extends Component {
     render() {
         return (
             <Container>
-                <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-back" style={Theme.back} />
-                            <Text style={Theme.back}>Back</Text>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Create Diary</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                <HeaderGoBack navigation={this.props.navigation} title='Create Diary' />
+
                 {/* <Content contentContainerStyle={{ flex: 1 }}> */}
                 <Content>
                     <Grid style={Theme.body} >

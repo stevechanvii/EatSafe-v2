@@ -3,6 +3,7 @@ import { Platform, View, Alert, Button } from 'react-native';
 import Mailer from 'react-native-mail';
 import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
 export default class sendEmail extends Component {
 

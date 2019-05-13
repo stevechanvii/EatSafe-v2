@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Container, Header, Left, Right, Title, Body, Icon, Text, Button } from 'native-base';
+import { Container, Left, Right, Title, Body, Icon, Text, Button } from 'native-base';
 import Theme from '../../Styles/Theme';
 import ProductNotFound from './Result/ProductNotFound';
 import ScannerResultCard from './Result/ScannerResultCard';
 import LostNetwork from './Result/LostNetwork';
 import NetInfo from "@react-native-community/netinfo";
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
 class productDetailScreen extends Component {
     static navigationOptions = {
@@ -74,18 +75,7 @@ class productDetailScreen extends Component {
         if (this.state.isLostnetwork) {
             return (
                 <Container>
-                    <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
-                        <Left>
-                            <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="arrow-back" style={Theme.back} />
-                                <Text style={Theme.back}>Back</Text>
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title style={Theme.title}>Scanner</Title>
-                        </Body>
-                        <Right />
-                    </Header>
+                    <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
                     <LostNetwork />
                 </Container>
             );
@@ -94,18 +84,7 @@ class productDetailScreen extends Component {
         if (this.state.isLoading) {
             return (
                 <Container>
-                    <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
-                        <Left>
-                            <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="arrow-back" style={Theme.back} />
-                                <Text style={Theme.back}>Back</Text>
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title style={Theme.title}>Scanner</Title>
-                        </Body>
-                        <Right />
-                    </Header>
+                    <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
                     <ActivityIndicator />
                 </Container>
             )
@@ -114,18 +93,7 @@ class productDetailScreen extends Component {
         if (this.state.productName === false) {
             return (
                 <Container>
-                    <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
-                        <Left>
-                            <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="arrow-back" style={Theme.back} />
-                                <Text style={Theme.back}>Back</Text>
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title style={Theme.title}>Scanner</Title>
-                        </Body>
-                        <Right />
-                    </Header>
+                    <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
                     <ProductNotFound barcode={this.state.barcode} />
                 </Container>
 
@@ -134,18 +102,7 @@ class productDetailScreen extends Component {
 
         return (
             <Container>
-                <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-back" style={Theme.back} />
-                            <Text style={Theme.back}>Back</Text>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={Theme.title}>Scanner</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
                 {/* <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} /> */}
 
                 {/* testing */}

@@ -4,6 +4,7 @@ import {
     Container, Header, Button, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon,
     H1, H2, H3, Content
 } from 'native-base';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
 const cards =
     [
@@ -88,9 +89,14 @@ const cards =
     ];
 
 export default class KnowledgeCard extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     render() {
         return (
             <Container>
+                <HeaderGoBack navigation={this.props.navigation} title='Knowledge' />
                 {/* <Content> */}
                 <View>
                     <DeckSwiper

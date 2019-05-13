@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
 // import { Text, View } from 'react-native';
-import { Container, Text, Thumbnail, Header, Content, Tab, Tabs, Body, Title } from "native-base";
+import { Container, Text, Thumbnail, Content, Tab, Tabs, Body, Title } from "native-base";
 import uri from '../../assets/logo.jpg';
 import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import WeeklyReport from './WeeklyReport';
+import Header from '../../Components/Header';
+import Theme from '../../Styles/Theme';
 
 class reportScreen extends Component {
     static navigationOptions = {
-        title: 'Report',
-
+        herder: null,
     };
 
     state = {
@@ -90,21 +91,28 @@ class reportScreen extends Component {
     }
 
     render() {
-        console.log('report'); 
+        console.log('report');
         const reportList = [];
         Object.entries(this.state.ingredientObj).forEach(([key, val]) => {
             reportList.push(<Text key={Math.random()} >{key} appears {val} times</Text>);
         });
         return (
             <Container>
-                <Header hasTabs>
+                <Header title='Report' />
+                {/* <Header hasTabs>
                     <Body>
                         <Title>Report</Title>
                     </Body>
-                </Header>
-                <Tabs>
+                </Header> */}
+                <Tabs tabBarUnderlineStyle={{ backgroundColor: '#F4F4F4' }}>
                     {console.log('1')}
-                    <Tab heading="Daily" style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Tab
+                        heading="Daily"
+                        tabStyle={Theme.headerBar}
+                        textStyle={{ color: '#E3E9EF', fontWeight: 'normal' }}
+                        activeTabStyle={Theme.headerBar}
+                        activeTextStyle={{ color: '#F4F4F4', fontWeight: 'bold' }}
+                        style={[Theme.body, { alignItems: 'center', justifyContent: 'center' }]}>
                         {/* <Thumbnail large source={uri} />
                         <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text> */}
                         {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
@@ -112,12 +120,22 @@ class reportScreen extends Component {
                         {/* {reportList} */}
                         <WeeklyReport />
                         {console.log('3')}
-                        
+
                     </Tab>
-                    <Tab heading="Monthly">
+                    <Tab heading="Monthly"
+                        tabStyle={{ backgroundColor: '#FA7921' }}
+                        textStyle={{ color: '#E3E9EF', fontWeight: 'normal' }}
+                        activeTabStyle={{ backgroundColor: '#FA7921' }}
+                        activeTextStyle={{ color: '#F4F4F4', fontWeight: 'bold' }}
+                        style={[Theme.body, { alignItems: 'center', justifyContent: 'center' }]}>
                         <Text>Tab 2</Text>
                     </Tab>
-                    <Tab heading="Yearly">
+                    <Tab heading="Yearly"
+                        tabStyle={{ backgroundColor: '#FA7921' }}
+                        textStyle={{ color: '#E3E9EF', fontWeight: 'normal' }}
+                        activeTabStyle={{ backgroundColor: '#FA7921' }}
+                        activeTextStyle={{ color: '#F4F4F4', fontWeight: 'bold' }}
+                        style={[Theme.body, { alignItems: 'center', justifyContent: 'center' }]}>
                         <Text>Tab 3</Text>
                     </Tab>
                 </Tabs>

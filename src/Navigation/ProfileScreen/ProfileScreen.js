@@ -128,6 +128,24 @@ class profileScreen extends Component {
                                     </Col>
                                 </Grid>
                             </Row>
+                            <Row size={1}>
+                                <Grid>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('ChefCard')}>
+                                            <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-chef-hat-100.png')} />
+                                            <Text>Chef Card</Text>
+                                        </TouchableOpacity>
+                                    </Col>
+                                    <Col size={1} style={styles.gridCenter}>
+                                        <TouchableOpacity
+                                            onPress={() => this.props.navigation.navigate('SendEmail')}>
+                                            <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-send-email-100.png')} />
+                                            <Text>Export Data</Text>
+                                        </TouchableOpacity>
+                                    </Col>
+                                </Grid>
+                            </Row>
                         </Grid>
                     </Row>
                 </Grid>

@@ -3,6 +3,7 @@ import { View, Alert, Button, Platform } from 'react-native';
 import Mailer from 'react-native-mail';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
 import AsyncStorage from '@react-native-community/async-storage';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
 export default class chefCard extends Component {
 
@@ -21,11 +22,7 @@ export default class chefCard extends Component {
         userAllergens.push(keys[index]);
       }
     });
-    // console.log(userAllergens);
     allergenString = userAllergens.join(", ");
-    // console.log(allergenString);
-    // this.setState({ mailDetails: allergenString });
-    console.log(this.state.mailDetails);
 
     this.createPDF(allergenString)
   }
