@@ -148,7 +148,7 @@ class addDiaryScreen extends Component {
                 <HeaderGoBack navigation={this.props.navigation} title='Create Diary' />
 
                 {/* <Content contentContainerStyle={{ flex: 1 }}> */}
-                <Content>
+                <Content showsVerticalScrollIndicator={false}>
                     <Grid style={Theme.body} >
                         <Row size={3} > 
                             <Grid style={styles.headRow}>

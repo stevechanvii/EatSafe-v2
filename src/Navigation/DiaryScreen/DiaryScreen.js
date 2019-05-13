@@ -161,7 +161,7 @@ export default class diaryScreen extends Component {
             </Row>
             {/* <Row size={8} style={{ backgroundColor: '#635DB7' }}> */}
             <Row size={8} >
-              <Content>
+              <Content showsVerticalScrollIndicator={false}>
                 {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
                 {/* {console.log('come from DiaryContent ' + this.state.date)} */}
                 <DiaryContent navi={navigation} date={this.state.date} />

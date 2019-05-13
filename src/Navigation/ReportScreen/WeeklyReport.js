@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Body, Text } from 'native-base';
+import { Container, Header, Content, Card, CardItem, View, Text } from 'native-base';
 import {
   LineChart,
   BarChart,
@@ -21,85 +21,145 @@ const weeklyReport = () => {
     strokeWidth: 2 // optional, default 3
   };
   return (
-    <Content>
-      {console.log('4')}
-      <LineChart
-        data={data}
-        width={screenWidth} // from react-native
-        height={220}
-        yAxisLabel={'$'}
-        chartConfig={{
-          backgroundColor: '#e26a00',
-          backgroundGradientFrom: '#fb8c00',
-          backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          style: {
-            borderRadius: 16
-          }
-        }}
-        bezier
-        style={graphStyle}
-      />
+    <Content showsVerticalScrollIndicator={false}>
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <LineChart
+              data={data}
+              width={screenWidth} // from react-native
+              height={220}
+              yAxisLabel={'$'}
+              chartConfig={{
+                backgroundColor: '#e26a00',
+                backgroundGradientFrom: '#fb8c00',
+                backgroundGradientTo: '#ffa726',
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 16
+                }
+              }}
+              bezier
+            />
+          </View>
+        </CardItem>
+      </Card>
 
-      {console.log('5')}
-      <LineChart
-        data={data}
-        width={screenWidth}
-        height={220}
-        chartConfig={chartConfig}
-        bezier
-        style={graphStyle}
-      />
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <LineChart
+              data={data}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+              bezier
+            />
+          </View>
+        </CardItem>
+      </Card>
 
-      {console.log('6')}
-      <ProgressChart
-        data={progressChartData}
-        width={screenWidth}
-        height={220}
-        chartConfig={chartConfig}
-        style={graphStyle}
-      />
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <ProgressChart
+              data={progressChartData}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+            />
+          </View>
+        </CardItem>
+      </Card>
 
-      {console.log('7')}
-      <BarChart
-        style={graphStyle}
-        data={data}
-        width={screenWidth}
-        height={220}
-        yAxisLabel={'$'}
-        chartConfig={chartConfig}
-        style={graphStyle}
-      />
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <BarChart
+              data={data}
+              width={screenWidth}
+              height={220}
+              yAxisLabel={'$'}
+              chartConfig={chartConfig}
+            />
+          </View>
+        </CardItem>
+      </Card>
 
-      {console.log('8')}
-      <LineChart
-        data={data}
-        width={screenWidth}
-        height={220}
-        chartConfig={chartConfig}
-        style={graphStyle}
-      />
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <LineChart
+              data={data}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+            />
+          </View>
+        </CardItem>
+      </Card>
 
-        <PieChart
-          data={pieChartData}
-          width={screenWidth}
-          height={220}
-          chartConfig={chartConfig}
-          accessor="population"
-          backgroundColor="transparent"
-          paddingLeft="15"
-          absolute
-          style={graphStyle}
-        />
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <PieChart
+              data={pieChartData}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+              accessor="population"
+              backgroundColor="transparent"
+              paddingLeft="15"
+              absolute
+            />
+          </View>
+        </CardItem>
+      </Card>
 
     </Content>
   );
 }
 
-const graphStyle = StyleSheet.create({
-  marginVertical: 8,
-  borderRadius: 16
+const styles = StyleSheet.create({
+  card: {
+    borderRadius: 10,
+    backgroundColor: "#FFF",
+  },
+  cardItem: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    borderRadius: 10,
+  },
+  chartView: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    // borderRadius: 10,
+    overflow: 'hidden',
+  },
+  cardTitle: {
+    margin: 10,
+    fontSize: 20,
+  }
 });
-
 export default weeklyReport;

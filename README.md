@@ -99,27 +99,29 @@ Add additional notes about how to deploy this on a live system
 Useful Link
 * React: https://reactjs.org
 * React Native: https://facebook.github.io/react-native/docs/tutorial
-* React Navigation: https://reactnavigation.org/en/
-* React Navigation API Reference: https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
+* Navigation: https://reactnavigation.org/en/
+* Navigation API Reference: https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
 * NativeBase: https://docs.nativebase.io
-* React Native Easy Grid: https://github.com/GeekyAnts/react-native-easy-grid
-* React Native Vector Icons: https://github.com/oblador/react-native-vector-icons
-* React Native Camera: https://github.com/react-native-community/react-native-camera
-* React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
-* React Native Async Storage: https://github.com/react-native-community/react-native-async-storage
-* React Native Modal Datetiem picker: https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
-* React Native Textinput Effects:https://github.com/halilb/react-native-textinput-effects
-* React Native Floating Action: https://github.com/santomegonzalo/react-native-floating-action#readme
-* React Native Modal: https://github.com/react-native-community/react-native-modal
-* React Native Netinfo: https://github.com/react-native-community/react-native-netinfo
+* Easy Grid: https://github.com/GeekyAnts/react-native-easy-grid
+* Vector Icons: https://github.com/oblador/react-native-vector-icons
+* Camera: https://github.com/react-native-community/react-native-camera
+* Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
+* Async Storage: https://github.com/react-native-community/react-native-async-storage
+* Datetiem picker: https://github.com/mmazzarolo/react-native-modal-datetime-picker/blob/master/README.md
+* Textinput Effects:https://github.com/halilb/react-native-textinput-effects
+* Floating Action Button: https://github.com/santomegonzalo/react-native-floating-action#readme
+* Modal: https://github.com/react-native-community/react-native-modal
+* Net Information: https://github.com/react-native-community/react-native-netinfo
 * Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 * Google Machine Learning (Text Recognition): https://firebase.google.com/docs/ml-kit/recognize-text
 * Firebase: https://firebase.google.com/docs/firestore/
 * String Similarity: https://github.com/aceakash/string-similarity
 * Open Food Fact: https://en.wiki.openfoodfacts.org/API/Read/Product
-* React Native Mail: https://github.com/chirag04/react-native-mail
-* React Native File System: https://github.com/itinance/react-native-fs
+* Mail: https://github.com/chirag04/react-native-mail
+* File System: https://github.com/itinance/react-native-fs
 * JSON to CSV: https://github.com/zemirco/json2csv
+* PDF Generator: https://github.com/Hopding/react-native-pdf-lib
+* Chart Kit: https://github.com/indiespirit/react-native-chart-kit
 
 Guidance
 * https://github.com/okgrow/react-native-copilot
@@ -133,15 +135,8 @@ Splash Screen
 3D touch
 * https://github.com/jordanbyron/react-native-quick-actions
 
-Charts
-* https://github.com/indiespirit/react-native-chart-kit
-
 icon
 * https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
-
-input
-* https://github.com/halilb/react-native-textinput-effects
-* https://github.com/n4kz/react-native-material-textfield
 
 resource
 * https://github.com/jondot/awesome-react-native

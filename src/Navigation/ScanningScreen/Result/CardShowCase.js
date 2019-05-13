@@ -80,7 +80,7 @@ const cardShowCase = (props) => {
     }
 
     return (
-        <Content padder style={Theme.body}>
+        <Content padder style={Theme.body} showsVerticalScrollIndicator={false}>
         
             <Card style={styles.card} >
                 <CardItem style={styles.cardItem} >

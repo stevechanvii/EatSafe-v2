@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Preferene from '../../Preferences/Preferences';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import WeeklyReport from './WeeklyReport';
+import MonthlyReport from './MonthlyReport';
 import Header from '../../Components/Header';
 import Theme from '../../Styles/Theme';
 
@@ -107,7 +108,7 @@ class reportScreen extends Component {
                 <Tabs tabBarUnderlineStyle={{ backgroundColor: '#F4F4F4' }}>
                     {console.log('1')}
                     <Tab
-                        heading="Daily"
+                        heading="Weekly"
                         tabStyle={Theme.headerBar}
                         textStyle={{ color: '#E3E9EF', fontWeight: 'normal' }}
                         activeTabStyle={Theme.headerBar}
@@ -128,7 +129,7 @@ class reportScreen extends Component {
                         activeTabStyle={{ backgroundColor: '#FA7921' }}
                         activeTextStyle={{ color: '#F4F4F4', fontWeight: 'bold' }}
                         style={[Theme.body, { alignItems: 'center', justifyContent: 'center' }]}>
-                        <Text>Tab 2</Text>
+                        <MonthlyReport />
                     </Tab>
                     <Tab heading="Yearly"
                         tabStyle={{ backgroundColor: '#FA7921' }}
