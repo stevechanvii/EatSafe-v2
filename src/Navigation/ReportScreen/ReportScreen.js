@@ -108,8 +108,8 @@ class reportScreen extends Component {
                         {/* <Thumbnail large source={uri} />
                         <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>Report</Text> */}
                         {/* <Text style={{ color: "black", fontSize: 18 }}>Coming Soon</Text> */}
-                        {console.log(reportList)}
-                        {reportList}
+                        {/* {console.log(reportList)} */}
+                        {/* {reportList} */}
                         <WeeklyReport />
                         {console.log('3')}
                         

@@ -3,6 +3,7 @@ package com.eatsafe;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.hopding.pdflib.PDFLibPackage;
 import com.rnfs.RNFSPackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PDFLibPackage(),
             new RNFSPackage(),
             new SvgPackage(),
             new RNMail(),

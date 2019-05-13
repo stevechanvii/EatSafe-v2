@@ -17,6 +17,7 @@ import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
 import knowledgeCard from './src/Navigation/ProfileScreen/KnowledgeCard';
 import createDiaryScreen from './src/Navigation/ScanningScreen/CreateDairyScreen';
 import SendEmail from './src/Navigation/ProfileScreen/SendEmail';
+import ChefCard from './src/Navigation/ProfileScreen/ChefCard';
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
@@ -32,6 +33,7 @@ const ProfileStack = createStackNavigator({
 
   // testing
   SendEmail: {screen: SendEmail},
+  ChefCard: {screen: ChefCard},
 });
 
 const ScanningStack = createStackNavigator({

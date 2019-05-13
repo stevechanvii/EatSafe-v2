@@ -64,6 +64,7 @@ export default class sendEmail extends Component {
         } else {
             var path = RNFS.ExternalDirectoryPath + '/data.csv';
         }
+        console.log(path)
 
         // write the file
         RNFS.writeFile(path, CSVFile, 'utf8')
