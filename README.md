@@ -16,17 +16,21 @@ The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 ![ScreenShot](src/assets/screenshots/IMG_5289.JPG)
 
 ### Scanning
+* Barcode scanning the product, and get alert if it contains allergens your suffer from.
 ![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5284.JPG)
 
 ### Text Recognition
+* Allow you idenfity the ingredients from product wrapper.
 ![ScreenShot](src/assets/screenshots/IMG_5288.JPG)
 
 ### Report
+* Generate weekly, monthly and yearly report based on diary.
 ![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5290.JPG)
 
 ### Profile
+* Settings and allow you export data from local database.
 ![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5287.JPG)
 
