@@ -9,22 +9,22 @@ from product wrapping, so that can analysis the allergens.
 
 This App is proudly produced by team Hygieia
 
-Diary
-![ScreenShot](src/assets/screenshots/IMG_5282.PNG)
+## Diary
+![ScreenShot](src/assets/screenshots/IMG_5282.JPG)
 
-Scanning
-![ScreenShot](src/assets/screenshots/IMG_5283.PNG)
-![ScreenShot](src/assets/screenshots/IMG_5284.PNG)
+## Scanning
+![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
+![ScreenShot](src/assets/screenshots/IMG_5284.JPG)
 
-Text Recognition
-![ScreenShot](src/assets/screenshots/IMG_5288.PNG)
+## Text Recognition
+![ScreenShot](src/assets/screenshots/IMG_5288.JPG)
 
-Report
-![ScreenShot](src/assets/screenshots/IMG_5285.PNG)
+## Report
+![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
 
-Profile
-![ScreenShot](src/assets/screenshots/IMG_5286.PNG)
-![ScreenShot](src/assets/screenshots/IMG_5287.PNG)
+## Profile
+![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
+![ScreenShot](src/assets/screenshots/IMG_5287.JPG)
 
 ### Prerequisites
 
