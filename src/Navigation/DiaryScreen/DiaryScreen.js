@@ -5,11 +5,12 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { FloatingAction } from 'react-native-floating-action';
 import Header from '../../Components/Header';
 import DateTimePicker from "react-native-modal-datetime-picker";
-import Icon from 'react-native-vector-icons/Entypo';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Theme from '../../Styles/Theme';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import DiaryContent from './DiaryContent';
 import DayCalendarSVG from '../../assets/svg/day_calendar_svg';
+import ScanSVG from '../../assets/svg/scan_svg';
 
 
 export default class diaryScreen extends Component {
@@ -87,43 +88,43 @@ export default class diaryScreen extends Component {
   //   return uri[day];
   // }
 
+  dayCalender = (date) => {
+    switch (date.getDay()) {
+      case 0:
+        return (<DayCalendarSVG.Sunday width={80} height={80} />);
+      case 1:
+        return (<DayCalendarSVG.Monday width={80} height={80} />);
+      case 2:
+        return (<DayCalendarSVG.Tuesday width={80} height={80} />);
+      case 3:
+        return (<DayCalendarSVG.Wednesday width={80} height={80} />);
+      case 4:
+        return (<DayCalendarSVG.Thursday width={80} height={80} />);
+      case 5:
+        return (<DayCalendarSVG.Friday width={80} height={80} />);
+      case 6:
+        return (<DayCalendarSVG.Saturday width={80} height={80} />);
+    }
+  }
+
   render() {
     const { navigation } = this.props;
 
     // define the float action button
     const actions = [{
-      text: 'Add by Input',
-      icon: <Icon name='github' size={20} />,
+      text: 'Create by Input',
+      icon: <Entypo name='pencil' size={20} />,
       name: 'btn_input',
       position: 2,
       color: '#DD5144'
     }, {
       text: 'Add by Scanning',
-      icon: require('../../assets/img/ic_language_white.png'),
+      icon: <ScanSVG  width={20} height={20} />,
       name: 'btn_scan',
       position: 1,
-      color: '#E63462'
+      color: '#E84D0B'
     }];
-
-    const dayCalender = (date) => {
-      switch (date.getDay()) {
-        case 0:
-          return (<DayCalendarSVG.Sunday width={80} height={80} />);
-        case 1:
-          return (<DayCalendarSVG.Monday width={80} height={80} />);
-        case 2:
-          return (<DayCalendarSVG.Tuesday width={80} height={80} />);
-        case 3:
-          return (<DayCalendarSVG.Wednesday width={80} height={80} />);
-        case 4:
-          return (<DayCalendarSVG.Thursday width={80} height={80} />);
-        case 5:
-          return (<DayCalendarSVG.Friday width={80} height={80} />);
-        case 6:
-          return (<DayCalendarSVG.Saturday width={80} height={80} />);
-      }
-    }
-
+    
     return (
       <Root>
         <Container>
@@ -132,12 +133,12 @@ export default class diaryScreen extends Component {
             <Row size={2}>
               <Col size={2} style={styles.arrowBtn}>
                 <TouchableOpacity onPress={() => this.setDayHandler(-1)}>
-                  <Icon name='chevron-thin-left' size={50} color='#333745' />
+                  <Entypo name='chevron-thin-left' size={50} color='#333745' />
                 </TouchableOpacity>
               </Col>
               <Col size={5} style={styles.datePicker}>
                 <TouchableOpacity onPress={this.showDateTimePicker}>
-                  {dayCalender(this.state.date)}
+                  {this.dayCalender(this.state.date)}
                 </TouchableOpacity>
                 {/* {console.log('TouchableOpacity ' + this.state.date)} */}
                 <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
@@ -159,7 +160,7 @@ export default class diaryScreen extends Component {
                       text: 'Time machine is developing!',
                       textStyle: { textAlign: 'center' }
                     })}>
-                  <Icon name='chevron-thin-right' size={50} color='#333745' />
+                  <Entypo name='chevron-thin-right' size={50} color='#333745' />
                 </TouchableOpacity>
               </Col>
             </Row>

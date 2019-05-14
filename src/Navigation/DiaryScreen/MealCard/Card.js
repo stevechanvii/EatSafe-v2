@@ -3,18 +3,33 @@ import { Image, StyleSheet } from "react-native";
 import { Container, Header, Title, Content, Button, Icon, Card, CardItem, Text, Thumbnail, Left, Body, View } from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Meals from './Meals';
+import MealSVG from '../../../assets/svg/meal_svg';
 
-const logo = require("../../../assets/icons8-sandwich-96.png");
+
+const mealIcon = (meal) => {
+  switch (meal) {
+    case 'Breakfast':
+      return (<MealSVG.Breakfast width={50} height={50} />);
+    case 'Brunch':
+      return (<MealSVG.Brunch width={50} height={50} />);
+    case 'Lunch':
+      return (<MealSVG.Lunch width={50} height={50} />);
+    case 'Afternoon Tea':
+      return (<MealSVG.AfternoonTea width={50} height={50} />);
+    case 'Dinner':
+      return (<MealSVG.Dinner width={50} height={50} />);
+    case 'Midnight Sanck':
+      return (<MealSVG.MidnightSanck width={50} height={50} />);
+  }
+}
 
 const NHCardImage = (props) => {
-
   return (
-
     <Content style={styles.content} >
       <Card style={styles.mb}>
         <CardItem style={styles.CardHeader}>
           <Left>
-            <Thumbnail source={logo} square style={{width: 50, height: 50}} />
+            {mealIcon(props.meal)}
             <Body>
               <Text>{props.meal}</Text>
               {/* <Text note>Place Holder</Text> */}
