@@ -1,36 +1,36 @@
 # EatSafe V2.0
 
-Eat Safe-Eat what suits you.
-An app to deal with food sensitivity.
-A safeguard from allergies and intolerance.
-Scan food products before buying them.
-Keep track of daily meals.
-Eliminate food that doesn't suit you. 
+Eat Safe-Eat what suits you.  
+An app to deal with food sensitivity.  
+A safeguard from allergies and intolerance.  
+Scan food products before buying them.  
+Keep track of daily meals.  
+Eliminate food that doesn't suit you.  
 
 The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 
 ## Main features
 ### Diary
-* Diary entries to track the diet of daily intake.
+* Diary entries to track the diet of daily intake.  
 ![ScreenShot](src/assets/screenshots/IMG_5282.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5289.JPG)
 
 ### Scanning
-* Barcode scanning the product, and get alert if it contains allergens your suffer from.
+* Barcode scanning the product, and get alert if it contains allergens your suffer from.  
 ![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5284.JPG)
 
 ### Text Recognition
-* Allow you idenfity the ingredients from product wrapper.
+* Allow you idenfity the ingredients from product wrapper.  
 ![ScreenShot](src/assets/screenshots/IMG_5288.JPG)
 
 ### Report
-* Generate weekly, monthly and yearly report based on diary.
+* Generate weekly, monthly and yearly report based on diary.  
 ![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5290.JPG)
 
 ### Profile
-* Settings and allow you export data from local database.
+* Settings and allow you export data from local database.  
 ![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5287.JPG)
 
