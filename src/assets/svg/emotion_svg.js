@@ -2,7 +2,7 @@ import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 
 const Excellent = props => (
-    <Svg width={props.width} height={props.height} fill={props.color}>
+    <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path
             style={{
                 lineHeight: 'normal',
@@ -25,7 +25,7 @@ const Excellent = props => (
 );
 
 const Good = props => (
-    <Svg width={props.width} height={props.height} fill={props.color}>
+    <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path
             style={{
                 lineHeight: 'normal',
@@ -48,7 +48,7 @@ const Good = props => (
 );
 
 const SoSo = props => (
-    <Svg width={props.width} height={props.height} fill={props.color}>
+    <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path
             style={{
                 lineHeight: 'normal',
@@ -71,7 +71,7 @@ const SoSo = props => (
 );
 
 const NotWell = props => (
-    <Svg width={props.width} height={props.height} fill={props.color}>
+    <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path
             style={{
                 lineHeight: 'normal',
@@ -94,7 +94,7 @@ const NotWell = props => (
 );
 
 const Awful = props => (
-    <Svg width={props.width} height={props.height} fill={props.color}>
+    <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path
             style={{
                 lineHeight: 'normal',

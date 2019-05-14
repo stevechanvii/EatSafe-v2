@@ -128,9 +128,9 @@ class mealCard extends Component {
           <Grid>
             <Col size={1} >
               {/* <Thumbnail small source={require('../../../assets/icons8-savouring-delicious-food-face-100.png')} /> */}
-                {this.EmotionIcon(item.feel, 50, 50 , '#333745')}
+                {this.EmotionIcon(item.feel, 40, 40, '#333745')}
             </Col>
-            <Col size={5} >
+            <Col size={6} >
               <Grid>
                 <Row>
                   <Col size={2} ><Text>Ingredients</Text></Col>

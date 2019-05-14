@@ -295,7 +295,7 @@ class addDiaryScreen extends Component {
                                         onChangeText={(text) => this.setState({ comments: text })}
                                         useNativeDriver
                                     />
-                                    <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
+                                    <Button style={Theme.button} onPress={this.saveBtnHandler} >
                                         <Text>Create</Text>
                                     </Button>
                                 </Form>

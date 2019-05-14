@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import MealCard from './MealCard/Card';
 import Preference from '../../Preferences/Preferences';
+import EmptySVG from '../../assets/svg/empty_svg';
 
 
 class diaryContent extends Component {
@@ -29,11 +30,11 @@ class diaryContent extends Component {
     // NO LONGER SUPPORT IN FUTURE!!! TRY static getDerivedStateFromProps()
     componentWillReceiveProps(newProps) {
         // one problem is that setState is a sync function, if we setState then get driy Result, the date have'nt been update
-        this.setState({date: newProps.date}, () => {
+        this.setState({ date: newProps.date }, () => {
             this.getDariyResult();
         });
         // console.log('componentWillReceiveProps count!!!');
-        
+
     }
 
     // this function will be sent to edit profile, then refresh code after go back
@@ -45,7 +46,7 @@ class diaryContent extends Component {
         this.getDariyResult();
         // console.log('refreshFunction in Diary Content' );
     }
-    
+
 
     // componentDidMount() {
     //     // https://github.com/react-navigation/react-navigation/issues/1617
@@ -56,6 +57,25 @@ class diaryContent extends Component {
     //     //   this.setState({afterAddNew: this.state.afterAddNew + 1});
     //     });
     //   }
+
+    EmptyIcon = (date, width, height) => {
+        switch (date.getDay()) {
+            case 0:
+                return (<EmptySVG.empty1 width={width} height={height} />);
+            case 1:
+                return (<EmptySVG.empty2 width={width} height={height} />);
+            case 2:
+                return (<EmptySVG.empty3 width={width} height={height} />);
+            case 3:
+                return (<EmptySVG.empty4 width={width} height={height} />);
+            case 4:
+                return (<EmptySVG.empty5 width={width} height={height} />);
+            case 5:
+                return (<EmptySVG.empty6 width={width} height={height} />);
+            case 6:
+                return (<EmptySVG.empty7 width={width} height={height} />);
+        }
+    }
 
     render() {
         // console.log('Diary Content Render!!!');
@@ -70,14 +90,17 @@ class diaryContent extends Component {
                             dateKey={KeyGenerator.dateKeyGenerator(this.props.date)}
                             meal={meal}
                             info={this.state.dairyResult[meal]}
-                            navi={this.props.navi} 
+                            navi={this.props.navi}
                             refresh={this.refreshFunction} />
                     );
                 }
             });
         } else {
             return (
-                <Text>No dairy</Text>
+                <View style={styles.emptyCenter}>
+                    {this.EmptyIcon(this.props.date, 120, 120)}
+                    <Text>Hi, create diary from today!</Text>
+                </View>
             );
         }
         return (
@@ -89,7 +112,11 @@ class diaryContent extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    emptyCenter: {
+        marginTop: '20%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
 export default diaryContent;
