@@ -5,26 +5,26 @@ The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 For version 2, we set up text recognition (by Google Machine Learning) to extract the ingredients
 from product wrapping, so that can analysis the allergens.
 
-## Getting Started
-
-This App is proudly produced by team Hygieia
-
-# Diary
+### Diary
 ![ScreenShot](src/assets/screenshots/IMG_5282.JPG)
 
-# Scanning
+### Scanning
 ![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5284.JPG)
 
-# Text Recognition
+### Text Recognition
 ![ScreenShot](src/assets/screenshots/IMG_5288.JPG)
 
-# Report
+### Report
 ![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
 
-# Profile
+### Profile
 ![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
 ![ScreenShot](src/assets/screenshots/IMG_5287.JPG)
+
+## Getting Started
+
+This App is proudly produced by team Hygieia
 
 ### Prerequisites
 
