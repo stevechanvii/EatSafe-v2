@@ -18,6 +18,8 @@ Android studio
 iOS:
 xCode
 
+VS Code
+
 ### Installing
 
 Firstly, the environment should be setup, please refer to React Native offical site: https://facebook.github.io/react-native/docs/getting-started
@@ -25,45 +27,35 @@ Firstly, the environment should be setup, please refer to React Native offical s
 Choose your environment in React Native CLI Quickstart tab, follow the insrutction and install Node, Watchman, React Native CLI, etc.
 
 
-Download the code, install packages and dependencies
-
+Download the code, go to project root directory and install packages, dependencies
 ```
 npm install
 ```
 
-Go to ios folder, you may need to install pod first
+If you want to run the project in Xcode, go to ios folder
 ```
 pod install
 ```
+Then, open EatSafe.xcworkspace clean and rebuild project
 
-Install React Native Async Storage
-```
-yarn add @react-native-community/async-storage
-react-native link @react-native-community/async-storage
-```
 
-Run android, you need to run Android simulator first
-
+Running on simulator
+For Android, open Android studio and clean and rebuild first, then open simulator, and go to project root directory in terminal
 ```
 react-native run-android
 ```
 
-Sometime may have problems with abd (Android debug tools), be aware to change the user directory below
+Sometime may have problems with abd (Android debug tools), be aware to change the user directory below (use your own path)
 ```
 export PATH="$PATH:/Users/stevechanvii/Library/Android/sdk/platform-tools":$PATH
 ```
 
-Run iOS
+For iOS, go to project root directory in terminal
 ```
 react-native run-ios
 ```
-If your camera not working, you need to setup RNCamera https://github.com/react-native-community/react-native-camera
-Highly recommend using Cocoapods (or manually), because automatic install may have conflicts in setting both camera and text recognition, if you have these kind of problems (duplicants), follow the instructions unlink automatically install below
-```
-react-native unlink react-native-camera
-```
 
-To use Text recognition, you also need to setup Firebase, or otherwise this app will connect my firebase, follow the instructions in https://firebase.google.com/docs/android/setup
+There will be many problems running on Xcode, so Google them or create an issue. If it still not working properly, just try on android. If you want to running on real device, make sure your laptop and mobile device under same network.
 
 ## Running the tests
 
