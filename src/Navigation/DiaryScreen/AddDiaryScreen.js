@@ -11,6 +11,7 @@ import KeyGenerator from '../../Utils/KeyGenerator';
 import Theme from '../../Styles/Theme';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import Preference from '../../Preferences/Preferences';
+import EmotionSVG from '../../assets/svg/emotion_svg';
 
 class addDiaryScreen extends Component {
     // static navigationOptions = {
@@ -139,7 +140,6 @@ class addDiaryScreen extends Component {
         } catch (e) {
             // read error
         }
-
     }
 
     render() {
@@ -150,46 +150,41 @@ class addDiaryScreen extends Component {
                 {/* <Content contentContainerStyle={{ flex: 1 }}> */}
                 <Content showsVerticalScrollIndicator={false}>
                     <Grid style={Theme.body} >
-                        <Row size={3} > 
+                        <Row size={3} >
                             <Grid style={styles.headRow}>
                                 <Row size={1} style={{ alignItems: 'center', justifyContent: 'center', margin: 15 }} >
                                     <H3>How do you feel after the meal?</H3>
                                 </Row>
                                 <Row size={2} style={styles.emotionRow}>
-                                {/* https://icons8.com/icon/pack/messaging/ios */}
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >
-                                        <MaterialCommunityIcons
-                                            name='emoticon-cool-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    {/* https://icons8.com/icon/pack/messaging/ios */}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Excellent')} >
+                                        <EmotionSVG.Excellent
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Excellent' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Good')} >
-                                        <MaterialCommunityIcons
-                                            name='emoticon-happy-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Good')} >
+                                        <EmotionSVG.Good
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Good' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('So So')} >
-                                        <MaterialCommunityIcons
-                                            name='emoticon-neutral-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('So So')} >
+                                        <EmotionSVG.SoSo
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'So So' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Not Well')} >
-                                        <MaterialCommunityIcons
-                                            name='emoticon-sad-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Not Well')} >
+                                        <EmotionSVG.NotWell
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Not Well' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Awful')} >
-                                        <MaterialCommunityIcons
-                                            name='emoticon-poop'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Awful')} >
+                                        <EmotionSVG.Awful
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Awful' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                 </Row>
@@ -332,7 +327,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     emotion: {
-        marginHorizontal: '2%',
+        margin: '2%',
     },
     picker: {
         marginHorizontal: '3%',

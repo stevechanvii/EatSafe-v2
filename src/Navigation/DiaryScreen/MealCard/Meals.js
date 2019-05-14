@@ -4,6 +4,7 @@ import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Accordi
 import AsyncStorage from '@react-native-community/async-storage';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import EmotionSVG from '../../../assets/svg/emotion_svg';
 import Preference from '../../../Preferences/Preferences';
 
 class mealCard extends Component {
@@ -35,7 +36,7 @@ class mealCard extends Component {
         // console.log(dayValue);
         // console.log(this.state.mealDetails);
         // if ( dayValue[mealName] !== {}){
-        if (Object.keys(dayValue[mealName]).length === 0 && dayValue[mealName].constructor === Object){
+        if (Object.keys(dayValue[mealName]).length === 0 && dayValue[mealName].constructor === Object) {
           delete dayValue[mealName];
           AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
           // console.log('null');
@@ -44,7 +45,7 @@ class mealCard extends Component {
           // console.log('not null');
           // console.log(dayValue[mealName]);
           AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
-          
+
         }
         // this.setState({ mealDetails: dayValue[mealName] });
         this.props.refreshCards();
@@ -53,10 +54,20 @@ class mealCard extends Component {
     }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   this.setState({ mealDetails: this.props.info });
-  //   console.log('tttttttttt');
-  // }
+  EmotionIcon = (feel, width, height, color) => {
+    switch (feel) {
+      case 'Excellent':
+        return (<EmotionSVG.Excellent width={width} height={height} color={color} />);
+      case 'Good':
+        return (<EmotionSVG.Good width={width} height={height} color={color} />);
+      case 'So So':
+        return (<EmotionSVG.SoSo width={width} height={height} color={color} />);
+      case 'Not Well':
+        return (<EmotionSVG.NotWell width={width} height={height} color={color} />);
+      case 'Awful':
+        return (<EmotionSVG.Awful width={width} height={height} color={color} />);
+    }
+  }
 
   _renderHeader = (item, expanded) => {
     return (
@@ -99,26 +110,27 @@ class mealCard extends Component {
     const CANCEL_INDEX = 1;
 
     return (
-        <Grid
-          onPress={() =>
-            ActionSheet.show(
-              {
-                options: BUTTONS,
-                cancelButtonIndex: CANCEL_INDEX,
-                destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                title: "Select an option"
-              },
-              (buttonIndex) => {
-                this.actionSheetHandler(BUTTONS[buttonIndex], item.key);
-              }
-            )
-          }>
-          <Row>
-            <Grid>
-              <Col size={1} >
-              <Thumbnail small source={require('../../../assets/icons8-savouring-delicious-food-face-100.png')} />
-              </Col>
-              <Col size={6} >
+      <Grid
+        onPress={() =>
+          ActionSheet.show(
+            {
+              options: BUTTONS,
+              cancelButtonIndex: CANCEL_INDEX,
+              destructiveButtonIndex: DESTRUCTIVE_INDEX,
+              title: "Select an option"
+            },
+            (buttonIndex) => {
+              this.actionSheetHandler(BUTTONS[buttonIndex], item.key);
+            }
+          )
+        }>
+        <Row>
+          <Grid>
+            <Col size={1} >
+              {/* <Thumbnail small source={require('../../../assets/icons8-savouring-delicious-food-face-100.png')} /> */}
+                {this.EmotionIcon(item.feel, 50, 50 , '#333745')}
+            </Col>
+            <Col size={5} >
               <Grid>
                 <Row>
                   <Col size={2} ><Text>Ingredients</Text></Col>
@@ -130,10 +142,10 @@ class mealCard extends Component {
                 </Row>
 
               </Grid>
-              </Col>
-            </Grid>
-          </Row>
-        </Grid>
+            </Col>
+          </Grid>
+        </Row>
+      </Grid>
     );
   }
 
@@ -179,7 +191,7 @@ const styles = StyleSheet.create({
   emotionRow: {
     alignItems: 'center',
     justifyContent: 'center',
-    
+
   },
   emotion: {
     marginHorizontal: '2%',
@@ -195,7 +207,7 @@ const styles = StyleSheet.create({
   },
   Accordion: {
     borderWidth: 0,
-    
+
   }
 });
 
