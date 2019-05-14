@@ -122,7 +122,7 @@ class profileScreen extends Component {
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('AboutUs')}>
                                             {/* <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} /> */}
-                                            <AboutUsSVG style={styles.iconCenter} />
+                                            <AboutUsSVG style={styles.iconCenter} width={60} height={60}/>
                                             <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>

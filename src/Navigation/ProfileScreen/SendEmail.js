@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import Theme from '../../Styles/Theme';
+import Preference from '../../Preferences/Preferences';
 
 class sendEmail extends Component {
     static navigationOptions = {
@@ -26,7 +27,12 @@ class sendEmail extends Component {
                     Object.entries(JSON.parse(el[1])).forEach(([key, value]) => {
                         let obj = { 'meal': key };
                         Object.entries(value).forEach(([key, value]) => {
-                            obj = { ...obj, ...value, time: new Date(JSON.parse(value.time)).toLocaleString() }
+                            obj = { 
+                                ...obj, 
+                                ...value, 
+                                time: new Date(JSON.parse(value.time)).toLocaleString(),
+                                feelingRate: Preference.FeelingRate[value.feel]
+                             }
                             dairy.push(obj);
                         });
                     });
@@ -48,7 +54,7 @@ class sendEmail extends Component {
 
     createCSV = (dairy) => {
         const { Parser } = require('json2csv');
-        const fields = ['meal', 'comments', 'time', 'feel', 'ingredients', 'symptom', 'food'];
+        const fields = ['meal', 'comments', 'time', 'feel', 'ingredients', 'symptom', 'food', 'feelingRate'];
 
         const json2csvParser = new Parser({ fields });
         // console.log(this.formatedDiary);

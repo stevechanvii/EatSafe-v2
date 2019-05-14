@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import Theme from '../../Styles/Theme';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import DiaryContent from './DiaryContent';
+import DayCalendarSVG from '../../assets/svg/day_calendar_svg';
 
 
 export default class diaryScreen extends Component {
@@ -24,21 +25,6 @@ export default class diaryScreen extends Component {
     dairyResult: null,
     afterAddNew: 0,
     isDateTimePickerVisible: false
-  };
-
-  getDay = date => {
-    // const date = new Date();
-    const days = {
-      1: 'Mon',
-      2: 'Tue',
-      3: 'Wed',
-      4: 'Thu',
-      5: 'Fri',
-      6: 'Sat',
-      0: 'Sun',
-    }
-    // alert(days[date.getDay()]);
-    return days[date.getDay()];
   };
 
   // date picker
@@ -71,7 +57,7 @@ export default class diaryScreen extends Component {
     } else if (name === 'btn_scan') {
       // pass isAddDairy to scanner
       // this.props.navigation.navigate('Scanning', { isAddDairy: true });
-      this.props.navigation.navigate('Scanning', {date: new Date()});
+      this.props.navigation.navigate('Scanning', { date: new Date() });
     }
   };
 
@@ -87,23 +73,22 @@ export default class diaryScreen extends Component {
   }
 
   // https://facebook.github.io/react-native/docs/images.html
-  getIconURI = (day) => {
-    const uri = [
-      require('../../assets/icon/Sun.png'),
-      // require('../../assets/icon/Mon.png'),
-      require('../../assets/icon/icons8-monday-64-2.png'),
-      require('../../assets/icon/Tue.png'),
-      require('../../assets/icon/Wed.png'),
-      require('../../assets/icon/Thu.png'),
-      require('../../assets/icon/Fri.png'),
-      require('../../assets/icon/Sat.png'),
-    ]
-    return uri[day];
-  }
+  // getIconURI = (day) => {
+  //   const uri = [
+  //     require('../../assets/icon/Sun.png'),
+  //     // require('../../assets/icon/Mon.png'),
+  //     require('../../assets/icon/icons8-monday-64-2.png'),
+  //     require('../../assets/icon/Tue.png'),
+  //     require('../../assets/icon/Wed.png'),
+  //     require('../../assets/icon/Thu.png'),
+  //     require('../../assets/icon/Fri.png'),
+  //     require('../../assets/icon/Sat.png'),
+  //   ]
+  //   return uri[day];
+  // }
 
   render() {
     const { navigation } = this.props;
-    const imgURI = this.getIconURI(this.state.date.getDay());
 
     // define the float action button
     const actions = [{
@@ -120,6 +105,25 @@ export default class diaryScreen extends Component {
       color: '#E63462'
     }];
 
+    const dayCalender = (date) => {
+      switch (date.getDay()) {
+        case 0:
+          return (<DayCalendarSVG.Sunday width={80} height={80} />);
+        case 1:
+          return (<DayCalendarSVG.Monday width={80} height={80} />);
+        case 2:
+          return (<DayCalendarSVG.Tuesday width={80} height={80} />);
+        case 3:
+          return (<DayCalendarSVG.Wednesday width={80} height={80} />);
+        case 4:
+          return (<DayCalendarSVG.Thursday width={80} height={80} />);
+        case 5:
+          return (<DayCalendarSVG.Friday width={80} height={80} />);
+        case 6:
+          return (<DayCalendarSVG.Saturday width={80} height={80} />);
+      }
+    }
+
     return (
       <Root>
         <Container>
@@ -133,7 +137,7 @@ export default class diaryScreen extends Component {
               </Col>
               <Col size={5} style={styles.datePicker}>
                 <TouchableOpacity onPress={this.showDateTimePicker}>
-                  <Thumbnail large square source={imgURI} />
+                  {dayCalender(this.state.date)}
                 </TouchableOpacity>
                 {/* {console.log('TouchableOpacity ' + this.state.date)} */}
                 <Text>{this.state.date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</Text>
