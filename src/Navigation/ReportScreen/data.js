@@ -38,17 +38,15 @@ const data = {
   // Mock data object used for Contribution Graph
 
   const contributionData = [
-    { date: '2016-01-02', count: 1 },
-    { date: '2016-01-03', count: 2 },
-    { date: '2016-01-04', count: 3 },
-    { date: '2016-01-05', count: 4 },
-    { date: '2016-01-06', count: 5 },
-    { date: '2016-01-30', count: 2 },
-    { date: '2016-01-31', count: 3 },
-    { date: '2016-03-01', count: 2 },
-    { date: '2016-04-02', count: 4 },
-    { date: '2016-03-05', count: 2 },
-    { date: '2016-02-30', count: 4 }
+    { date: '2019-05-06', count: 1 },
+    { date: '2019-05-07', count: 2 },
+    { date: '2019-05-08', count: 5 },
+    { date: '2019-05-09', count: 1 },
+    { date: '2019-05-10', count: 4 },
+    { date: '2019-05-11', count: 3 },
+    { date: '2019-05-12', count: 1 },
+    { date: '2019-05-13', count: 2 },
+    { date: '2019-05-14', count: 1 },
   ]
 
   // Mock data object for Pie Chart

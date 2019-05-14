@@ -135,6 +135,24 @@ const weeklyReport = () => {
         </CardItem>
       </Card>
 
+      <Card style={styles.card}>
+        <CardItem style={styles.cardItem}>
+          <Text style={styles.cardTitle}>Weekly Intake</Text>
+        </CardItem>
+        <CardItem style={styles.cardItem}>
+          <View style={styles.chartView}>
+            <ContributionGraph
+              values={contributionData}
+              endDate={new Date()}
+              numDays={50}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+            />
+          </View>
+        </CardItem>
+      </Card>
+
     </Content>
   );
 }
