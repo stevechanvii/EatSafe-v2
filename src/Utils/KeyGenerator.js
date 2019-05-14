@@ -13,11 +13,17 @@ const dateKeyGenerator = (date) => {
             return year + '0' +month + day;
         }
     } else {
-        return '' + year + month + day;
+        if (day < 10) {
+            return '' + year + month + '0' + day;
+        } else {
+            return '' + year + month + day;
+        }
     }
 }
 
-// month and year need to be number, e.g. monthKeyGenerator(5, 2019)
+// month and year need to be number, e.g. monthKeyGenerator(5, 2019), if today is 6 May 2019, 
+// this method will generate a list of [20190501, 20190502, 20190503, 20190504, 20190505, 20190506],
+// if today is 6 Jun 2019, it will generate [20190501, ... , 20190531]
 monthKeyGenerator = (month, year) => {
     const currentDate = new Date();
     const dateKeyList = [];
