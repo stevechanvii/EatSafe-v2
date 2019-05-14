@@ -86,29 +86,9 @@ react-native run-ios
 
 There will be many problems running on Xcode, so Google them or create an issue. If it still not working properly, just try on android. If you want to running on real device, make sure your laptop and mobile device under same network.
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This app runs locally, and will release on App Store and Google Play
 
 ## Built With
 
