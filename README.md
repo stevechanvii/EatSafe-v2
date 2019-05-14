@@ -1,12 +1,19 @@
 # EatSafe V2.0
 
+Eat Safe-Eat what suits you.
+An app to deal with food sensitivity.
+A safeguard from allergies and intolerance.
+Scan food products before buying them.
+Keep track of daily meals.
+Eliminate food that doesn't suit you. 
+
 The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 
-For version 2, we set up text recognition (by Google Machine Learning) to extract the ingredients
-from product wrapping, so that can analysis the allergens.
-
+## Main features
 ### Diary
+* Diary entries to track the diet of daily intake.
 ![ScreenShot](src/assets/screenshots/IMG_5282.JPG)
+![ScreenShot](src/assets/screenshots/IMG_5289.JPG)
 
 ### Scanning
 ![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
@@ -17,6 +24,7 @@ from product wrapping, so that can analysis the allergens.
 
 ### Report
 ![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
+![ScreenShot](src/assets/screenshots/IMG_5290.JPG)
 
 ### Profile
 ![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
