@@ -20,6 +20,7 @@ import SendEmail from './src/Navigation/ProfileScreen/SendEmail';
 import ChefCard from './src/Navigation/ProfileScreen/ChefCard';
 import Setting from './src/Navigation/ProfileScreen/Setting';
 import AboutUs from './src/Navigation/ProfileScreen/AboutUs';
+import AllergenSetting from './src/Navigation/ProfileScreen/AllergenSetting';
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
@@ -38,6 +39,7 @@ const ProfileStack = createStackNavigator({
   ChefCard: { screen: ChefCard },
   Setting: { screen: Setting },
   AboutUs: { screen: AboutUs },
+  AllergenSetting: { screen: AllergenSetting },
 });
 
 const ScanningStack = createStackNavigator({

@@ -102,7 +102,7 @@ class profileScreen extends Component {
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('Setting')}>
+                                            onPress={() => this.props.navigation.navigate('AllergenSetting')}>
                                             <Thumbnail square style={styles.iconCenter} source={require('../../assets/icon/icons8-settings-100.png')} />
                                             <Text>Setting</Text>
                                         </TouchableOpacity>

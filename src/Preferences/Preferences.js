@@ -22,11 +22,18 @@ const FeelingRate = {
     'Awful': 1
 };
 
-const Allergens = [
-    'Milk',
-    'Soy',
-    'Seafood',
-];
+const Allergens = {
+    'milk': ['butter', 'cheese', 'creame', 'yogurt', 'mozzarella'],
+    'egg': [],
+    'nut': ['cashew', 'walnut', 'almond'],
+    'peanut': [],
+    'soy': [],
+    'fish': ['gadus', 'trout'],
+    'shell': ['crab', 'prown', 'oyster', 'inkfish', 'clam'],
+    'gluten': ['wheat'],
+    'celery': [],
+    'sesame': []
+}
 
 const Symptoms = [
     'Diarrhea',
@@ -41,4 +48,4 @@ const Symptoms = [
     'Flushing of Skin'
 ];
 
-export default { Meals, Feelings, Symptoms, FeelingRate };
+export default { Meals, Feelings, Symptoms, FeelingRate, Allergens };
