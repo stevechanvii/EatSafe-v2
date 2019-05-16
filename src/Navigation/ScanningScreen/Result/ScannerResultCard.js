@@ -7,12 +7,14 @@ import UnderScoreToJSX from '../../../Components/Format/UnderScoreToJSX';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import LanguageFilter from '../../../Utils/LanguageFilter';
 import Theme from '../../../Styles/Theme';
-import Feather from 'react-native-vector-icons/Feather';
+import Preference from '../../../Preferences/Preferences';
+import AllergensDetector from '../../../Utils/AllergensDetector';
 
-// this component is in great mass!!!!! and may cause big problem! need reconstrust
+
 class scannerResultCard extends Component {
     state = {
-        isModalVisible: false
+        isModalVisible: false,
+        alert: []
     };
 
     toggleModal = () => {
@@ -20,42 +22,61 @@ class scannerResultCard extends Component {
     };
 
     componentWillMount = () => {
-        this.userAllergensAlert(this.props.productDetail.allergens);
+        this.userAllergensAlert();
     }
 
-    userAllergensAlert = async (productAllergens) => {
-        const keys = ['milk', 'soy', 'seafood'];
-        let userAllergens = [];
+
+    userAllergensAlert = async () => {
+        // check ingredientList exist first!
+        if (!this.props.productDetail.ingredients){
+            return;
+        }
+
         try {
-            // get the allergens from database, and saves in userAllergens
-            values = await AsyncStorage.multiGet(keys);
-            values.map((el, index) => {
-                if (JSON.parse(el[1])) {
-                    userAllergens.push(keys[index]);
+            // get all the allergens and intolerance from database
+            let values;
+            try {
+                values = await AsyncStorage.multiGet(['allengens', 'intolerance']);
+            } catch (e) {
+                // read error
+                console.log(e);
+            }
+            console.log(this.state);
+            const allergenObj = {};
+            // iterate all allergens and intolerance and find allergens only true
+            values.map(el => {
+                if (el[1]) {
+                    Object.entries(JSON.parse(el[1])).forEach(([key, value]) => {
+                        // find corresponding value in Preference
+                        if (JSON.parse(value)) {
+                            if (key in Preference.Allergens) {
+                                allergenObj[key] = Preference.Allergens[key];
+                            } else if (key in Preference.Intolerance) {
+                                allergenObj[key] = Preference.Intolerance[key];
+                            } else {
+                                allergenObj[key] = [];
+                            }
+                        }
+                    });
                 }
             });
-            console.log(userAllergens + ' userAllergens');
 
-            // search the allergen in the ingredients, if found then save in allergenAlert
-            let allergenAlert = [];
-            userAllergens.map(el => {
-                if (productAllergens.search(el) >= 0) {
-                    allergenAlert.push(el);
-                }
+            // iterate ingredients obj from parameter and change into list ingredientsList
+            const ingredientsList = [];
+            this.props.productDetail.ingredients.map(obj => {
+                ingredientsList.push(obj.text);
             });
 
-            // if allergenAlert size greater than 0, then formate and alert
-            if (allergenAlert.length > 0) {
-                let str = '';
-                allergenAlert.map(el => {
-                    str += el;
-                    str += ' ';
-                });
-                // alert(`Allergens ${str}detected!`);
-                this.setState({ allergens: str });
+            const diagnose = AllergensDetector(allergenObj, ingredientsList);
+            if (diagnose) {
+                // remove duplicant in diagnose
+                console.log(diagnose);
+                diagnoseCleaned = [...new Set(diagnose)];
+                console.log('sss')
+                this.setState({ alert: diagnoseCleaned });
                 this.toggleModal();
-                console.log(this.state.allergens);
-                console.log(this.state.isModalVisible);
+
+                console.log(diagnoseCleaned);
             }
 
         } catch (e) {
@@ -65,7 +86,8 @@ class scannerResultCard extends Component {
 
     renderModalContent = () => (
         <View style={styles.content}>
-            <Text style={styles.contentTitle}>{`Allergens ${this.state.allergens}detected!`}</Text>
+            <Text style={styles.contentTitle}>Allergens detected!</Text>
+            {this.state.alert.map(el => (<Text key={Math.random()} >{el}</Text>))}
             <Button
                 onPress={this.toggleModal}
                 style={styles.allergenBtn}>
@@ -73,6 +95,8 @@ class scannerResultCard extends Component {
             </Button>
         </View>
     );
+
+
 
     render() {
         let productAllergens = '';

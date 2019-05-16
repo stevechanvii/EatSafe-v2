@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
+import { Container, Content, Text, Button, H2 } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import AllergenSVG from '../../assets/svg/allergens_svg';
@@ -105,7 +105,7 @@ class allergenSetting extends Component {
                 <HeaderGoBack navigation={this.props.navigation} title='Setting' />
                 <Content>
                     <Grid style={Theme.body}>
-                        <Row><Text>Set Allergens</Text></Row>
+                        <Row><H2>Set Allergens</H2></Row>
                         <Row>
                             <Grid>
                                 <Row style={styles.rowMargin}>
@@ -198,7 +198,7 @@ class allergenSetting extends Component {
                             </Grid>
                         </Row>
 
-                        <Row><Text>Set Intolerance</Text></Row>
+                        <Row><H2>Set Intolerance</H2></Row>
 
                         <Row>
                             <Grid>

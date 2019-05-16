@@ -1,5 +1,5 @@
-import React from 'react'
-import Svg, { G, Path } from 'react-native-svg'
+import React from 'react';
+import Svg, { G, Path } from 'react-native-svg';
 
 const Monday = props => (
     <Svg viewBox="0 0 192 192" {...props}>

@@ -23,7 +23,7 @@ const FeelingRate = {
 };
 
 const Allergens = {
-    'milk': ['butter', 'cheese', 'creame', 'yogurt', 'mozzarella'],
+    'milk': ['butter', 'cheese', 'cream', 'yogurt', 'mozzarella'],
     'egg': [],
     'nut': ['cashew', 'walnut', 'almond'],
     'peanut': [],

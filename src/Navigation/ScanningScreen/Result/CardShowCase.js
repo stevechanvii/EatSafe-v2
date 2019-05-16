@@ -6,7 +6,8 @@ import { Content, Card, CardItem, Text, Button, H2, Accordion, Left, Body, View 
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import LanguageFilter from '../../../Utils/LanguageFilter';
 import Theme from '../../../Styles/Theme';
-import Feather from 'react-native-vector-icons/Feather';
+import Preference from '../../../Preferences/Preferences';
+import AllergensDetector from '../../../Utils/AllergensDetector';
 
 userAllergensAlert = async (productAllergens) => {
     const keys = ['milk', 'soy', 'seafood'];
@@ -49,6 +50,9 @@ userAllergensAlert = async (productAllergens) => {
             //     </Modal>
             // );
         }
+
+        // testing
+        console.log(AllergensDetector(Preference.Allergens, ['milk', 'soy', 'butter', 'food']));
 
     } catch (e) {
         // read error
