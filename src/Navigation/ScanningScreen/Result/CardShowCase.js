@@ -140,50 +140,7 @@ const cardShowCase = (props) => {
                     </Left>
                 </CardItem>
             </Card>
-            {/* <Card style={{ flex: 1 }}>
-                    <CardItem>
-                        <Left>
-                            <Body>
-                                <Text><H2>{props.productDetail.productName.toString()}</H2></Text>
-                                <Text note>{props.productDetail.genericName.toString()}</Text>
-                            </Body>
-                        </Left>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../../assets/allergies_image.jpg')}
-                                style={{ height: 200, width: '100%', flex: 1 }} />
-                        </Body>
-                    </CardItem>
-                    <CardItem>
-                        <Left>
-                            <Button transparent >
-                                <Feather name="alert-circle" size={16} color='red' />
-                                <Text style={{ color: "black", fontSize: 16 }}>ALLERGENS</Text>
-                            </Button>
-                        </Left>
-                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text note style={{ color: "black", fontSize: 15 }}>{productAllergens.split(",").filter(onlyUnique).join(",").replace(/en:/g, "").replace(/fr:/g, "")}</Text>
-                        </Body>
-                    </CardItem>
-                    <CardItem>
-                        <Left>
-                            <Button transparent >
-                                <Feather name="alert-circle" size={16} color='red' />
-                                <Text style={{ color: "black", fontSize: 15 }}>TRACES</Text>
-                            </Button>
-                        </Left>
-                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text note style={{ color: "black", fontSize: 15 }}>{props.productDetail.traces.toString().split(",").filter(onlyUnique).join(",").replace(/en:/g, "").replace(/fr:/g, "")}</Text>
-                        </Body>
-                    </CardItem>
-                </Card> */}
-            {/* <Accordion
-                dataArray={[{ title: "Ingredients", content: <UnderScoreToJSX ingredients={props.productDetail.ingredients} /> }]}
-                Feather="add"
-                expandedIcon="remove"
-                animation={true}
-            /> */}
+            
             <Button
                 style={styles.addDiaryBtn}
                 onPress={() => {

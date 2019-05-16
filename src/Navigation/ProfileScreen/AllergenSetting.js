@@ -5,6 +5,7 @@ import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content,
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import AllergenSVG from '../../assets/svg/allergens_svg';
+import IntoleranceSVG from '../../assets/svg/intolerance_svg';
 import Preference from '../../Preferences/Preferences';
 import Theme from '../../Styles/Theme';
 
@@ -16,6 +17,7 @@ class allergenSetting extends Component {
 
     state = {
         ...Object.keys(Preference.Allergens),
+        ...Object.keys(Preference.Intolerance),
     }
 
 
@@ -38,10 +40,19 @@ class allergenSetting extends Component {
             allengensObj[allengen] = this.state[allengen] ? true : false;
         });
 
+        // read all the intolerance from preset data
+        const intoleranceList = Object.keys(Preference.Intolerance);
+
+        // save the intolerance in state to allengensObj
+        const intoleranceObj = {};
+        intoleranceList.map(intolerance => {
+            intoleranceObj[intolerance] = this.state[intolerance] ? true : false;
+        });
+
         console.log(allengensObj);
 
         const allengens = ["allengens", JSON.stringify(allengensObj)];
-        const intolerance = ["intolerance", JSON.stringify({})];
+        const intolerance = ["intolerance", JSON.stringify(intoleranceObj)];
         try {
             await AsyncStorage.multiSet([allengens, intolerance])
         } catch (e) {
@@ -188,6 +199,97 @@ class allergenSetting extends Component {
                         </Row>
 
                         <Row><Text>Set Intolerance</Text></Row>
+
+                        <Row>
+                            <Grid>
+                                <Row style={styles.rowMargin}>
+                                    <Grid>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('caffeine')}>
+                                                <IntoleranceSVG.Caffeine style={styles.iconCenter} height={60} width={60} isAllergic={this.state.caffeine} />
+                                                <Text style={styles.iconCenter}>Caffeine</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('alcohol')}>
+                                                <IntoleranceSVG.Alcohol style={styles.iconCenter} height={60} width={60} isAllergic={this.state.alcohol} />
+                                                <Text style={styles.iconCenter}>Alcohol</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('salt')}>
+                                                <IntoleranceSVG.Salt style={styles.iconCenter} height={60} width={60} isAllergic={this.state.salt} />
+                                                <Text style={styles.iconCenter}>Salt</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('sugar')}>
+                                                <IntoleranceSVG.Sugar style={styles.iconCenter} height={60} width={60} isAllergic={this.state.sugar} />
+                                                <Text style={styles.iconCenter}>Sugar</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                    </Grid>
+                                </Row>
+
+                                <Row style={styles.rowMargin}>
+                                    <Grid>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('sweetener')}>
+                                                <IntoleranceSVG.Sweetener style={styles.iconCenter} height={60} width={60} isAllergic={this.state.sweetener} />
+                                                <Text style={styles.iconCenter}>Sweetener</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('pork')}>
+                                                <IntoleranceSVG.Pork style={styles.iconCenter} height={55} width={55} isAllergic={this.state.pork} />
+                                                <Text style={styles.iconCenter}>Pork</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('beef')}>
+                                                <IntoleranceSVG.Beef style={styles.iconCenter} height={60} width={60} isAllergic={this.state.beef} />
+                                                <Text style={styles.iconCenter}>Beef</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('chicken')}>
+                                                <IntoleranceSVG.Chicken style={styles.iconCenter} height={60} width={60} isAllergic={this.state.chicken} />
+                                                <Text style={styles.iconCenter}>Chicken</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                    </Grid>
+                                </Row>
+
+                                <Row style={styles.rowMargin}>
+                                    <Grid>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('lamb')}>
+                                                <IntoleranceSVG.Lamb style={styles.iconCenter} height={60} width={60} isAllergic={this.state.lamb} />
+                                                <Text style={styles.iconCenter}>Lamb</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('carrot')}>
+                                                <IntoleranceSVG.Carrot style={styles.iconCenter} height={60} width={60} isAllergic={this.state.carrot} />
+                                                <Text style={styles.iconCenter}>Carrot</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('garlic')}>
+                                                <IntoleranceSVG.Garlic style={styles.iconCenter} height={60} width={60} isAllergic={this.state.garlic} />
+                                                <Text style={styles.iconCenter}>Garlic</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                        <Col size={1} style={styles.gridCenter}>
+                                            <TouchableOpacity onPress={() => this.toggleBtn('chili')}>
+                                                <IntoleranceSVG.Chili style={styles.iconCenter} height={60} width={60} isAllergic={this.state.chili} />
+                                                <Text style={styles.iconCenter}>Chili</Text>
+                                            </TouchableOpacity>
+                                        </Col>
+                                    </Grid>
+                                </Row>
+                            </Grid>
+                        </Row>
 
                         <Row style={styles.gridCenter}>
                             <Button style={Theme.button} onPress={this.saveHandler} >
