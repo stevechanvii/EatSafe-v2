@@ -28,7 +28,7 @@ class scannerResultCard extends Component {
 
     userAllergensAlert = async () => {
         // check ingredientList exist first!
-        if (!this.props.productDetail.ingredients){
+        if (this.props.productDetail.ingredients.text === 'Ingredients Not Found') {
             return;
         }
 
@@ -42,6 +42,7 @@ class scannerResultCard extends Component {
                 console.log(e);
             }
             console.log(this.state);
+
             const allergenObj = {};
             // iterate all allergens and intolerance and find allergens only true
             values.map(el => {
@@ -61,6 +62,10 @@ class scannerResultCard extends Component {
                 }
             });
 
+            if (Object.entries(allergenObj).length === 0 && allergenObj.constructor === Object) {
+                return
+            }
+
             // iterate ingredients obj from parameter and change into list ingredientsList
             const ingredientsList = [];
             this.props.productDetail.ingredients.map(obj => {
@@ -70,13 +75,10 @@ class scannerResultCard extends Component {
             const diagnose = AllergensDetector(allergenObj, ingredientsList);
             if (diagnose) {
                 // remove duplicant in diagnose
-                console.log(diagnose);
                 diagnoseCleaned = [...new Set(diagnose)];
-                console.log('sss')
+
                 this.setState({ alert: diagnoseCleaned });
                 this.toggleModal();
-
-                console.log(diagnoseCleaned);
             }
 
         } catch (e) {
@@ -106,6 +108,15 @@ class scannerResultCard extends Component {
         } else {
             productAllergens = null;
         }
+
+        // convert ingredients object to list
+        const allergenList = [];
+        let cleanedAllergenList = [];
+        this.props.productDetail.ingredients.map(ingredient => {
+            allergenList.push(ingredient.text);
+            // remove the duplicant
+            cleanedAllergenList = [...new Set(allergenList)];
+        });
 
         return (
             <Content padder style={Theme.body}>
@@ -183,7 +194,7 @@ class scannerResultCard extends Component {
                             {
                                 navigation: this.props.navigation,
                                 name: this.props.productDetail.productName.toString(),
-                                ingredients: this.props.productDetail.ingredients
+                                ingredients: cleanedAllergenList
                             });
                     }} >
                     <Text>Add {this.props.productDetail.productName} to Dairy</Text>

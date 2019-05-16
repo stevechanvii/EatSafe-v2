@@ -21,8 +21,7 @@ class createDairyScreen extends Component {
         isDateTimePickerVisible: false,
         date: new Date(),
         food: this.props.navigation.getParam('name', ''),
-        // ingredients: this.props.navigation.getParam('ingredients', ''),
-        ingredients: '',
+        ingredients: this.props.navigation.getParam('ingredients', []).join(', '),
         comments: ''
     };
 
@@ -138,11 +137,7 @@ class createDairyScreen extends Component {
     }
 
     render() {
-        let ingredientString = '';
-        this.props.navigation.getParam('ingredients', [{'text': 'Ingredients Not Found'}]).map(el => {
-            ingredientString += el.text;
-            ingredientString += ', ';
-        });
+        let ingredientString = this.props.navigation.getParam('ingredients', ['Ingredients Not Found']).join(', ');
         return (
             <Container>
                 <Content>

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { Image, AsyncStorage } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, H2, Accordion } from 'native-base';
+import { Image, AsyncStorage, StyleSheet } from 'react-native';
+import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, H2, Accordion } from 'native-base';
 import defaultIngredients from '../../Preferences/Ingredients.js';
-var stringSimilarity = require('string-similarity');
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import HeaderGoBack from '../../Components/HeaderGoBack';
 
+var stringSimilarity = require('string-similarity');
 
 const excluterms = ["nutrition", "information", "serving", "per", "package", "size", "energy", "protein", "total", "carbohydrate", "sodium", "average", "quantity", "daily", "intake", "ml", "mg", "g", "kj", "contains", "caffeine", "calcium"]
 
 export default class recognitionResultScreen extends Component {
+    static navigationOptions = {
+        header: null
+    }
 
     state = {
         isLoading: false,
@@ -76,7 +81,6 @@ export default class recognitionResultScreen extends Component {
         return ingPresent
     }
 
-
     render() {
         textListAdv = []
         clearText = []
@@ -90,22 +94,93 @@ export default class recognitionResultScreen extends Component {
         textListAdv.map(el => (clearText = clearText.concat(this.prepText(el))))
         clearText.map(el => ((!uniqtext.includes(el)) & el.length > 2 ? uniqtext = uniqtext.concat(el) : null))
         uniqtext.map(el => (!this.subtextCheck(el, uniqtext) ? subText = subText.concat(el) : null))
-        subText.map(el => (this.match(el, subText)["bestMatch"]["rating"] > 0.5 ? textpair = textpair.concat([[el, this.match(el, subText)["bestMatch"]["target"]]]) : null))
-        textpair.map(el => (!finaltext.includes(this.betterHalf(el)) ? finaltext = finaltext.concat(this.betterHalf(el)) : null))
-        Ingredients.map(el => (finaltext.join(" ").includes(el) ? ingredList = ingredList.concat(el) : null))
-        ingredList = ingredList.concat("-------")
-        Ingredients = Ingredients.filter(word => !ingredList.includes(word))
-        Ingredients.map(el => (this.fuzzySubString(el, finaltext.join(" ")) ? ingredList = ingredList.concat(el) : null))
+        text_ingred = subText.join(" ")
+        Ingredients.map(el => (text_ingred.includes(el) ? ingredList = ingredList.concat(el) : null))
 
         return (
             <Container>
-                {/* <Header /> */}
+                <HeaderGoBack navigation={this.props.navigation} title='Text Recognition' />
                 <Content>
-                    {ingredList.map(el => (
-                        <Text key={Math.random()}>{el + ","}</Text>
-                    ))}
+                    <Grid>
+                        <Row>
+                            <Image source={require('../../assets/img/icons8-rescan-document-100.png')} />
+                        </Row>
+                        <Row>
+                            <Text>We found following Ingredients from text recognition</Text>
+                        </Row>
+                        <Row>
+                            <Text>{ingredList.join(', ')}</Text>
+                        </Row>
+                        <Button
+                            style={styles.addDiaryBtn}
+                            onPress={() => {
+                                this.props.navigation.navigate(
+                                    'CreateDairy',
+                                    {
+                                        navigation: this.props.navigation,
+                                        ingredients: ingredList
+                                    });
+                            }} >
+                            <Text>Add to Dairy</Text>
+                        </Button>
+                    </Grid>
+
+
                 </Content>
             </Container>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    card: {
+        borderRadius: 10,
+        backgroundColor: "#FFF",
+    },
+    cardItem: {
+        paddingLeft: 0,
+        paddingRight: 0,
+        paddingTop: 0,
+        borderRadius: 10,
+        // borderTopLeftRadius: 10,
+        // borderTopRightRadius: 10,
+    },
+    imageView: {
+        height: 200,
+        width: '100%',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        overflow: 'hidden',
+    },
+    image: {
+        height: 200,
+        width: '100%',
+    },
+    addDiaryBtn: {
+        backgroundColor: '#FB9D5D',
+        marginTop: 5,
+        alignSelf: 'center',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    content: {
+        backgroundColor: 'white',
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    contentTitle: {
+        fontSize: 20,
+        marginBottom: 12,
+    },
+    allergenBtn: {
+        backgroundColor: '#FB9D5D',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+
+});

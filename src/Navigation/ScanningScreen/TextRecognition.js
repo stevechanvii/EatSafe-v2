@@ -28,6 +28,7 @@ class textRecognitionScreen extends Component {
     buttonHandler = () => {
         this.props.navigation.navigate('RecognitionResult', {
             textList: this.allTextList,
+            navigation: this.props.navigation,
         });
     }
 
