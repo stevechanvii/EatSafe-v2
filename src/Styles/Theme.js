@@ -17,7 +17,7 @@ export default {
     },
     button: {
         backgroundColor: '#FB9D5D',
-        marginTop: 5,
+        marginTop: 8,
         alignSelf: 'center',
         width: '90%',
         alignItems: 'center',

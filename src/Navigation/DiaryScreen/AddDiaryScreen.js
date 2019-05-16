@@ -14,9 +14,6 @@ import Preference from '../../Preferences/Preferences';
 import EmotionSVG from '../../assets/svg/emotion_svg';
 
 class addDiaryScreen extends Component {
-    // static navigationOptions = {
-    //     title: 'Create Diary',
-    // };
     static navigationOptions = {
         header: null
     }
@@ -29,7 +26,9 @@ class addDiaryScreen extends Component {
         date: this.props.navigation.state.params.date,
         food: '',
         ingredients: '',
-        comments: ''
+        comments: '',
+        isIngredientsEmpty: false,
+        isFoodNameEmpty: false,
     };
 
     // symptom picker
@@ -82,6 +81,22 @@ class addDiaryScreen extends Component {
 
     saveBtnHandler = async () => {
         console.log(this.state);
+        // check are ingredients and food name empty
+        if (this.state.food.trim()) {
+            this.setState({ isFoodNameEmpty: false });
+
+            if (this.state.ingredients.trim()) {
+                this.setState({ isIngredientsEmpty: false });
+            } else {
+                this.setState({ isIngredientsEmpty: true });
+                return;
+            }
+
+        } else {
+            this.setState({ isFoodNameEmpty: true });
+            return;
+        }
+
         const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
 
         const saveObj = {
@@ -259,33 +274,36 @@ class addDiaryScreen extends Component {
                                         </Picker>
                                     </Item>
                                     <Kohana
-                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
                                         label={'Food Name'}
                                         iconClass={MaterialIcons}
                                         iconName={'restaurant'}
-                                        iconColor={'#f4d29a'}
+                                        iconColor={this.state.isFoodNameEmpty ? '#E63462' : '#f4d29a'}
                                         iconSize={30}
-                                        labelStyle={{ color: '#91627b' }}
+                                        labelStyle={{ color: this.state.isFoodNameEmpty ? '#E63462' : '#91627b' }}
                                         inputStyle={{ color: '#91627b', paddingLeft: 0 }}
                                         // multiline={true}
                                         onChangeText={(text) => this.setState({ food: text })}
                                         useNativeDriver
                                     />
                                     <Kohana
-                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
                                         label={'Ingredients'}
                                         iconClass={MaterialIcons}
                                         iconName={'mode-edit'}
-                                        iconColor={'#f4d29a'}
+                                        iconColor={this.state.isIngredientsEmpty ? '#E63462' : '#f4d29a'}
                                         iconSize={30}
-                                        labelStyle={{ color: '#91627b' }}
+                                        labelStyle={{ color: this.state.isIngredientsEmpty ? '#E63462' : '#91627b' }}
                                         inputStyle={{ color: '#91627b', paddingLeft: 0 }}
                                         onChangeText={(text) => this.setState({ ingredients: text })}
                                         useNativeDriver
                                     />
                                     <Kohana
-                                        style={[styles.input, { backgroundColor: '#f9f5ed' }]}
-                                        label={'Comments'}
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
+                                        label={'Comments (optional)'}
                                         iconClass={MaterialIcons}
                                         iconName={'comment'}
                                         iconSize={30}
@@ -311,8 +329,8 @@ class addDiaryScreen extends Component {
 
 const styles = StyleSheet.create({
     inputItem: {
-        // margin: 5,
-        backgroundColor: '#f9f5ed',
+        marginTop: 5,
+        // backgroundColor: '#f9f5ed',
         marginTop: 4,
         marginLeft: 0,
 
@@ -345,6 +363,9 @@ const styles = StyleSheet.create({
     },
     input: {
         marginTop: 4,
+        backgroundColor: '#F4F4F4',
+        borderBottomColor: '#E5E1E0',
+        borderBottomWidth: 1,
     },
 });
 

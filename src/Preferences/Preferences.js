@@ -1,9 +1,9 @@
 const Meals = [
-    'Breakfast', 
-    'Brunch', 
-    'Lunch', 
-    'Afternoon Tea', 
-    'Dinner', 
+    'Breakfast',
+    'Brunch',
+    'Lunch',
+    'Afternoon Tea',
+    'Dinner',
     'Midnight Sanck'];
 
 const Feelings = {
@@ -29,10 +29,25 @@ const Allergens = {
     'peanut': [],
     'soy': [],
     'fish': ['gadus', 'trout'],
-    'shell': ['crab', 'prown', 'oyster', 'inkfish', 'clam'],
+    'shell': ['crab', 'prawn', 'oyster', 'octopus', 'clam'],
     'gluten': ['wheat'],
     'celery': [],
     'sesame': []
+}
+
+const Intolerance = {
+    'caffeine': ['coffee'],
+    'alcohol': ['wine', 'cocktail', 'vodka', 'beer'],
+    'salt': [],
+    'sugar': [],
+    'sweetener': [],
+    'pork': [],
+    'beef': [],
+    'chicken': [],
+    'lamb': [],
+    'carrot': [],
+    'garlic': [],
+    'chili': [],
 }
 
 const Symptoms = [
@@ -48,4 +63,4 @@ const Symptoms = [
     'Flushing of Skin'
 ];
 
-export default { Meals, Feelings, Symptoms, FeelingRate, Allergens };
+export default { Meals, Feelings, Symptoms, FeelingRate, Allergens, Intolerance };
