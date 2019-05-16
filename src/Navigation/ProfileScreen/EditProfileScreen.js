@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import uri from '../../assets/avatar_square.jpg';
+import uri from '../../assets/logo.jpg';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 
 
@@ -88,7 +88,7 @@ class editProfileScreen extends Component {
                             <Input placeholder={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} />
                         </Item>
                     </Form>
-                    <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose allergies you suffering</Text>
+                    {/* <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose allergies you suffering</Text>
                     <ListItem onPress={() => this.setState({ milk: !this.state.milk })}>
                         <CheckBox checked={this.state.milk} onPress={() => this.setState({ milk: !this.state.milk })} />
                         <Body>
@@ -106,7 +106,7 @@ class editProfileScreen extends Component {
                         <Body>
                             <Text>Seafood</Text>
                         </Body>
-                    </ListItem>
+                    </ListItem> */}
                     <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveHandler} >
                         <Text>Save</Text>
                     </Button>

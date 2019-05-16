@@ -102,11 +102,11 @@ export default class recognitionResultScreen extends Component {
                 <HeaderGoBack navigation={this.props.navigation} title='Text Recognition' />
                 <Content>
                     <Grid>
-                        <Row>
+                        <Row style={styles.gridCenter}>
                             <Image source={require('../../assets/img/icons8-rescan-document-100.png')} />
                         </Row>
-                        <Row>
-                            <Text>We found following Ingredients from text recognition</Text>
+                        <Row style={styles.gridCenter}>
+                            <Text>We found following Ingredients</Text>
                         </Row>
                         <Row>
                             <Text>{ingredList.join(', ')}</Text>
@@ -158,9 +158,9 @@ const styles = StyleSheet.create({
     },
     addDiaryBtn: {
         backgroundColor: '#FB9D5D',
-        marginTop: 5,
+        marginTop: 15,
         alignSelf: 'center',
-        width: '100%',
+        width: '90%',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -181,6 +181,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    gridCenter: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
 });

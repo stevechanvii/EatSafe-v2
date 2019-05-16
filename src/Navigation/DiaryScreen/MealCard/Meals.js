@@ -137,7 +137,7 @@ class mealCard extends Component {
                   <Col size={4} ><Text>{item.ingredients}</Text></Col>
                 </Row>
                 <Row>
-                  <Col size={2} ><Text>Comments</Text></Col>
+                  <Col size={2} >{item.comments ? <Text>Comments</Text> : <Text></Text> }</Col>
                   <Col size={4} ><Text>{item.comments}</Text></Col>
                 </Row>
 

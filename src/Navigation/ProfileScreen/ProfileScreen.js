@@ -79,13 +79,13 @@ class profileScreen extends Component {
                                 <Text>{this.state.userName || this.state.userName !== '' ? this.state.userName : 'please setup profile'}</Text>
                             </Row>
                             <Row>
-                                <Text>Allergens</Text>
+                                {/* <Text>Allergens</Text> */}
                                 {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
                                 {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
                                 {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
                             </Row>
                             <Row>
-                                <Text>Intolerance</Text>
+                                {/* <Text>Intolerance</Text> */}
                             </Row>
                         </Grid>
                     </Row>

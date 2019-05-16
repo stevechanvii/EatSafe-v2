@@ -23,7 +23,32 @@ class aboutUs extends Component {
                         <Grid>
                             <Row style={styles.rowCenter}>
                                 <Text>
-                                    Proudly designed and implemented by team Hygieia
+                                    Eat Safe-Eat what suits you.
+                                </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    An app to deal with food sensitivity.
+                                </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    A safeguard from allergies and intolerance.
+                                </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    Scan food products before buying them.
+                                </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    Keep track of daily meals.
+                                </Text>
+                            </Row>
+                            <Row style={styles.rowCenter}>
+                                <Text>
+                                    Eliminate food that doesn't suit you.
                                 </Text>
                             </Row>
 

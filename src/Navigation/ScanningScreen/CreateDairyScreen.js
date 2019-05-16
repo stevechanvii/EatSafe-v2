@@ -124,6 +124,7 @@ class createDairyScreen extends Component {
         }
 
         this.props.navigation.goBack();
+        // this.props.navigation.navigate('Diary');
     };
 
     getMeals = async () => {
