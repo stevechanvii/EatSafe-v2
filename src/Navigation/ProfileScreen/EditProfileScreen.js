@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, View, Thumbnail, Form, Item, Label, Input, Toast, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
+import { Container, Toast, Root, Form, Item, Label, Input, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Fumi } from 'react-native-textinput-effects';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import AvatarSVG from '../../assets/svg/avartar_svg';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Regex from '../../Utils/Regex';
 // import ProfileSVG from '../../assets/svg/profile_svg';
 import Theme from '../../Styles/Theme';
 
@@ -25,30 +26,14 @@ class editProfileScreen extends Component {
         name: '',
         email: '',
         ...this.props.navigation.getParam('user', {}),
+        isName: true,
+        isEmail: true,
     }
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         // chosenDate: new Date(),
-    //         milk: false,
-    //         soy: false,
-    //         seafood: false,
-    //         userName: ''
-    //     };
-    //     // this.setDate = this.setDate.bind(this);
-    // }
-
-    // setDate(newDate) {
-    //     this.setState({
-    //         chosenDate: newDate,
-    //     });
-    // };
 
     /**
      * @func setUserInfo saves 'avatar', 'name' and 'email' in Async Storage.
      * 
-     * data structure {"user": {"avatar": "UserMale1", "name": "Steve", "email": "danyangvii@gmail.com"}}
+     * data structure {user: {avatar: "UserMale", name: "Steve", email: "danyangvii@gmail.com"}
      */
     setUserInfo = async () => {
         try {
@@ -57,58 +42,63 @@ class editProfileScreen extends Component {
             // save error
             console.log(e);
         }
-        console.log("setUserInfo saved");
     }
 
+    /**
+     * @func saveHandler validate and save user input
+     */
     saveHandler = () => {
-        // console.log('save Handler invoked!');
-        // try {
-        //     await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName.toString()));
-        //     await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
-        //     await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
-        //     await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
-        // } catch (error) {
-        //     // Error saving data
-        //     console.log(error);
-        // }
+        // user name validation
+        const isName = Regex.username.test(this.state.name);
+        if (isName) {
+            this.setState({isName: true});
+        } else {
+            this.setState({isName: false});
+            Toast.show({
+                text: 'Name Invalid!',
+                textStyle: { textAlign: 'center' }
+            });
+            return ;
+        }
 
-
-        // this.props.navigation.state.params.refresh(this.state);
-        // this.props.navigation.goBack();
+        // email validation
+        const isEmail = Regex.email.test(this.state.email);
+        if (isEmail) {
+            this.setState({isEmail: true});
+        } else {
+            this.setState({isEmail: false});
+            Toast.show({
+                text: 'Email Invalid!',
+                textStyle: { textAlign: 'center' }
+            });
+            return ;
+        }
 
         this.setUserInfo();
-        console.log(this.state); 
+
+        // call the refresh function in parent conponent and send current state in user obj
+        this.props.navigation.state.params.refresh({
+            user: {
+                avatar: this.state.avatar,
+                email: this.state.email.toLowerCase().trim(),
+                name: this.state.name.trim()
+            }
+        });
+
+        this.props.navigation.goBack();
     };
 
-    // Search the local database and set new satate
-    componentDidMount() {
-        // let keys = ['user_name', 'milk', 'soy', 'seafood'];
-        // let values = [];
-        // AsyncStorage.multiGet(keys, (err, stores) => {
-        //     stores.map((result, i, store) => {
-        //         values.push(store[i][1]);
-        //         console.log(store[i][1]);
-
-        //     });
-        //     console.log(values + '1111');
-        //     // the value extract from database is JSON value, so need to convert to string and remove quote
-        //     this.setState({
-        //         isLoading: false,
-        //         userName: values[0] ? values[0].replace(/"/g, '') : '',
-        //         milk: JSON.parse(values[1]),
-        //         soy: JSON.parse(values[2]),
-        //         seafood: JSON.parse(values[3])
-        //     });
-        // });
-
-    }
-
-    toggleAvatar = (id) => {
-        this.setState({ avatar: id });
+    /**
+     * @func toggleAvatar toggle button for setting avatar name in state
+     * @param {string} avatarName 
+     */
+    toggleAvatar = (avatarName) => {
+        this.setState({ avatar: avatarName });
     }
 
     render() {
         return (
+            <Root>
             <Container>
                 <HeaderGoBack navigation={this.props.navigation} title='Edit Profile' />
                 <Content>
@@ -241,24 +231,28 @@ class editProfileScreen extends Component {
                             <Form style={styles.card1}>
                                 <Fumi
                                     label={'Name'}
+                                    labelStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
                                     iconClass={FontAwesomeIcon}
                                     iconName={'user'}
-                                    iconColor={'#f95a25'}
+                                    iconColor={'#333745'}
                                     iconSize={20}
                                     iconWidth={40}
                                     inputPadding={16}
+                                    inputStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
                                     defaultValue={this.state.name}
                                     onChangeText={(text) => this.setState({ name: text })}
                                 />
 
                                 <Fumi
                                     label={'Email'}
+                                    labelStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
                                     iconClass={FontAwesomeIcon}
                                     iconName={'envelope-o'}
-                                    iconColor={'#f95a25'}
+                                    iconColor={'#333745'}
                                     iconSize={20}
                                     iconWidth={40}
                                     inputPadding={16}
+                                    inputStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
                                     defaultValue={this.state.email}
                                     onChangeText={(text) => this.setState({ email: text })}
                                 />
@@ -266,39 +260,12 @@ class editProfileScreen extends Component {
                         </Row>
 
                     </Grid>
-                    {/* <Thumbnail large source={uri} style={{ alignSelf: 'center', margin: 20 }} />
-                    <Text style={{ alignSelf: 'center' }}>Hi, Welcome to EatSafe,</Text>
-                    <Text style={{ alignSelf: 'center' }}>The information will only be saved locally</Text>
-                    <Form>
-                        <Item floatingLabel>
-                            <Label style={this.state.userName === '' ? {} : styles.hidden}>Username</Label>
-                            <Input placeholder={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} />
-                        </Item>
-                    </Form> */}
-                    {/* <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose allergies you suffering</Text>
-                    <ListItem onPress={() => this.setState({ milk: !this.state.milk })}>
-                        <CheckBox checked={this.state.milk} onPress={() => this.setState({ milk: !this.state.milk })} />
-                        <Body>
-                            <Text>Milk</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem onPress={() => this.setState({ soy: !this.state.soy })}>
-                        <CheckBox checked={this.state.soy} onPress={() => this.setState({ soy: !this.state.soy })} />
-                        <Body>
-                            <Text>Soy</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem onPress={() => this.setState({ seafood: !this.state.seafood })}>
-                        <CheckBox checked={this.state.seafood} onPress={() => this.setState({ seafood: !this.state.seafood })} />
-                        <Body>
-                            <Text>Seafood</Text>
-                        </Body>
-                    </ListItem> */}
                     <Button info style={Theme.button} onPress={this.saveHandler} >
                         <Text>Save</Text>
                     </Button>
                 </Content>
             </Container>
+            </Root>
         );
     }
 };

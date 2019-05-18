@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import Theme from '../../Styles/Theme';
+import ProfileSVG from '../../assets/svg/profile_svg';
 import Preference from '../../Preferences/Preferences';
 
 class sendEmail extends Component {
@@ -125,7 +126,8 @@ class sendEmail extends Component {
                 <HeaderGoBack navigation={this.props.navigation} title='Export Data' />
                 <Grid style={Theme.body}>
                     <Row size={4} style={styles.rowCenter} >
-                        <Image source={require('../../assets/icon/icons8-export-csv-100.png')} />
+                        {/* <Image source={require('../../assets/icon/icons8-export-csv-100.png')} /> */}
+                        <ProfileSVG.CSV width={120} height={120} />
                     </Row>
                     <Row size={6}>
                         <Grid>

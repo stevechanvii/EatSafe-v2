@@ -6,6 +6,7 @@ import Mailer from 'react-native-mail';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderGoBack from '../../Components/HeaderGoBack';
+import ProfileSVG from '../../assets/svg/profile_svg';
 import Theme from '../../Styles/Theme';
 
 class chefCard extends Component {
@@ -207,7 +208,7 @@ class chefCard extends Component {
         <HeaderGoBack navigation={this.props.navigation} title='Chef Card' />
         <Grid style={Theme.body}>
           <Row size={4} style={styles.rowCenter} >
-            <Image source={require('../../assets/icon/icons8-pdf-100.png')} />
+          <ProfileSVG.PDF width={120} height={120} />
           </Row>
           <Row size={6}>
             <Grid>
