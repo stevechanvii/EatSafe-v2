@@ -1,6 +1,10 @@
 import React from 'react'
 import Svg, { Path, G } from 'react-native-svg'
 
+/**
+ * These are svg icons from icons8 (https://icons8.com/license), I subscribed when I developed this app. 
+ * Do read the license before using!!
+ */
 const Caffeine = props => (
     <Svg viewBox="0 0 50 50" height={props.height} width={props.width}>
         <Path d="M11.145 15L13 28h22l1.855-13z" fill="#ffc107" />

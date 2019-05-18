@@ -1,6 +1,10 @@
 import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 
+/**
+ * These are svg icons from icons8 (https://icons8.com/license), I subscribed when I developed this app. 
+ * Do read the license before using!!
+ */
 const Excellent = props => (
     <Svg viewBox="0 0 50 50" width={props.width} height={props.height} fill={props.color}>
         <Path

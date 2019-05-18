@@ -1,6 +1,10 @@
 import React from 'react'
 import Svg, { Path, Circle } from 'react-native-svg'
 
+/**
+ * These are svg icons from icons8 (https://icons8.com/license), I subscribed when I developed this app. 
+ * Do read the license before using!!
+ */
 const Breakfast = props => (
     <Svg {...props}>
         <Path

@@ -1,7 +1,11 @@
 import React from 'react'
 import Svg, { Path, G } from 'react-native-svg'
 
-const scan = props => (
+/**
+ * These are svg icons from icons8 (https://icons8.com/license), I subscribed when I developed this app. 
+ * Do read the license before using!!
+ */
+const Scan = props => (
   <Svg viewBox="0 0 128 128" {...props}>
     <Path
       d="M16 115c-1.7 0-3-1.3-3-3V86c0-1.7 1.3-3 3-3s3 1.3 3 3v26c0 1.7-1.3 3-3 3z"
@@ -54,4 +58,4 @@ const scan = props => (
   </Svg>
 )
 
-export default scan;
+export default Scan;
