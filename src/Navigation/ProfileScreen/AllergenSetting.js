@@ -37,29 +37,29 @@ class allergenSetting extends Component {
     // save all the allergens and intolerance from database
     setAllergens = async () => {
         // read all the allergens from preset data
-        const allengensList = Object.keys(Preference.Allergens);
+        const allergensList = Object.keys(Preference.Allergens);
 
-        // save the allengens in state to allengensObj
-        const allengensObj = {};
-        allengensList.map(allengen => {
-            allengensObj[allengen] = this.state[allengen] ? true : false;
+        // save the allergens in state to allergensObj
+        const allergensObj = {};
+        allergensList.map(allergen => {
+            allergensObj[allergen] = this.state[allergen] ? true : false;
         });
 
         // read all the intolerance from preset data
         const intoleranceList = Object.keys(Preference.Intolerance);
 
-        // save the intolerance in state to allengensObj
+        // save the intolerance in state to allergensObj
         const intoleranceObj = {};
         intoleranceList.map(intolerance => {
             intoleranceObj[intolerance] = this.state[intolerance] ? true : false;
         });
 
-        console.log(allengensObj);
+        console.log(allergensObj);
 
-        const allengens = ["allengens", JSON.stringify(allengensObj)];
+        const allergens = ["allergens", JSON.stringify(allergensObj)];
         const intolerance = ["intolerance", JSON.stringify(intoleranceObj)];
         try {
-            await AsyncStorage.multiSet([allengens, intolerance])
+            await AsyncStorage.multiSet([allergens, intolerance])
         } catch (e) {
             //save error
             console.log(e);
@@ -72,7 +72,7 @@ class allergenSetting extends Component {
     getAllergens = async () => {
         let values;
         try {
-            values = await AsyncStorage.multiGet(['allengens', 'intolerance']);
+            values = await AsyncStorage.multiGet(['allergens', 'intolerance']);
         } catch (e) {
             // read error
             console.log(e);

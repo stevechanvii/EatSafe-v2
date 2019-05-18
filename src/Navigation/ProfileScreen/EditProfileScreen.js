@@ -5,21 +5,26 @@ import { Container, View, Thumbnail, Form, Item, Label, Input, Toast, Content, T
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Fumi } from 'react-native-textinput-effects';
 import HeaderGoBack from '../../Components/HeaderGoBack';
-import AvatorSVG from '../../assets/svg/avartor_svg';
+import AvatarSVG from '../../assets/svg/avartar_svg';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 // import ProfileSVG from '../../assets/svg/profile_svg';
 import Theme from '../../Styles/Theme';
 
-
+/**
+ * @class editProfileScreen is the child component of profileScreen.
+ * 
+ * This component saves user's avatar, name and email to Async Storage
+ */
 class editProfileScreen extends Component {
     static navigationOptions = {
         header: null
     }
 
     state = {
-        activatedAvator: 'UserMale1',
+        avatar: 'UserMale1',
         name: '',
         email: '',
+        ...this.props.navigation.getParam('user', {}),
     }
 
     // constructor(props) {
@@ -40,48 +45,66 @@ class editProfileScreen extends Component {
     //     });
     // };
 
-    saveHandler = async () => {
-        console.log('save Handler invoked!');
+    /**
+     * @func setUserInfo saves 'avatar', 'name' and 'email' in Async Storage.
+     * 
+     * data structure {"user": {"avatar": "UserMale1", "name": "Steve", "email": "danyangvii@gmail.com"}}
+     */
+    setUserInfo = async () => {
         try {
-            await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName.toString()));
-            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
-            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
-            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
-        } catch (error) {
-            // Error saving data
-            console.log(error);
+            await AsyncStorage.setItem('user', JSON.stringify(this.state));
+        } catch (e) {
+            // save error
+            console.log(e);
         }
+        console.log("setUserInfo saved");
+    }
+
+    saveHandler = () => {
+        // console.log('save Handler invoked!');
+        // try {
+        //     await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName.toString()));
+        //     await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
+        //     await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
+        //     await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
+        // } catch (error) {
+        //     // Error saving data
+        //     console.log(error);
+        // }
 
 
-        this.props.navigation.state.params.refresh(this.state);
-        this.props.navigation.goBack();
+        // this.props.navigation.state.params.refresh(this.state);
+        // this.props.navigation.goBack();
+
+        this.setUserInfo();
+        console.log(this.state); 
     };
 
     // Search the local database and set new satate
     componentDidMount() {
-        let keys = ['user_name', 'milk', 'soy', 'seafood'];
-        let values = [];
-        AsyncStorage.multiGet(keys, (err, stores) => {
-            stores.map((result, i, store) => {
-                values.push(store[i][1]);
-                console.log(store[i][1]);
+        // let keys = ['user_name', 'milk', 'soy', 'seafood'];
+        // let values = [];
+        // AsyncStorage.multiGet(keys, (err, stores) => {
+        //     stores.map((result, i, store) => {
+        //         values.push(store[i][1]);
+        //         console.log(store[i][1]);
 
-            });
-            console.log(values + '1111');
-            // the value extract from database is JSON value, so need to convert to string and remove quote
-            this.setState({
-                isLoading: false,
-                userName: values[0] ? values[0].replace(/"/g, '') : '',
-                milk: JSON.parse(values[1]),
-                soy: JSON.parse(values[2]),
-                seafood: JSON.parse(values[3])
-            });
-        });
+        //     });
+        //     console.log(values + '1111');
+        //     // the value extract from database is JSON value, so need to convert to string and remove quote
+        //     this.setState({
+        //         isLoading: false,
+        //         userName: values[0] ? values[0].replace(/"/g, '') : '',
+        //         milk: JSON.parse(values[1]),
+        //         soy: JSON.parse(values[2]),
+        //         seafood: JSON.parse(values[3])
+        //     });
+        // });
 
     }
 
-    toggleAvator = (id) => {
-        this.setState({ activatedAvator: id });
+    toggleAvatar = (id) => {
+        this.setState({ avatar: id });
     }
 
     render() {
@@ -95,38 +118,38 @@ class editProfileScreen extends Component {
                                 <Row>
                                     <Grid>
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale1')}>
-                                                <AvatorSVG.UserMale1
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale1')}>
+                                                <AvatarSVG.UserMale1
                                                     width={75}
                                                     height={75}
-                                                    isChosen={this.state.activatedAvator === 'UserMale1'} />
+                                                    isChosen={this.state.avatar === 'UserMale1'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale2')}>
-                                                <AvatorSVG.UserMale2
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale2')}>
+                                                <AvatarSVG.UserMale2
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserMale2'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale2'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale3')}>
-                                                <AvatorSVG.UserMale3
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale3')}>
+                                                <AvatarSVG.UserMale3
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserMale3'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale3'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale4')}>
-                                                <AvatorSVG.UserMale4
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale4')}>
+                                                <AvatarSVG.UserMale4
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserMale4'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale4'} />
                                             </TouchableOpacity>
                                         </Col>
                                     </Grid>
@@ -135,38 +158,38 @@ class editProfileScreen extends Component {
                                 {/* <Row>
                                     <Grid>
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale5')}>
-                                                <AvatorSVG.UserMale5
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale5')}>
+                                                <AvatarSVG.UserMale5
                                                     width={75}
                                                     height={75}
-                                                    isChosen={this.state.activatedAvator === 'UserMale5'} />
+                                                    isChosen={this.state.avatar === 'UserMale5'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserMale6')}>
-                                                <AvatorSVG.UserMale6
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale6')}>
+                                                <AvatarSVG.UserMale6
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserMale6'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale6'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale1')}>
-                                                <AvatorSVG.UserFemale1
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale1')}>
+                                                <AvatarSVG.UserFemale1
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserFemale1'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale1'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale2')}>
-                                                <AvatorSVG.UserFemale2
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale2')}>
+                                                <AvatarSVG.UserFemale2
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserFemale2'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale2'} />
                                             </TouchableOpacity>
                                         </Col>
                                     </Grid>
@@ -175,38 +198,38 @@ class editProfileScreen extends Component {
                                 <Row>
                                     <Grid>
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale3')}>
-                                                <AvatorSVG.UserFemale3
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale3')}>
+                                                <AvatarSVG.UserFemale3
                                                     width={75}
                                                     height={75}
-                                                    isChosen={this.state.activatedAvator === 'UserFemale3'} />
+                                                    isChosen={this.state.avatar === 'UserFemale3'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale4')}>
-                                                <AvatorSVG.UserFemale4
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale4')}>
+                                                <AvatarSVG.UserFemale4
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserFemale4'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale4'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale5')}>
-                                                <AvatorSVG.UserFemale5
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale5')}>
+                                                <AvatarSVG.UserFemale5
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserFemale5'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale5'} />
                                             </TouchableOpacity>
                                         </Col>
 
                                         <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvator('UserFemale6')}>
-                                                <AvatorSVG.UserFemale6
+                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale6')}>
+                                                <AvatarSVG.UserFemale6
                                                     width={75}
                                                     height={75}
-                                                    isChosen={false} isChosen={this.state.activatedAvator === 'UserFemale6'} />
+                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale6'} />
                                             </TouchableOpacity>
                                         </Col>
                                     </Grid>
@@ -271,9 +294,9 @@ class editProfileScreen extends Component {
                             <Text>Seafood</Text>
                         </Body>
                     </ListItem> */}
-                    {/* <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveHandler} >
+                    <Button info style={Theme.button} onPress={this.saveHandler} >
                         <Text>Save</Text>
-                    </Button> */}
+                    </Button>
                 </Content>
             </Container>
         );
