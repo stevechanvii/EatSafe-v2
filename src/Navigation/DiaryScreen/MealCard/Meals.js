@@ -133,7 +133,7 @@ class mealCard extends Component {
             <Col size={6} >
               <Grid>
                 <Row>
-                  <Col size={2} ><Text>Ingredients</Text></Col>
+                  <Col size={2} ><Text>Ingredients</Text></Col> 
                   <Col size={4} ><Text>{item.ingredients}</Text></Col>
                 </Row>
                 <Row>

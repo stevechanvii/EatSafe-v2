@@ -14,9 +14,6 @@ import ScanSVG from '../../assets/svg/scan_svg';
 
 
 export default class diaryScreen extends Component {
-  // static navigationOptions = {
-  //   title: 'Diary',
-  // };
   static navigationOptions = {
     header: null
   }
@@ -72,21 +69,6 @@ export default class diaryScreen extends Component {
       this.setState({ afterAddNew: this.state.afterAddNew + 1 });
     });
   }
-
-  // https://facebook.github.io/react-native/docs/images.html
-  // getIconURI = (day) => {
-  //   const uri = [
-  //     require('../../assets/icon/Sun.png'),
-  //     // require('../../assets/icon/Mon.png'),
-  //     require('../../assets/icon/icons8-monday-64-2.png'),
-  //     require('../../assets/icon/Tue.png'),
-  //     require('../../assets/icon/Wed.png'),
-  //     require('../../assets/icon/Thu.png'),
-  //     require('../../assets/icon/Fri.png'),
-  //     require('../../assets/icon/Sat.png'),
-  //   ]
-  //   return uri[day];
-  // }
 
   dayCalender = (date) => {
     switch (date.getDay()) {

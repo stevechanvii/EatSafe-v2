@@ -22,6 +22,7 @@ const FeelingRate = {
     'Awful': 1
 };
 
+
 const Allergens = {
     'milk': ['butter', 'cheese', 'cream', 'yogurt', 'mozzarella'],
     'egg': [],

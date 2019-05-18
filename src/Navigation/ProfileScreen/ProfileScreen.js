@@ -6,14 +6,17 @@ import { Container, View, Thumbnail, Text, Button, Badge, Body, Title, ListItem 
 import Header from '../../Components/Header';
 import Theme from '../../Styles/Theme';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import AboutUsSVG from '../../assets/svg/about_us_svg'
+import AboutUsSVG from '../../assets/svg/about_us_svg';
+import AvatorSVG from '../../assets/svg/avartor_svg';
+// import ProfileSVG from '../../assets/svg/profile_svg';
 import uri from '../../assets/logo.jpg';
 
-
+/**
+ * This is the main entry for Profile which contains information content and functional content
+ * The component will retrive 'user', 'allengens' and 'intolerance' from Async Storage and send 
+ * as parameters to child component when need.
+ */
 class profileScreen extends Component {
-    // static navigationOptions = {
-    //     title: 'Profile',
-    // };
     static navigationOptions = {
         header: null
     }
@@ -40,25 +43,36 @@ class profileScreen extends Component {
     }
 
     // Search the local database and set new satate
+    // componentDidMount() {
+    //     let keys = ['user_name', 'milk', 'soy', 'seafood'];
+    //     let values = [];
+    //     AsyncStorage.multiGet(keys, (err, stores) => {
+    //         stores.map((result, i, store) => {
+    //             values.push(store[i][1]);
+    //             console.log(store[i][1]);
+
+    //         });
+    //         console.log(values + '1111');
+    //         this.setState({
+    //             isLoading: false,
+    //             userName: values[0] ? values[0].replace(/"/g, '') : '',
+    //             milk: JSON.parse(values[1]),
+    //             soy: JSON.parse(values[2]),
+    //             seafood: JSON.parse(values[3])
+    //         });
+    //     });
+
+    // }
+
+    // before dairy tab get focus, rerender this screen
     componentDidMount() {
-        let keys = ['user_name', 'milk', 'soy', 'seafood'];
-        let values = [];
-        AsyncStorage.multiGet(keys, (err, stores) => {
-            stores.map((result, i, store) => {
-                values.push(store[i][1]);
-                console.log(store[i][1]);
-
-            });
-            console.log(values + '1111');
-            this.setState({
-                isLoading: false,
-                userName: values[0] ? values[0].replace(/"/g, '') : '',
-                milk: JSON.parse(values[1]),
-                soy: JSON.parse(values[2]),
-                seafood: JSON.parse(values[3])
-            });
+        // https://github.com/react-navigation/react-navigation/issues/1617
+        // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
+        this._subscribe = this.props.navigation.addListener('didFocus', () => {
+            //  # do you update if need
+            // this.getDariyResult();
+            this.setState({ afterAddNew: this.state.afterAddNew + 1 });
         });
-
     }
 
 
@@ -73,7 +87,10 @@ class profileScreen extends Component {
                 <Grid style={Theme.body} >
                     <Row size={4}>
                         <Grid style={styles.gridCenter}>
-                            <Row style={styles.avatorRow}><Thumbnail large source={uri} /></Row>
+                            <Row style={styles.avatorRow}>
+                                {/* <Thumbnail large source={uri} /> */}
+                                <AvatorSVG.UserMale1 width={120} height={120} isChosen={false} />
+                            </Row>
                             <Row>
                                 <Text>Hi, </Text>
                                 <Text>{this.state.userName || this.state.userName !== '' ? this.state.userName : 'please setup profile'}</Text>
@@ -122,7 +139,7 @@ class profileScreen extends Component {
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('AboutUs')}>
                                             {/* <Thumbnail square source={require('../../assets/svg/icons8-about.svg')} /> */}
-                                            <AboutUsSVG style={styles.iconCenter} width={60} height={60}/>
+                                            <AboutUsSVG style={styles.iconCenter} width={60} height={60} />
                                             <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>
