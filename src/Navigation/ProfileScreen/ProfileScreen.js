@@ -76,23 +76,31 @@ class profileScreen extends Component {
     Avatar = (avatarName) => {
         switch (avatarName) {
             case 'UserMale1':
-                return (<AvatarSVG.UserMale1 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserMale1 width={180} height={180} isChosen={false} />);
             case 'UserMale2':
-                return (<AvatarSVG.UserMale2 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserMale2 width={180} height={180} isChosen={false} />);
             case 'UserMale3':
-                return (<AvatarSVG.UserMale3 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserMale3 width={180} height={180} isChosen={false} />);
             case 'UserMale4':
-                return (<AvatarSVG.UserMale4 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserMale5 width={180} height={180} isChosen={false} />);
+            case 'UserMale5':
+                return (<AvatarSVG.UserMale6 width={180} height={180} isChosen={false} />);
+            case 'UserMale6':
+                return (<AvatarSVG.UserMale4 width={180} height={180} isChosen={false} />);
+            case 'UserFemale1':
+                return (<AvatarSVG.UserFemale1 width={180} height={180} isChosen={false} />);
+            case 'UserFemale2':
+                return (<AvatarSVG.UserFemale2 width={180} height={180} isChosen={false} />);
             case 'UserFemale3':
-                return (<AvatarSVG.UserFemale1 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserFemale3 width={180} height={180} isChosen={false} />);
             case 'UserFemale4':
-                return (<AvatarSVG.UserFemale2 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserFemale4 width={180} height={180} isChosen={false} />);
             case 'UserFemale5':
-                return (<AvatarSVG.UserFemale3 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserFemale5 width={180} height={180} isChosen={false} />);
             case 'UserFemale6':
-                return (<AvatarSVG.UserFemale4 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserFemale6 width={180} height={180} isChosen={false} />);
             default:
-                return (<AvatarSVG.UserMale1 width={130} height={130} isChosen={false} />);
+                return (<AvatarSVG.UserMale1 width={180} height={180} isChosen={false} />);
         }
     }
 
@@ -134,83 +142,83 @@ class profileScreen extends Component {
             <Container>
                 <Header title='Profile' />
                 <Grid style={Theme.body} >
-                    <Row size={3}>
+                    <Row size={4}>
                         <Grid style={[styles.gridCenter]}>
-                            <Row size={8}>
+                            <Row size={4}>
                                 {this.state.user ? this.Avatar(this.state.user.avatar) : this.Avatar('UserMale1')}
                             </Row>
                             <Row size={1}>
                                 <Text>{this.state.user ? `Hi ${this.state.user.name}, welcome to PokeAllergist` : 'Hi, please setup account'}</Text>
                             </Row>
-                            <Row size={1}>
+                            {/* <Row size={1}>
                                 {this.state.allergens && this.state.intolerance ? <Text /> : <Text style={{}}>Please setting your allergens</Text>}
-                                {/* {this.state.intolerance ? <Text>Intolerance </Text> : <Text>Setup allergens in settings</Text>}
+                                {this.state.intolerance ? <Text>Intolerance </Text> : <Text>Setup allergens in settings</Text>}
                                 {Object.entries(this.state.intolerance).forEach(([key, value]) => 
                                     (value ? <Badge info><Text>{key}</Text></Badge> : <Text />)
-                                )} */}
-                            </Row>
+                                )}
+                            </Row> */}
                         </Grid>
                     </Row>
-                    <Row size={7}>
+                    <Row size={6}>
                         <Grid>
                             <Row size={1}>
                                 <Grid>
-                                    <Col size={1}></Col>
-                                    <Col size={4} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
+                                    <Col style={{width: '5%'}}></Col>
+                                    <Col size={1} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this), user: this.state.user })}>
-                                            <ProfileSVG.Profile width={75} height={75} />
+                                            {this.state.user ? <ProfileSVG.Profile width={75} height={75} /> : <ProfileSVG.ProfileNoted width={65} height={65} />}
                                             <Text style={styles.iconCenter}>Account</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={4} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
+                                    <Col size={1} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('AllergenSetting', { refresh: this.refreshFunction.bind(this), allergens: this.state.allergens, intolerance: this.state.intolerance })}>
-                                            <ProfileSVG.Virus width={75} height={75} />
+                                            {this.state.allergens && this.state.intolerance ? <ProfileSVG.Virus width={75} height={75} /> : <ProfileSVG.VirusNoted width={65} height={65} />}
                                             <Text style={styles.iconCenter}>Allergens</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={1}></Col>
+                                    <Col style={{width: '5%'}}></Col>
                                 </Grid>
                             </Row>
                             <Row size={1}>
                                 <Grid>
-                                    <Col size={1}></Col>
-                                    <Col size={4} style={styles.gridCenter}>
+                                    <Col style={{width: '5%'}}></Col>
+                                    <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
                                             <ProfileSVG.Classroom width={75} height={75} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Knowledge</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={4} style={styles.gridCenter}>
+                                    <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('AboutUs')}>
                                             <ProfileSVG.Github width={75} height={75} />
                                             <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={1}></Col>
+                                    <Col style={{width: '5%'}}></Col>
                                 </Grid>
                             </Row>
                             <Row size={1}>
                                 <Grid>
-                                    <Col size={1}></Col>
-                                    <Col size={4} style={styles.gridCenter}>
+                                    <Col style={{width: '5%'}}></Col>
+                                    <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('ChefCard')}>
                                             <ProfileSVG.Chef width={65} height={65} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Chef Card</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={4} style={styles.gridCenter}>
+                                    <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('SendEmail')}>
                                             <ProfileSVG.Email width={65} height={65} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Export Data</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={1}></Col>
+                                    <Col style={{width: '5%'}}></Col>
                                 </Grid>
                             </Row>
                         </Grid>

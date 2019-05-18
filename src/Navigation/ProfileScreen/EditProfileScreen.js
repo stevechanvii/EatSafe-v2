@@ -51,27 +51,27 @@ class editProfileScreen extends Component {
         // user name validation
         const isName = Regex.username.test(this.state.name);
         if (isName) {
-            this.setState({isName: true});
+            this.setState({ isName: true });
         } else {
-            this.setState({isName: false});
+            this.setState({ isName: false });
             Toast.show({
                 text: 'Name Invalid!',
                 textStyle: { textAlign: 'center' }
             });
-            return ;
+            return;
         }
 
         // email validation
         const isEmail = Regex.email.test(this.state.email);
         if (isEmail) {
-            this.setState({isEmail: true});
+            this.setState({ isEmail: true });
         } else {
-            this.setState({isEmail: false});
+            this.setState({ isEmail: false });
             Toast.show({
                 text: 'Email Invalid!',
                 textStyle: { textAlign: 'center' }
             });
-            return ;
+            return;
         }
 
         this.setUserInfo();
@@ -99,53 +99,53 @@ class editProfileScreen extends Component {
     render() {
         return (
             <Root>
-            <Container>
-                <HeaderGoBack navigation={this.props.navigation} title='Edit Profile' />
-                <Content>
-                    <Grid style={Theme.body}>
-                        <Row>
-                            <Grid>
-                                <Row>
-                                    <Grid>
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale1')}>
-                                                <AvatarSVG.UserMale1
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={this.state.avatar === 'UserMale1'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                <Container>
+                    <Content>
+                        <HeaderGoBack navigation={this.props.navigation} title='Edit Profile' />
+                        <Grid style={Theme.body}>
+                            <Row style={{ marginTop: 20 }}>
+                                <Grid>
+                                    <Row>
+                                        <Grid>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserMale1')}>
+                                                    <AvatarSVG.UserMale1
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={this.state.avatar === 'UserMale1'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale2')}>
-                                                <AvatarSVG.UserMale2
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale2'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserMale2')}>
+                                                    <AvatarSVG.UserMale2
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserMale2'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale3')}>
-                                                <AvatarSVG.UserMale3
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale3'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserMale3')}>
+                                                    <AvatarSVG.UserMale3
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserMale3'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserMale4')}>
-                                                <AvatarSVG.UserMale4
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserMale4'} />
-                                            </TouchableOpacity>
-                                        </Col>
-                                    </Grid>
-                                </Row>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserMale4')}>
+                                                    <AvatarSVG.UserMale4
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserMale4'} />
+                                                </TouchableOpacity>
+                                            </Col>
+                                        </Grid>
+                                    </Row>
 
-                                {/* <Row>
+                                    {/* <Row>
                                     <Grid>
                                         <Col size={1} style={styles.gridCenter}>
                                             <TouchableOpacity onPress={() => this.toggleAvatar('UserMale5')}>
@@ -185,86 +185,87 @@ class editProfileScreen extends Component {
                                     </Grid>
                                 </Row> */}
 
-                                <Row>
-                                    <Grid>
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale3')}>
-                                                <AvatarSVG.UserFemale3
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={this.state.avatar === 'UserFemale3'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                                    <Row>
+                                        <Grid>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale3')}>
+                                                    <AvatarSVG.UserFemale3
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={this.state.avatar === 'UserFemale3'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale4')}>
-                                                <AvatarSVG.UserFemale4
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale4'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale4')}>
+                                                    <AvatarSVG.UserFemale4
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserFemale4'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale5')}>
-                                                <AvatarSVG.UserFemale5
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale5'} />
-                                            </TouchableOpacity>
-                                        </Col>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale5')}>
+                                                    <AvatarSVG.UserFemale5
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserFemale5'} />
+                                                </TouchableOpacity>
+                                            </Col>
 
-                                        <Col size={1} style={styles.gridCenter}>
-                                            <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale6')}>
-                                                <AvatarSVG.UserFemale6
-                                                    width={75}
-                                                    height={75}
-                                                    isChosen={false} isChosen={this.state.avatar === 'UserFemale6'} />
-                                            </TouchableOpacity>
-                                        </Col>
-                                    </Grid>
-                                </Row>
-                            </Grid>
-                        </Row>
+                                            <Col size={1} style={styles.gridCenter}>
+                                                <TouchableOpacity onPress={() => this.toggleAvatar('UserFemale6')}>
+                                                    <AvatarSVG.UserFemale6
+                                                        width={75}
+                                                        height={75}
+                                                        isChosen={false} isChosen={this.state.avatar === 'UserFemale6'} />
+                                                </TouchableOpacity>
+                                            </Col>
+                                        </Grid>
+                                    </Row>
+                                </Grid>
+                            </Row>
 
-                        <Row>
-                            <Form style={styles.card1}>
-                                <Fumi
-                                    label={'Name'}
-                                    labelStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
-                                    iconClass={FontAwesomeIcon}
-                                    iconName={'user'}
-                                    iconColor={'#333745'}
-                                    iconSize={20}
-                                    iconWidth={40}
-                                    inputPadding={16}
-                                    inputStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
-                                    defaultValue={this.state.name}
-                                    onChangeText={(text) => this.setState({ name: text })}
-                                />
+                            <Row>
+                                <Form style={styles.card1}>
+                                    <Fumi
+                                        label={'Name'}
+                                        labelStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
+                                        iconClass={FontAwesomeIcon}
+                                        iconName={'user'}
+                                        iconColor={'#333745'}
+                                        iconSize={20}
+                                        iconWidth={40}
+                                        inputPadding={16}
+                                        inputStyle={{ color: this.state.isName ? '#333745' : '#f95a25' }}
+                                        defaultValue={this.state.name}
+                                        onChangeText={(text) => this.setState({ name: text })}
+                                    />
 
-                                <Fumi
-                                    label={'Email'}
-                                    labelStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
-                                    iconClass={FontAwesomeIcon}
-                                    iconName={'envelope-o'}
-                                    iconColor={'#333745'}
-                                    iconSize={20}
-                                    iconWidth={40}
-                                    inputPadding={16}
-                                    inputStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
-                                    defaultValue={this.state.email}
-                                    onChangeText={(text) => this.setState({ email: text })}
-                                />
-                            </Form>
-                        </Row>
-
-                    </Grid>
-                    <Button info style={Theme.button} onPress={this.saveHandler} >
-                        <Text>Save</Text>
-                    </Button>
-                </Content>
-            </Container>
+                                    <Fumi
+                                        label={'Email'}
+                                        labelStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
+                                        iconClass={FontAwesomeIcon}
+                                        iconName={'envelope-o'}
+                                        iconColor={'#333745'}
+                                        iconSize={20}
+                                        iconWidth={40}
+                                        inputPadding={16}
+                                        inputStyle={{ color: this.state.isEmail ? '#333745' : '#f95a25' }}
+                                        defaultValue={this.state.email}
+                                        onChangeText={(text) => this.setState({ email: text })}
+                                    />
+                                </Form>
+                            </Row>
+                            <Row style={styles.gridCenter}>
+                                <Button info style={Theme.button} onPress={this.saveHandler} >
+                                    <Text>Save</Text>
+                                </Button>
+                            </Row>
+                        </Grid>
+                    </Content>
+                </Container>
             </Root>
         );
     }
