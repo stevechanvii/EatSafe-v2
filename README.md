@@ -12,18 +12,18 @@ The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 ## Main features
 ### Diary
 * Diary entries to track the diet of daily intake.  
-![ScreenShot](src/assets/screenshots/ios_diary.JPG)
+![ScreenShot](src/assets/screenshots/ios_.diary.JPG)
 ![ScreenShot](src/assets/screenshots/android_create_diary.JPG)
 
 ### Scanning
 * Barcode scanning the product, and get alert if it contains allergens your suffer from.  
-![ScreenShot](src/assets/screenshots/ios_scanner.JPG)
+![ScreenShot](src/assets/screenshots/ios_.scanner.JPG)
 ![ScreenShot](src/assets/screenshots/android_scanner.JPG)
 
 ### Text Recognition
 * Allow you idenfity the ingredients from product wrapper.  
 ![ScreenShot](src/assets/screenshots/android_text_recognition.JPG)
-![ScreenShot](src/assets/screenshots/ios_text_recognition.JPG)
+![ScreenShot](src/assets/screenshots/ios_.text_recognition.JPG)
 
 ### Report
 * Generate weekly, monthly and yearly report based on diary.  
@@ -31,11 +31,11 @@ The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
 ### Profile
 * Settings and allow you export data from local database.  
 ![ScreenShot](src/assets/screenshots/android_profile.JPG)
-![ScreenShot](src/assets/screenshots/ios_allergy_seeting.JPG)
+![ScreenShot](src/assets/screenshots/ios_.allergy_seeting.JPG)
 
 ### Other
 * Settings and allow you export data from local database.  
-![ScreenShot](src/assets/screenshots/ios_knowledge_card.JPG)
+![ScreenShot](src/assets/screenshots/ios_.knowledge_card.JPG)
 ![ScreenShot](src/assets/screenshots/ios_export_csv.JPG)
 
 ## Getting Started
