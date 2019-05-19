@@ -4,46 +4,46 @@ import { Container, Text, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Mailer from 'react-native-mail';
 import PDFLib, { PDFDocument, PDFPage } from 'react-native-pdf-lib';
-import AsyncStorage from '@react-native-community/async-storage';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import ProfileSVG from '../../assets/svg/profile_svg';
 import Theme from '../../Styles/Theme';
 
+/**
+ * @class chefCard generate chef card ind pdf file then send by email
+ */
 class chefCard extends Component {
   static navigationOptions = {
     header: null
   }
   
   componentWillMount() {
-    this.userAllergens();
+    this.createPDF();
   }
 
-  userAllergens = async () => {
-    const keys = ['milk', 'soy', 'seafood'];
-    let allergenString = '';
-    let userAllergens = [];
-    // get the allergens from database, and saves in userAllergens
-    values = await AsyncStorage.multiGet(keys);
-    values.map((el, index) => {
-      if (JSON.parse(el[1])) {
-        userAllergens.push(keys[index]);
-      }
-    });
-    allergenString = userAllergens.join(", ");
-
-    this.createPDF(allergenString)
-  }
-
-  createPDF = (allergenString) => {
-
+  /**
+   * @func createPDF generate PDF file
+   */  
+  createPDF = () => {
     // Create a new PDF in your app's private Documents directory
     const RNFS = require('react-native-fs');
     // const docsDir = RNFS.ExternalDirectoryPath;
     const pdfPath = (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/ChefCard.pdf';
 
-    // this.userAllergens();
-    var allergens = allergenString;
-    console.log(allergens);
+    // get the parameter allergens and intolerance from parent component, set default value if not exist
+    const info = this.props.navigation.getParam('info', {allergens: {}, intolerance: {}});
+
+    // convert allergens and intolerance to array
+    const allergens = [];
+    Object.entries(info.allergens).forEach(([key, value]) => {
+      value ? allergens.push(key) : ''
+    });
+    
+    const intolerance = [];
+    Object.entries(info.intolerance).forEach(([key, value]) => {
+      value ? intolerance.push(key) : ''
+    });
+
+    // generate pdf page
     const page1 = PDFPage
       .create()
       .setMediaBox(100, 150)
@@ -72,9 +72,27 @@ class chefCard extends Component {
         fontSize: 4,
         color: '#000000',
       })
-      .drawText(allergens, {
+      .drawText('Allergens: ', {
         x: 5,
         y: 125,
+        fontSize: 4,
+        color: '#000000',
+      })
+      .drawText(allergens.join(', '), {
+        x: 22,
+        y: 125,
+        fontSize: 4,
+        color: '#000000',
+      })
+      .drawText('Intolerance:', {
+        x: 5,
+        y: 120,
+        fontSize: 4,
+        color: '#000000',
+      })
+      .drawText(intolerance.join(', '), {
+        x: 25,
+        y: 120,
         fontSize: 4,
         color: '#000000',
       })
@@ -171,18 +189,24 @@ class chefCard extends Component {
       });
   }
 
+  /**
+   * @func handleEmail call system default email app with parameters
+   */
   handleEmail = () => {
     // Create a new PDF in your app's private Documents directory
     const RNFS = require('react-native-fs');
     // const docsDir = RNFS.ExternalDirectoryPath;
     const pdfPath = (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/ChefCard.pdf';
 
+    // get the parameter user from parent component, set default value if not exist
+    const user = this.props.navigation.getParam('info', {user: {avatar: "", name: "PokeAllergist", email: ""}}).user;
+
     Mailer.mail({
-      subject: 'need help',
-      recipients: ['chendanyangvii@gmail.com'],
+      subject: 'Chef card',
+      recipients: [user.email],
       // ccRecipients: ['supportCC@example.com'],
       // bccRecipients: ['supportBCC@example.com'],
-      body: '<b>Chef Card</b>',
+      body: `Hi, this is your chef card from <b>PokeAllergist</b><br><br><br>Best Regards,<br>${user.name}`,
       isHTML: true,
       attachment: {
         path: pdfPath,

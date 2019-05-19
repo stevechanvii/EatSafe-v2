@@ -163,27 +163,27 @@ class profileScreen extends Component {
                         <Grid>
                             <Row size={1}>
                                 <Grid>
-                                    <Col style={{width: '5%'}}></Col>
-                                    <Col size={1} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
+                                    <Col style={{ width: '5%' }}></Col>
+                                    <Col size={1} style={[styles.gridCenter, { borderTopWidth: 1, borderTopColor: '#E7E7E7' }]}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this), user: this.state.user })}>
                                             {this.state.user ? <ProfileSVG.Profile width={75} height={75} /> : <ProfileSVG.ProfileNoted width={65} height={65} />}
                                             <Text style={styles.iconCenter}>Account</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col size={1} style={[styles.gridCenter, {borderTopWidth: 1, borderTopColor: '#E7E7E7'}]}>
+                                    <Col size={1} style={[styles.gridCenter, { borderTopWidth: 1, borderTopColor: '#E7E7E7' }]}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('AllergenSetting', { refresh: this.refreshFunction.bind(this), allergens: this.state.allergens, intolerance: this.state.intolerance })}>
                                             {this.state.allergens && this.state.intolerance ? <ProfileSVG.Virus width={75} height={75} /> : <ProfileSVG.VirusNoted width={65} height={65} />}
                                             <Text style={styles.iconCenter}>Allergens</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col style={{width: '5%'}}></Col>
+                                    <Col style={{ width: '5%' }}></Col>
                                 </Grid>
                             </Row>
                             <Row size={1}>
                                 <Grid>
-                                    <Col style={{width: '5%'}}></Col>
+                                    <Col style={{ width: '5%' }}></Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
                                             onPress={() => this.props.navigation.navigate('KnowledgeCard')}>
@@ -198,27 +198,27 @@ class profileScreen extends Component {
                                             <Text>About Us</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col style={{width: '5%'}}></Col>
+                                    <Col style={{ width: '5%' }}></Col>
                                 </Grid>
                             </Row>
                             <Row size={1}>
                                 <Grid>
-                                    <Col style={{width: '5%'}}></Col>
+                                    <Col style={{ width: '5%' }}></Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('ChefCard')}>
+                                            onPress={() => this.props.navigation.navigate('ChefCard', { info: this.state })}>
                                             <ProfileSVG.Chef width={65} height={65} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Chef Card</Text>
                                         </TouchableOpacity>
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('ExportCSV', {user: this.state.user})}>
+                                            onPress={() => this.props.navigation.navigate('ExportCSV', { info: this.state.user })}>
                                             <ProfileSVG.Email width={65} height={65} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Export Data</Text>
                                         </TouchableOpacity>
                                     </Col>
-                                    <Col style={{width: '5%'}}></Col>
+                                    <Col style={{ width: '5%' }}></Col>
                                 </Grid>
                             </Row>
                         </Grid>
