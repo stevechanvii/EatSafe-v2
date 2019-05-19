@@ -213,7 +213,7 @@ class profileScreen extends Component {
                                     </Col>
                                     <Col size={1} style={styles.gridCenter}>
                                         <TouchableOpacity
-                                            onPress={() => this.props.navigation.navigate('SendEmail')}>
+                                            onPress={() => this.props.navigation.navigate('ExportCSV', {user: this.state.user})}>
                                             <ProfileSVG.Email width={65} height={65} style={styles.iconCenter} />
                                             <Text style={styles.iconCenter}>Export Data</Text>
                                         </TouchableOpacity>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import DetailsScreen from './src/Navigation/DetailsScreen';
@@ -7,7 +6,6 @@ import DiaryScreen from './src/Navigation/DiaryScreen/DiaryScreen';
 import ScannerSegScreen from './src/Navigation/ScanningScreen/ScannerSegScreen';
 import ReportScreen from './src/Navigation/ReportScreen/ReportScreen';
 import ProfileScreen from './src/Navigation/ProfileScreen/ProfileScreen';
-import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
 import ProductDetailScreen from './src/Navigation/ScanningScreen/ProductDetailScreen';
 import EditProfileScreen from './src/Navigation/ProfileScreen/EditProfileScreen';
 import RecognitionResultScreen from './src/Navigation/ScanningScreen/RecognitionResultScreen';
@@ -16,12 +14,14 @@ import BarcodeScanner from './src/Navigation/ScanningScreen/BarcodeScanner';
 import addDiaryScreen from './src/Navigation/DiaryScreen/AddDiaryScreen';
 import knowledgeCard from './src/Navigation/ProfileScreen/KnowledgeCard';
 import createDiaryScreen from './src/Navigation/ScanningScreen/CreateDairyScreen';
-import SendEmail from './src/Navigation/ProfileScreen/SendEmail';
+import ExportCSV from './src/Navigation/ProfileScreen/ExportCSV';
 import ChefCard from './src/Navigation/ProfileScreen/ChefCard';
-import Setting from './src/Navigation/ProfileScreen/Setting';
 import AboutUs from './src/Navigation/ProfileScreen/AboutUs';
 import AllergenSetting from './src/Navigation/ProfileScreen/AllergenSetting';
 
+/**
+ * This is the root component for EatSafe which defins four tabBar navigation (Diary, Scanner, Report, Profile)
+ */
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
   Details: { screen: DetailsScreen },
@@ -30,14 +30,10 @@ const DiaryStack = createStackNavigator({
 
 const ProfileStack = createStackNavigator({
   Profile: { screen: ProfileScreen },
-  SomeWhereElse: { screen: SomeWhereElseScreen },
   EditProfile: { screen: EditProfileScreen },
   KnowledgeCard: { screen: knowledgeCard },
-
-  // testing
-  SendEmail: { screen: SendEmail },
+  ExportCSV: { screen: ExportCSV },
   ChefCard: { screen: ChefCard },
-  Setting: { screen: Setting },
   AboutUs: { screen: AboutUs },
   AllergenSetting: { screen: AllergenSetting },
 });
@@ -46,8 +42,6 @@ const ScanningStack = createStackNavigator({
   Scanning: { screen: ScannerSegScreen },
   RecognitionResult: { screen: RecognitionResultScreen },
   ProductDetail: { screen: ProductDetailScreen },
-
-  // testing
   CreateDairy: { screen: createDiaryScreen },
 });
 

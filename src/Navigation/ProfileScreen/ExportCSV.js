@@ -10,18 +10,27 @@ import Theme from '../../Styles/Theme';
 import ProfileSVG from '../../assets/svg/profile_svg';
 import Preference from '../../Preferences/Preferences';
 
-class sendEmail extends Component {
+/**
+ * @class exportCSV generate CSV file and send by email
+ */
+class exportCSV extends Component {
     static navigationOptions = {
         header: null
     }
 
-    getDariyResult = async () => {
-        // console.log('DiaryContent getDariyResult' + dateKey);
+    /**
+     * @func getDiaryResult retrive diary from Async Storage based on month
+     */
+    getDiaryResult = async () => {
+        // month should from user input, in this case we hard code May 2019
         const dateKey = KeyGenerator.monthKeyGenerator(5, 2019);
         try {
             const value = await AsyncStorage.multiGet(dateKey);
-            console.log(value);
-            // this.setState({ dairyResult: JSON.parse(value) });
+            
+            /*
+             * reconstruct saving JSON to array
+             * expected output [{meal: 'Breakfast', feel: 'Good', ...}, ... , {meal: 'Lunch', feel: 'Good', ...}]
+             */
             let dairy = [];
             value.map(el => {
                 if (el[1]) {
@@ -40,8 +49,7 @@ class sendEmail extends Component {
                 }
             });
 
-            // this.formatedDiary = dairy;
-            // console.log(this.formatedDiary);
+            // create CSV file
             this.createCSV(dairy);
         } catch (e) {
             // read error
@@ -49,36 +57,43 @@ class sendEmail extends Component {
         }
     }
 
+    /**
+     * @func componentWillMount retrive diary and generate csv once component initialised
+     */
     componentWillMount = () => {
-        this.getDariyResult();
+        this.getDiaryResult();
     }
 
+    /**
+     * @func createCSV generate CSV file
+     * @param {Array} dairy see getDiaryResult()
+     */
     createCSV = (dairy) => {
         const { Parser } = require('json2csv');
+        // CSV title
         const fields = ['meal', 'comments', 'time', 'feel', 'ingredients', 'symptom', 'food', 'feelingRate'];
 
         const json2csvParser = new Parser({ fields });
-        // console.log(this.formatedDiary);
-        console.log(dairy);
         const csv = json2csvParser.parse(dairy);
 
-        console.log(csv);
+        // write csv file to file system
         this.writeFile(csv);
     }
 
+    /**
+     * @func writeFile write file to file system
+     * @param CSVFile csv file
+     */
     writeFile = (CSVFile) => {
         // require the module
         var RNFS = require('react-native-fs');
 
-        // create a path you want to write to
-        // :warning: on iOS, you cannot write into `RNFS.MainBundlePath`,
-        // but `RNFS.DocumentDirectoryPath` exists on both platforms and is writable
+        // create a path based on platform
         if (Platform.OS === 'ios') {
             var path = RNFS.DocumentDirectoryPath + '/data.csv';
         } else {
             var path = RNFS.ExternalDirectoryPath + '/data.csv';
         }
-        console.log(path)
 
         // write the file
         RNFS.writeFile(path, CSVFile, 'utf8')
@@ -90,22 +105,28 @@ class sendEmail extends Component {
             });
     }
 
+    /**
+     * @func handleEmail call system default email app with parameters
+     */
     handleEmail = () => {
         // require the module
         var RNFS = require('react-native-fs');
 
+        // get the parameter user from parent component, set default value if not exist
+        const user = this.props.navigation.getParam('user', {avatar: "", name: "PokeAllergist", email: ""});
+
         Mailer.mail({
             subject: 'Email Diary',
-            recipients: ['chendanyangvii@gmail.com', 'zba1@student.monash.edu'],
+            recipients: [user.email],
             // recipients: ['chendanyangvii@gmail.com'],
-            // ccRecipients: ['supportCC@example.com'],
-            // bccRecipients: ['supportBCC@example.com'],
-            body: '<b>Hi, this is your data from EatSafe</b>',
+            // ccRecipients: ['chendanyangvii@gmail.com'],
+            // bccRecipients: ['chendanyangvii@gmail.com'],
+            body: `Hi, this is your diary from <b>PokeAllergist</b><br><br><br>Best Regards,<br>${user.name}`,
             isHTML: true,
             attachment: {
                 path: (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/data.csv',
                 type: 'csv',   // Mime Type: jpg, png, doc, ppt, html, pdf, csv
-                name: 'EatSafe_data.csv',   // Optional: Custom filename for attachment
+                name: 'PokeAllergist.csv',   // Optional: Custom filename for attachment
             }
         }, (error, event) => {
             Alert.alert(
@@ -160,4 +181,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default sendEmail;
+export default exportCSV;

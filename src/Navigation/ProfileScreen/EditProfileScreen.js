@@ -24,6 +24,7 @@ class editProfileScreen extends Component {
         avatar: 'UserMale1',
         name: '',
         email: '',
+        // get user object from parent component, then overwrite above states if exist
         ...this.props.navigation.getParam('user', {}),
         isName: true,
         isEmail: true,
