@@ -32,7 +32,7 @@ class chefCard extends Component {
     // get the parameter allergens and intolerance from parent component, set default value if not exist
     const info = this.props.navigation.getParam('info', {allergens: {}, intolerance: {}});
 
-    // convert allergens and intolerance to array
+    // convert allergens and intolerance from object to array
     const allergens = [];
     Object.entries(info.allergens).forEach(([key, value]) => {
       value ? allergens.push(key) : ''
