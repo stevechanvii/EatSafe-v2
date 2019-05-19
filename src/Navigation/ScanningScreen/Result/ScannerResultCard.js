@@ -36,12 +36,13 @@ class scannerResultCard extends Component {
             // get all the allergens and intolerance from database
             let values;
             try {
-                values = await AsyncStorage.multiGet(['allengens', 'intolerance']);
+                values = await AsyncStorage.multiGet(['allergens', 'intolerance']);
             } catch (e) {
                 // read error
                 console.log(e);
             }
             console.log(this.state);
+            console.log(values)
 
             const allergenObj = {};
             // iterate all allergens and intolerance and find allergens only true
