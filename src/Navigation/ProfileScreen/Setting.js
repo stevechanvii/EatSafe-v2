@@ -20,7 +20,11 @@ import {
 } from "native-base";
 import HeaderGoBack from '../../Components/HeaderGoBack';
 
-
+/**
+ * DISABLED
+ * 
+ * @class NHListIcon 
+ */
 class NHListIcon extends Component {
     static navigationOptions = {
         header: null

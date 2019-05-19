@@ -1,8 +1,10 @@
 import React from 'react';
 
-// ingredientsList is the list of detected ingredients
-// allergenObj is the object contains allergens(key) that user suffering and byproducts(value) predefined in Preference, 
-// this function grab the allergens and compare with in the list, and return a list
+/**
+ * @func allergensDetctor grab the allergens and compare with in the list, and return a list
+ * @param {*} allergenObj is the object contains allergens(key) that user suffering and byproducts(value) predefined in Preference
+ * @param {*} ingredientsList is the list of detected ingredients
+ */
 const allergensDetctor = (allergenObj, ingredientsList) => {
     const detected = [];
     // use search, once the substring match the condition, it will return position, or return -1

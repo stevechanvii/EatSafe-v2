@@ -246,7 +246,7 @@ class addDiaryScreen extends Component {
                                             iosHeader="Meal"
                                             placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
                                             placeholderIconColor="#f4d29a"
-                                            textStyle={{ color: "#91627b", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            textStyle={{ color: "#333745", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
                                             selectedValue={this.state.mealSelected}
                                             onValueChange={this.onMealChange.bind(this)}>
                                             {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
@@ -263,7 +263,7 @@ class addDiaryScreen extends Component {
                                             iosHeader="Symptoms"
                                             placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
                                             placeholderIconColor="#f4d29a"
-                                            textStyle={{ color: "#91627b", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            textStyle={{ color: "#333745", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
                                             selectedValue={this.state.symptomSelected}
                                             onValueChange={this.onSymptomChange.bind(this)}
                                         >
@@ -279,10 +279,10 @@ class addDiaryScreen extends Component {
                                         label={'Food Name'}
                                         iconClass={MaterialIcons}
                                         iconName={'restaurant'}
-                                        iconColor={this.state.isFoodNameEmpty ? '#E63462' : '#f4d29a'}
+                                        iconColor={this.state.isFoodNameEmpty ? '#f95a25' : '#f4d29a'}
                                         iconSize={30}
-                                        labelStyle={{ color: this.state.isFoodNameEmpty ? '#E63462' : '#91627b' }}
-                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        labelStyle={{ color: this.state.isFoodNameEmpty ? '#f95a25' : '#333745' }}
+                                        inputStyle={{ color: '#f95a25', paddingLeft: 0 }}
                                         // multiline={true}
                                         onChangeText={(text) => this.setState({ food: text })}
                                         useNativeDriver
@@ -293,10 +293,10 @@ class addDiaryScreen extends Component {
                                         label={'Ingredients'}
                                         iconClass={MaterialIcons}
                                         iconName={'mode-edit'}
-                                        iconColor={this.state.isIngredientsEmpty ? '#E63462' : '#f4d29a'}
+                                        iconColor={this.state.isIngredientsEmpty ? '#f95a25' : '#f4d29a'}
                                         iconSize={30}
-                                        labelStyle={{ color: this.state.isIngredientsEmpty ? '#E63462' : '#91627b' }}
-                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        labelStyle={{ color: this.state.isIngredientsEmpty ? '#f95a25' : '#333745' }}
+                                        inputStyle={{ color: '#f95a25', paddingLeft: 0 }}
                                         onChangeText={(text) => this.setState({ ingredients: text })}
                                         useNativeDriver
                                     />
@@ -308,8 +308,8 @@ class addDiaryScreen extends Component {
                                         iconName={'comment'}
                                         iconSize={30}
                                         iconColor={'#f4d29a'}
-                                        labelStyle={{ color: '#91627b' }}
-                                        inputStyle={{ color: '#91627b', paddingLeft: 0 }}
+                                        labelStyle={{ color: '#333745' }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
                                         onChangeText={(text) => this.setState({ comments: text })}
                                         useNativeDriver
                                     />

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Toast, Root, Form, Item, Label, Input, Content, Text, Left, ListItem, CheckBox, Button, Body, Right, Title, Icon } from 'native-base';
+import { Container, Toast, Root, Form, Content, Text, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Fumi } from 'react-native-textinput-effects';
 import HeaderGoBack from '../../Components/HeaderGoBack';
 import AvatarSVG from '../../assets/svg/avartar_svg';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Regex from '../../Utils/Regex';
-// import ProfileSVG from '../../assets/svg/profile_svg';
 import Theme from '../../Styles/Theme';
 
 /**

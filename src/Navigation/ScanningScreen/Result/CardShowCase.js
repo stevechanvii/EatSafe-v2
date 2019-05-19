@@ -9,6 +9,9 @@ import Theme from '../../../Styles/Theme';
 import Preference from '../../../Preferences/Preferences';
 import AllergensDetector from '../../../Utils/AllergensDetector';
 
+/**
+ * DISABLED
+ */
 userAllergensAlert = async (productAllergens) => {
     const keys = ['milk', 'soy', 'seafood'];
     let userAllergens = [];
