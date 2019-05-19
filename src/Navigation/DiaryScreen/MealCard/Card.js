@@ -19,23 +19,28 @@ const mealIcon = (meal) => {
     case 'Dinner':
       return (<MealSVG.Dinner width={50} height={50} />);
     case 'Midnight Sanck':
-      return (<MealSVG.MidnightSanck width={50} height={50} />);
+      return (<MealSVG.Snak width={50} height={50} />);
   }
 }
 
 const NHCardImage = (props) => {
+  console.log(props)
   return (
     <Content style={styles.content} >
       <Card style={styles.mb}>
         <CardItem style={styles.CardHeader}>
+        {console.log('1')}
           <Left>
             {mealIcon(props.meal)}
             <Body>
+            {console.log('2')}
               <Text>{props.meal}</Text>
               {/* <Text note>Place Holder</Text> */}
             </Body>
           </Left>
         </CardItem>
+        {console.log('3')}
+        
 
         <CardItem cardBody style={styles.CardBody} >
           <Meals
@@ -80,4 +85,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   }
 });
+
 export default NHCardImage;

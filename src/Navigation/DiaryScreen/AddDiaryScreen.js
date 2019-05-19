@@ -282,7 +282,7 @@ class addDiaryScreen extends Component {
                                         iconColor={this.state.isFoodNameEmpty ? '#f95a25' : '#f4d29a'}
                                         iconSize={30}
                                         labelStyle={{ color: this.state.isFoodNameEmpty ? '#f95a25' : '#333745' }}
-                                        inputStyle={{ color: '#f95a25', paddingLeft: 0 }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
                                         // multiline={true}
                                         onChangeText={(text) => this.setState({ food: text })}
                                         useNativeDriver
@@ -296,7 +296,7 @@ class addDiaryScreen extends Component {
                                         iconColor={this.state.isIngredientsEmpty ? '#f95a25' : '#f4d29a'}
                                         iconSize={30}
                                         labelStyle={{ color: this.state.isIngredientsEmpty ? '#f95a25' : '#333745' }}
-                                        inputStyle={{ color: '#f95a25', paddingLeft: 0 }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
                                         onChangeText={(text) => this.setState({ ingredients: text })}
                                         useNativeDriver
                                     />

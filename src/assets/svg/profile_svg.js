@@ -420,14 +420,14 @@ const VirusNoted = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path
@@ -475,14 +475,14 @@ const ProfileNoted = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path

@@ -9,14 +9,14 @@ const Monday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -56,14 +56,14 @@ const Tuesday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -103,14 +103,14 @@ const Wednesday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -151,14 +151,14 @@ const Thursday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -199,14 +199,14 @@ const Friday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -247,14 +247,14 @@ const Saturday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
@@ -294,14 +294,14 @@ const Sunday = props => (
     <Svg viewBox="0 0 192 192" {...props}>
         <G
             fill="none"
-            strokeMiterlimit={10}
-            fontFamily="none"
-            fontWeight="none"
-            fontSize="none"
-            textAnchor="none"
-            style={{
-                mixBlendMode: 'normal',
-            }}
+            // strokeMiterlimit={10}
+            // fontFamily="none"
+            // fontWeight="none"
+            // fontSize="none"
+            // textAnchor="none"
+            // style={{
+            //     mixBlendMode: 'normal',
+            // }}
         >
             <Path d="M0 192V0h192v192z" />
             <Path d="M15 33.047h156v138H15z" fill="#85cbf8" />
