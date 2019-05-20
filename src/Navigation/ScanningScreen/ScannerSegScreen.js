@@ -1,13 +1,15 @@
 'use strict';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Text, Button, Segment, Left, Right, Title, Header, Body, Icon } from "native-base";
+import { Container, Text, Button, Segment, Header, Body } from "native-base";
 import Theme from '../../Styles/Theme';
 import TextRecognition from './TextRecognition';
 import BarcodeScanner from './BarcodeScanner';
-import ProductDetailScreen from './ProductDetailScreen';
 
-// this is a segment screen of scanner tab, it will navigate to seg 1 (BarcodeScanner) and seg 2 (TextRecognition)
+/**
+ * @class scannerSegScreen is the main entry for scanner which contains a segment screen of scanner tab,
+ * it will navigate to seg 1 (BarcodeScanner) and seg 2 (TextRecognition)
+ */
 class scannerSegScreen extends Component {
     static navigationOptions = {
         header: null
@@ -18,8 +20,11 @@ class scannerSegScreen extends Component {
         seg: 1
     };
 
-    // Refer to react navigation lifecycle, everytime switch to another tab, 
-    // the camera will be rerendered to turn off (render empty component)
+    /**
+     * @func componentDidMount Refer to react navigation lifecycle, everytime switch to another tab, 
+     * the camera will be rerendered to turn off (render empty component), if not android will crash
+     * because camera sensors called more than one time and get crashed
+     */
     componentDidMount() {
         const { navigation } = this.props;
         navigation.addListener('willFocus', () =>
@@ -30,9 +35,10 @@ class scannerSegScreen extends Component {
         );
     }
 
+    /**
+     * @func segmentView handle the segment switch button and view
+     */
     segmentView() {
-        // console.log(this.props.navigation.getParam('isAddDairy', false))
-        // console.log(this.props.navigation.state.params);
         return (
             <Container style={styles.container}>
             <Header hasSegment androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
@@ -62,9 +68,6 @@ class scannerSegScreen extends Component {
 
                 </Header>
                 {this.state.seg === 1 && <BarcodeScanner navigation={this.props.navigation} />}
-
-                {/* testing */}
-                {/* {this.state.seg === 1 && <ProductDetailScreen navigation={this.props.navigation} />} */}
                 {this.state.seg === 2 && <TextRecognition navigation={this.props.navigation} />}
             </Container>
         );

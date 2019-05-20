@@ -2,29 +2,39 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-// import BarcodeMask from 'react-native-barcode-mask';
 
-
+/**
+ * @class textRecognitionScreen is the child component of ScannerSegScreen.js which calls the camera sensor
+ * and perform text recognition by Google Machine Learning Engine
+ */
 class textRecognitionScreen extends Component {
     state = {
         canDetectText: true,
         textBlocks: []
     };
 
+    // contains all the text camera recognized in each onTextRecognizedEvent
     allTextList = [];
 
+    /**
+     * @func onTextRecognizedEvent once camera detect text, this function will be invoked
+     * @param {Object} object please refer to RNCamera doc
+     */
     onTextRecognizedEvent = object => {
         const { textBlocks } = object;
         this.setState({ textBlocks });
 
         console.log(object);
-        // save all the text camera detected
+        // save all the text camera detected into allTextList Array
         textBlocks.map(el => {
             this.allTextList.push(el.value);
         });
         
     };
 
+    /**
+     * @func buttonHandler detect button
+     */
     buttonHandler = () => {
         this.props.navigation.navigate('RecognitionResult', {
             textList: this.allTextList,
@@ -32,12 +42,20 @@ class textRecognitionScreen extends Component {
         });
     }
 
+    /**
+     * @func renderTextBlocks render text block on top of canera screen
+     */
     renderTextBlocks = () => (
         <View style={styles.facesContainer} pointerEvents="none">
             {this.state.textBlocks.map(this.renderTextBlock)}
         </View>
     );
 
+    /**
+     * @func renderTextBlock render text inside text block
+     * @param {Object} bounds demension of detected text
+     * @param {String} value detected text
+     */
     renderTextBlock = ({ bounds, value }) => (
         <React.Fragment key={value + bounds.origin.x}>
             <Text style={[styles.textBlock, { left: bounds.origin.x, top: bounds.origin.y }]}>
@@ -55,9 +73,6 @@ class textRecognitionScreen extends Component {
             />
         </React.Fragment>
     );
-
-
-    toggle = value => () => this.setState(prevState => ({ [value]: !prevState[value] }));
 
     render() {
         const { canDetectText } = this.state;
@@ -86,7 +101,6 @@ class textRecognitionScreen extends Component {
                     justifyContent: 'space-around'
                 }}> */}
                 <View style={styles.bottom}>
-                    {/* <TouchableOpacity onPress={this.toggle('canDetectText')} style={styles.flipButton}> */}
                     <TouchableOpacity onPress={this.buttonHandler} style={styles.flipButton}>
                         <Text style={styles.flipText}>
                             {!canDetectText ? 'Detect Text' : 'Detecting Text'}

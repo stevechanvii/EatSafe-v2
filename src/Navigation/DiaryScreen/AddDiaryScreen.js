@@ -329,7 +329,7 @@ class addDiaryScreen extends Component {
                                         onChangeText={(text) => this.setState({ comments: text })}
                                         useNativeDriver
                                     />
-                                    <Button style={Theme.button} onPress={this.saveBtnHandler} >
+                                    <Button style={[Theme.button, {width: '100%'}]} onPress={this.saveBtnHandler} >
                                         <Text>Create</Text>
                                     </Button>
                                 </Form>
@@ -375,6 +375,7 @@ const styles = StyleSheet.create({
     },
     card2: {
         padding: 16,
+        paddingTop: 0,
         flex: 1,
     },
     input: {

@@ -119,7 +119,7 @@ export default class diaryScreen extends Component {
       color: '#DD5144'
     }, {
       text: 'Add by Scanning',
-      icon: <ScanSVG  width={20} height={20} />,
+      icon: <ScanSVG.Barcode  width={20} height={20} />,
       name: 'btn_scan',
       position: 1,
       color: '#C94A3E'

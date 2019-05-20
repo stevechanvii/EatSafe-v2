@@ -3,7 +3,15 @@ import { StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
 
+/**
+ * @class barcodeScanner is the child component of ScannerSegScreen.js which calls the camera sensor
+ */
 const barcodeScanner = ({ navigation }) => {
+
+    /**
+     * @func onBarCodeEvent once camera scanned a barcode, this function will be invoked
+     * @param {Object} event please refer to RNCamera doc
+     */
     onBarCodeEvent = (event) => {
         navigation.navigate('ProductDetail', {
             barcodeType: event.type,
