@@ -8,6 +8,12 @@ import LostNetwork from './Result/LostNetwork';
 import NetInfo from "@react-native-community/netinfo";
 import HeaderGoBack from '../../Components/HeaderGoBack';
 
+/**
+ * @class productDetailScreen handles the API request to https://worldopenfoodfacts.org after barcode scanned,
+ * it extract the detail of return JSON and send the valuable data to ScannerResultCard.js
+ * 
+ * this component is in a mess!! set state not needed!!
+ */
 class productDetailScreen extends Component {
     static navigationOptions = {
         header: null
@@ -18,7 +24,9 @@ class productDetailScreen extends Component {
         isLostnetwork: false,
     }
 
-    // componentDidMount() {
+    /**
+     * @func componentWillMount fetch the data from open food fact and extract useful values
+     */
     componentWillMount() {
         const { navigation } = this.props;
         const barcode = navigation.getParam('barcode', 'NO-Code');
@@ -72,6 +80,7 @@ class productDetailScreen extends Component {
     }
 
     render() {
+        // check the network status
         if (this.state.isLostnetwork) {
             return (
                 <Container>
@@ -81,6 +90,7 @@ class productDetailScreen extends Component {
             );
         }
 
+        // wait for fetching data
         if (this.state.isLoading) {
             return (
                 <Container>
@@ -90,11 +100,12 @@ class productDetailScreen extends Component {
             )
         }
 
+        // check the product exist
         if (this.state.productName === false) {
             return (
                 <Container>
                     <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
-                    <ProductNotFound barcode={this.state.barcode} />
+                    <ProductNotFound barcode={this.props.navigation.getParam('barcode', 'NO-Code')} />
                 </Container>
 
             )
@@ -103,9 +114,6 @@ class productDetailScreen extends Component {
         return (
             <Container>
                 <HeaderGoBack navigation={this.props.navigation} title='Scanner' />
-                {/* <CardShowCase productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} /> */}
-
-                {/* testing */}
                 <ScannerResultCard productDetail={this.state} navigation={this.props.navigation.getParam('navigation', 'No-Navigation')} />
             </Container>
         );

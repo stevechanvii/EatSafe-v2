@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Content, Card, CardItem, Text, Button, H2, Accordion, Left, Body, View } from 'native-base';
 import Modal from "react-native-modal";
@@ -10,22 +10,34 @@ import Theme from '../../../Styles/Theme';
 import Preference from '../../../Preferences/Preferences';
 import AllergensDetector from '../../../Utils/AllergensDetector';
 
-
+/**
+ * @class scannerResultCard shows the result after user scaned if data exist from open food facts,
+ * it also give alert when user set the allergens or intolerance
+ */
 class scannerResultCard extends Component {
     state = {
         isModalVisible: false,
         alert: []
     };
 
+    /**
+     * @func toggleModal haldle whether show allergen detected alert
+     */
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
     };
 
+    /**
+     * @func componentWillMount call userAllergensAlert() when component initialized
+     */
     componentWillMount = () => {
         this.userAllergensAlert();
     }
 
-
+    /**
+     * @func userAllergensAlert retrive the allergens and intolerance from Async Storage and compare with
+     * preset allergen and intolerance map in Preference, this function is performed by AllergensDetector.js
+     */
     userAllergensAlert = async () => {
         // check ingredientList exist first!
         if (this.props.productDetail.ingredients.text === 'Ingredients Not Found') {
@@ -41,8 +53,6 @@ class scannerResultCard extends Component {
                 // read error
                 console.log(e);
             }
-            console.log(this.state);
-            console.log(values)
 
             const allergenObj = {};
             // iterate all allergens and intolerance and find allergens only true
@@ -63,16 +73,18 @@ class scannerResultCard extends Component {
                 }
             });
 
+            // return if no sensitive ingredients found
             if (Object.entries(allergenObj).length === 0 && allergenObj.constructor === Object) {
                 return
             }
 
-            // iterate ingredients obj from parameter and change into list ingredientsList
+            // iterate ingredients obj from parameter and change into Array ingredientsList
             const ingredientsList = [];
             this.props.productDetail.ingredients.map(obj => {
                 ingredientsList.push(obj.text);
             });
 
+            // compare the allergens and intolerence which user suffer from with the ingredients
             const diagnose = AllergensDetector(allergenObj, ingredientsList);
             if (diagnose) {
                 // remove duplicant in diagnose
@@ -83,19 +95,26 @@ class scannerResultCard extends Component {
             }
 
         } catch (e) {
+            console.log(e);
             // read error
         }
     }
 
+    /**
+     * @func renderModalContent modal content (alert)
+     */
     renderModalContent = () => (
         <View style={styles.content}>
-            <Text style={styles.contentTitle}>Allergens detected!</Text>
-            {this.state.alert.map(el => (<Text key={Math.random()} >{el}</Text>))}
-            <Button
+            <Text style={styles.contentTitle}>Allergens Detected!</Text>
+            <Text style={{padding: 10}}>{this.state.alert.join(', ')}</Text>
+            <TouchableOpacity onPress={this.toggleModal} style={styles.allergenAllertBtn}>
+                <Text style={styles.allergenAllertText}>Close</Text>
+            </TouchableOpacity>
+            {/* <Button
                 onPress={this.toggleModal}
                 style={styles.allergenBtn}>
                 <Text>Close</Text>
-            </Button>
+            </Button> */}
         </View>
     );
 
@@ -239,21 +258,31 @@ const styles = StyleSheet.create({
     },
     content: {
         backgroundColor: 'white',
-        padding: 22,
+        // padding: 22,
+        margin: 27,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4,
+        borderRadius: 8,
         borderColor: 'rgba(0, 0, 0, 0.1)',
     },
     contentTitle: {
         fontSize: 20,
-        marginBottom: 12,
+        marginTop: 15
     },
-    allergenBtn: {
+    allergenAllertBtn: {
+        marginTop: 7,
         backgroundColor: '#FB9D5D',
-        alignSelf: 'center',
+        width: '100%',
+        height: 45,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    allergenAllertText: {
+        alignSelf: 'center',
+        color: 'white',
+        fontSize: 18
     }
 
 });
