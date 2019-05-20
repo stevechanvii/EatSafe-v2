@@ -1,11 +1,13 @@
-import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
-import { Container, Header, Title, Content, Button, Icon, Card, CardItem, Text, Thumbnail, Left, Body, View } from "native-base";
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Content, Card, CardItem, Text, Left, Body } from "native-base";
 import Meals from './Meals';
 import MealSVG from '../../../assets/svg/meal_svg';
 
-
+/**
+ * @func mealIcon hanle the icons of different meals
+ * @param {String} meal 
+ */
 const mealIcon = (meal) => {
   switch (meal) {
     case 'Breakfast':
@@ -23,7 +25,11 @@ const mealIcon = (meal) => {
   }
 }
 
-const NHCardImage = (props) => {
+/**
+ * @func MealContent is the child component of DiaryContent.js which displays card (meal) within a day
+ * @param {Object} props includes meal, info (meal details), navi, date key, refresh function from parent component
+ */
+const MealContent = (props) => {
   console.log(props)
   return (
     <Content style={styles.content} >
@@ -86,4 +92,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NHCardImage;
+export default MealContent;

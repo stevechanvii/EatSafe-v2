@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, ActionSheet, Icon, Accordion, Right, Left, Title, View } from 'native-base';
+import { Text, Content, ActionSheet, Accordion } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import EmotionSVG from '../../../assets/svg/emotion_svg';
-import Preference from '../../../Preferences/Preferences';
 
-class mealCard extends Component {
+/**
+ * @class meals is the child component of MealContent.js which displays or delete meals within a card
+ */
+class meals extends Component {
   state = {
     clicked: null,
     mealDetails: this.props.info
   }
 
+  /**
+   * @func actionSheetHandler modify (not implemented) and delete in the pop up modle
+   * @param {number} index is the clicked button id
+   * @param {number} sheetId is the clicked meal key (refers to data structure in AddDiaryScreen.js)
+   */
   actionSheetHandler = (index, sheetId) => {
     this.setState({ clicked: index });
     if (index === 'Modify') {
@@ -22,38 +29,52 @@ class mealCard extends Component {
     }
   }
 
-  // retrive the value, then find the object which need to remove, then save entire value
+  /**
+   * @func deleteMeal retrive the meal, then delete the object which match sheetId, then save entire value in Async Storage
+   * @param {number} sheetId is the clicked meal key (refers to data structure in AddDiaryScreen.js)
+   */
   deleteMeal = async (sheetId) => {
     const mealName = this.props.meal;
     let dayValue = await AsyncStorage.getItem(this.props.dateKey);
     dayValue = JSON.parse(dayValue);
     if (dayValue !== null) {
-      // console.log('dayValue');
-      // console.log(dayValue);
+
+      // if the specific meal is not null
       if (dayValue[mealName] !== null) {
         delete dayValue[mealName][sheetId];
-        // console.log('deleteMeal');
-        // console.log(dayValue);
-        // console.log(this.state.mealDetails);
-        // if ( dayValue[mealName] !== {}){
+
+        // check specific meal contains avlue, if does not have value, delete meal then save
         if (Object.keys(dayValue[mealName]).length === 0 && dayValue[mealName].constructor === Object) {
           delete dayValue[mealName];
-          AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
-          // console.log('null');
-          // console.log(dayValue[mealName]);
+
+          // check whether today contains value, if not delete today
+          if (Object.keys(dayValue).length === 0 && dayValue.constructor === Object) {
+            try {
+              await AsyncStorage.removeItem(this.props.dateKey);
+            } catch(e) {
+              //  error
+              console.log(e);
+            }
+          } else {
+            AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
+          }
         } else {
-          // console.log('not null');
-          // console.log(dayValue[mealName]);
           AsyncStorage.setItem(this.props.dateKey, JSON.stringify(dayValue));
-
         }
-        // this.setState({ mealDetails: dayValue[mealName] });
-        this.props.refreshCards();
 
+        // call refresh function in DiaryContent.js and rerender the diary content
+        this.props.refreshCards();
       }
     }
   }
 
+  /**
+   * @func EmotionIcon hanle the icons of different emotion
+   * @param {String} feel 
+   * @param {number} width 
+   * @param {number} height 
+   * @param {String} color 
+   */
   EmotionIcon = (feel, width, height, color) => {
     switch (feel) {
       case 'Excellent':
@@ -69,6 +90,11 @@ class mealCard extends Component {
     }
   }
 
+  /**
+   * @func _renderHeader header of meal contains icon and name
+   * @param {Object} item info of the meal, from dataArray
+   * @param {Boolean} expanded whether content expanded
+   */
   _renderHeader = (item, expanded) => {
     return (
       <Grid style={styles.grid}>
@@ -100,11 +126,12 @@ class mealCard extends Component {
     );
   }
 
+  /**
+   * @func _renderContent content of each meal, contains ingredients and comments, its clickable and can be delete
+   * @param {Object} item info of the meal, from dataArray
+   */
   _renderContent = (item) => {
-    // const BUTTONS = ["Modify", "Delete", "Cancel"];
-    // const DESTRUCTIVE_INDEX = 1;
-    // const CANCEL_INDEX = 2;
-
+    // settings for pop up modle
     const BUTTONS = ["Delete", "Cancel"];
     const DESTRUCTIVE_INDEX = 0;
     const CANCEL_INDEX = 1;
@@ -127,17 +154,16 @@ class mealCard extends Component {
         <Row>
           <Grid>
             <Col size={1} >
-              {/* <Thumbnail small source={require('../../../assets/icons8-savouring-delicious-food-face-100.png')} /> */}
-                {this.EmotionIcon(item.feel, 40, 40, '#333745')}
+              {this.EmotionIcon(item.feel, 40, 40, '#333745')}
             </Col>
             <Col size={6} >
               <Grid>
                 <Row>
-                  <Col size={2} ><Text>Ingredients</Text></Col> 
+                  <Col size={2} ><Text>Ingredients</Text></Col>
                   <Col size={4} ><Text>{item.ingredients}</Text></Col>
                 </Row>
                 <Row>
-                  <Col size={2} >{item.comments ? <Text>Comments</Text> : <Text></Text> }</Col>
+                  <Col size={2} >{item.comments ? <Text>Comments</Text> : <Text></Text>}</Col>
                   <Col size={4} ><Text>{item.comments}</Text></Col>
                 </Row>
 
@@ -151,8 +177,6 @@ class mealCard extends Component {
 
   render() {
     const dataArray = [];
-    // console.log(this.props.info);
-    // console.log(this.state.mealDetails);
     Object.entries(this.props.info).forEach(([key, val]) => {
       const obj = {
         key: key,
@@ -161,9 +185,6 @@ class mealCard extends Component {
       }
       dataArray.push(obj);
     });
-    // console.log('dataArray');
-    // console.log(dataArray);
-    // console.log('dateKey ' + this.props.dateKey);
 
     return (
       <Content padder >
@@ -182,7 +203,6 @@ class mealCard extends Component {
 
 const styles = StyleSheet.create({
   grid: {
-    // backgroundColor: "#F3FFBD",
     paddingVertical: 10,
     marginTop: 5,
     borderTopWidth: 1,
@@ -211,4 +231,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default mealCard;
+export default meals;

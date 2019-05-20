@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Content, Text, View } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import KeyGenerator from '../../Utils/KeyGenerator';
-import MealCard from './MealCard/Card';
+import MealCard from './MealCard/MealContent';
 import Preference from '../../Preferences/Preferences';
 import EmptySVG from '../../assets/svg/empty_svg';
 
