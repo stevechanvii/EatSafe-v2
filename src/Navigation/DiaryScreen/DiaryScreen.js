@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Fab, Toast, Root, Button, Body, Title } from 'native-base';
+import { Container, Text, Content, Toast, Root } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { FloatingAction } from 'react-native-floating-action';
 import Header from '../../Components/Header';
@@ -12,7 +12,9 @@ import DiaryContent from './DiaryContent';
 import DayCalendarSVG from '../../assets/svg/day_calendar_svg';
 import ScanSVG from '../../assets/svg/scan_svg';
 
-
+/**
+ * @class diaryScreen is the main entry for Diary which contains date picker content and diary content (DiaryContent.js)
+ */
 export default class diaryScreen extends Component {
   static navigationOptions = {
     header: null
@@ -20,56 +22,72 @@ export default class diaryScreen extends Component {
 
   state = {
     date: new Date(),
-    dairyResult: null,
     afterAddNew: 0,
     isDateTimePickerVisible: false
   };
 
-  // date picker
+  /**
+   * @func showDateTimePicker show date picker
+   */
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
   };
 
+  /**
+   * @func hideDateTimePicker hide date picker
+   */
   hideDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: false });
   };
 
+  /**
+   * @func handleDatePicked set new date
+   * @param {Object} date 
+   */
   handleDatePicked = date => {
     this.setState({ date: new Date(date) });
-    // console.log("A date has been picked in Diary Screen: ", date);
     this.hideDateTimePicker();
   };
 
-  // this method will set the date and extract the dariy data
+  /**
+   * @func setDayHandler set the date when user click go forward or backward
+   * @param {number} operator either 1 or -1
+   */
   setDayHandler = operator => {
     const nextDay = this.state.date;
     nextDay.setDate(nextDay.getDate() + operator);
     this.setState({ date: nextDay });
-    // this.getDariyResult();
   };
 
+  /**
+   * @func floatingActionHandler control float action button
+   * @param {String} name name of sub button
+   */
   floatingActionHandler = (name) => {
     if (name === 'btn_input') {
-      // console.log('floatingActionHandler ' + this.state.date);
       this.props.navigation.navigate('AddDairy', { date: this.state.date });
     } else if (name === 'btn_scan') {
-      // pass isAddDairy to scanner
-      // this.props.navigation.navigate('Scanning', { isAddDairy: true });
+      // parameter may not successfully passed because they are not in same navigation stack
       this.props.navigation.navigate('Scanning', { date: new Date() });
     }
   };
 
-  // before dairy tab get focus, rerender this screen
+  /**
+   * @func componentDidMount before dairy tab get focus, rerender this screen
+   */
   componentDidMount() {
     // https://github.com/react-navigation/react-navigation/issues/1617
     // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
     this._subscribe = this.props.navigation.addListener('didFocus', () => {
       //  # do you update if need
-      // this.getDariyResult();
       this.setState({ afterAddNew: this.state.afterAddNew + 1 });
     });
   }
 
+  /**
+   * @func dayCalender handle calender icons
+   * @param {Object} date js date object
+   */
   dayCalender = (date) => {
     switch (date.getDay()) {
       case 0:
@@ -104,7 +122,7 @@ export default class diaryScreen extends Component {
       icon: <ScanSVG  width={20} height={20} />,
       name: 'btn_scan',
       position: 1,
-      color: '#E84D0B'
+      color: '#C94A3E'
     }];
     
     return (
@@ -146,15 +164,9 @@ export default class diaryScreen extends Component {
                 </TouchableOpacity>
               </Col>
             </Row>
-            {/* <Row size={8} style={{ backgroundColor: '#635DB7' }}> */}
             <Row size={8} >
               <Content showsVerticalScrollIndicator={false}>
-                {/* {this.state.dairyResult ? <DiaryContent navi={navigation} dairyResult={this.state.dairyResult} /> : <Text>No dariy</Text>} */}
-                {/* {console.log('come from DiaryContent ' + this.state.date)} */}
                 <DiaryContent navi={navigation} date={this.state.date} />
-
-                {/* <MealCard style={styles.records} /> */}
-
               </Content>
             </Row>
           </Grid>
