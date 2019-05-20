@@ -7,13 +7,18 @@ import MealCard from './MealCard/Card';
 import Preference from '../../Preferences/Preferences';
 import EmptySVG from '../../assets/svg/empty_svg';
 
-
+/**
+ * @class diaryContent is the child component of DiaryScreen which displays diary within a day
+ */
 class diaryContent extends Component {
     state = {
         date: new Date(),
         dairyResult: null
     };
 
+    /**
+     * @func getDariyResult retrive the diary from Async Stroage
+     */
     getDariyResult = async () => {
         const dateKey = KeyGenerator.dateKeyGenerator(this.props.date);
         // console.log('DiaryContent getDariyResult' + dateKey);
@@ -27,37 +32,30 @@ class diaryContent extends Component {
         }
     }
 
-    // NO LONGER SUPPORT IN FUTURE!!! TRY static getDerivedStateFromProps()
+    /**
+     * @func componentWillReceiveProps rerender when new props (date changes) received from DiaryScreen
+     * @param {Object} newProps should be date
+     * 
+     * NO LONGER SUPPORT IN FUTURE!!! TRY static getDerivedStateFromProps()
+     */
     componentWillReceiveProps(newProps) {
-        // one problem is that setState is a sync function, if we setState then get driy Result, the date have'nt been update
+        // setState is a sync function, the date sometimes not been update when getDariyResult access state before setState
         this.setState({ date: newProps.date }, () => {
             this.getDariyResult();
         });
-        // console.log('componentWillReceiveProps count!!!');
-
     }
 
-    // this function will be sent to edit profile, then refresh code after go back
+    /**
+     * @func refreshFunction will be sent to Card.js, once a card (meal) is been modified or delete,
+     * this method will be called to rerender the diary content
+     */
     refreshFunction = () => {
-        // this.setState({
-        //     dairyResult: props.updatedResult
-        // });
-        // console.log('refreshFunction in Diary Content1111' );
         this.getDariyResult();
-        // console.log('refreshFunction in Diary Content' );
     }
 
-
-    // componentDidMount() {
-    //     // https://github.com/react-navigation/react-navigation/issues/1617
-    //     // https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
-    //     this._subscribe = this.props.navi.addListener('didFocus', () => {
-    //       //  # do you update if need
-    //       this.getDariyResult();
-    //     //   this.setState({afterAddNew: this.state.afterAddNew + 1});
-    //     });
-    //   }
-
+    /**
+     * @func EmptyIcon handle the icons when diary content is empty
+     */
     EmptyIcon = (date, width, height) => {
         switch (date.getDay()) {
             case 0:
@@ -78,9 +76,8 @@ class diaryContent extends Component {
     }
 
     render() {
-        // console.log('Diary Content Render!!!');
-        // console.log(this.props.date);
         const cards = [];
+        // check if the content is empty and either show diary or icons
         if (this.state.dairyResult !== null) {
             Preference.Meals.map(meal => {
                 if (meal in this.state.dairyResult) {
