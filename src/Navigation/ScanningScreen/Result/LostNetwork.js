@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, ListItem } from 'native-base';
 
 /**
- * @class lostNetwork is the child component of productDetailScreen.js
+ * @class lostNetworkw is the child component of productDetailScreen.js
  */
 const lostNetwork = () => (
     <Container style={{ alignItems: 'center', justifyContent: 'center' }}>

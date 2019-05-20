@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Thumbnail, Content, Button, Input, Item, Form, Picker, H3, H2, View } from 'native-base';
+import { Container, Text, Content, Button, Item, Form, Picker, H3, View } from 'native-base';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import EmotionIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Preference from '../../Preferences/Preferences';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Kohana } from 'react-native-textinput-effects';
 import KeyGenerator from '../../Utils/KeyGenerator';
+import Theme from '../../Styles/Theme';
+import HeaderGoBack from '../../Components/HeaderGoBack';
+import Preference from '../../Preferences/Preferences';
+import EmotionSVG from '../../assets/svg/emotion_svg';
 
+/**
+ * @class createDairyScreen is same with AddDiaryScreen.j in Diary which create diary by scanning result,
+ * They are not in same navigation stack, so they can't navigate each other with parameters
+ */
 class createDairyScreen extends Component {
     static navigationOptions = {
-        title: 'Create Diary',
-    };
+        header: null
+    }
 
     state = {
-        symptomSelected: "Feeling Well",
-        mealSelected: "Breakfast",
         emotionSelected: 'Good',
-        isDateTimePickerVisible: false,
-        date: new Date(),
+        date: this.props.navigation.state.params.date,
+        mealSelected: "Lunch",
+        symptomSelected: "Feeling Well",
         food: this.props.navigation.getParam('name', ''),
         ingredients: this.props.navigation.getParam('ingredients', []).join(', '),
-        comments: ''
+        comments: '',
+
+        isDateTimePickerVisible: false,
+        date: new Date(),
+        
+        // food and ingredients empty validation
+        isIngredientsEmpty: false,
+        isFoodNameEmpty: false,
     };
 
     // symptom picker
@@ -74,6 +88,22 @@ class createDairyScreen extends Component {
      */
 
     saveBtnHandler = async () => {
+        // check are ingredients and food name empty
+        if (this.state.food.trim()) {
+            this.setState({ isFoodNameEmpty: false });
+
+            if (this.state.ingredients.trim()) {
+                this.setState({ isIngredientsEmpty: false });
+            } else {
+                this.setState({ isIngredientsEmpty: true });
+                return;
+            }
+
+        } else {
+            this.setState({ isFoodNameEmpty: true });
+            return;
+        }
+
         console.log(this.state);
         const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
 
@@ -117,71 +147,54 @@ class createDairyScreen extends Component {
             console.log(e + ' 1');
         }
 
-        try {
-            const value = await AsyncStorage.getItem(dateKey);
-        } catch (e) {
-            // read error
-        }
-
         this.props.navigation.goBack();
         // this.props.navigation.navigate('Diary');
     };
-
-    getMeals = async () => {
-        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
-        try {
-            const value = await AsyncStorage.getItem(dateKey);
-        } catch (e) {
-            // read error
-        }
-
-    }
 
     render() {
         let ingredientString = this.props.navigation.getParam('ingredients', ['Ingredients Not Found']).join(', ');
         return (
             <Container>
-                <Content>
-                    <Grid>
-                        <Row size={3} >
+                <HeaderGoBack navigation={this.props.navigation} title='Create Diary' />
+
+                {/* <Content contentContainerStyle={{ flex: 1 }}> */}
+                <Content showsVerticalScrollIndicator={false}>
+                    <Grid style={Theme.body} >
+                        <Row size={2} >
                             <Grid style={styles.headRow}>
                                 <Row size={1} style={{ alignItems: 'center', justifyContent: 'center', margin: 15 }} >
                                     <H3>How do you feel after the meal?</H3>
                                 </Row>
                                 <Row size={2} style={styles.emotionRow}>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Excellent')} >
-                                        <EmotionIcon
-                                            name='emoticon-cool-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    {/* https://icons8.com/icon/pack/messaging/ios */}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Excellent')} >
+                                        <EmotionSVG.Excellent
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Excellent' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Good')} >
-                                        <EmotionIcon
-                                            name='emoticon-happy-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Good')} >
+                                        <EmotionSVG.Good
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Good' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('So So')} >
-                                        <EmotionIcon
-                                            name='emoticon-neutral-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('So So')} >
+                                        <EmotionSVG.SoSo
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'So So' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Not Well')} >
-                                        <EmotionIcon
-                                            name='emoticon-sad-outline'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Not Well')} >
+                                        <EmotionSVG.NotWell
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Not Well' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.emotionSelectedHandler('Awful')} >
-                                        <EmotionIcon
-                                            name='emoticon-poop'
-                                            size={50}
-                                            style={styles.emotion}
+                                    <TouchableOpacity style={styles.emotion} onPress={() => this.emotionSelectedHandler('Awful')} >
+                                        <EmotionSVG.Awful
+                                            width={50}
+                                            height={50}
                                             color={this.state.emotionSelected === 'Awful' ? '#DD9E2C' : '#333745'} />
                                     </TouchableOpacity>
                                 </Row>
@@ -190,98 +203,122 @@ class createDairyScreen extends Component {
                                 </Row>
                             </Grid>
                         </Row>
-                        <Row size={7} >
-                            {/* <Content> */}
-                            <Form>
-                                <TouchableOpacity
-                                    onPress={this.showDateTimePicker}>
-                                    <View style={styles.timePicker}>
-                                        <Icon name='access-time' size={20} />
-                                        <Text style={{ color: "black", marginLeft: 5 }}>
-                                            {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
-                                        </Text>
-                                        <Text style={{ color: "black", marginLeft: 5 }}>
-                                            {this.state.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
+                        <Row size={8} >
+                            {/* <Grid style={{ backgroundColor: '#b792a6' }}> */}
+                            <Grid>
+                                <Form style={styles.card2}>
+                                    <TouchableOpacity
+                                        onPress={this.showDateTimePicker}>
+                                        <View style={styles.timePicker}>
+                                            <MaterialIcons name='access-time' size={20} />
+                                            <Text style={{ color: "black", marginLeft: 5 }}>
+                                                {this.state.date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })}
+                                            </Text>
+                                            <Text style={{ color: "black", marginLeft: 5 }}>
+                                                {this.state.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}
+                                            </Text>
+                                        </View>
+                                    </TouchableOpacity>
 
-                                <DateTimePicker
-                                    isVisible={this.state.isDateTimePickerVisible}
-                                    onConfirm={this.handleDatePicked}
-                                    onCancel={this.hideDateTimePicker}
-                                    minuteInterval={5}
-                                    maximumDate={new Date()}
-                                    mode='time'
-                                    titleIOS='Pick a Time'
-                                    date={this.state.date}
-                                />
+                                    <DateTimePicker
+                                        isVisible={this.state.isDateTimePickerVisible}
+                                        onConfirm={this.handleDatePicked}
+                                        onCancel={this.hideDateTimePicker}
+                                        minuteInterval={5}
+                                        maximumDate={new Date()}
+                                        mode='time'
+                                        titleIOS='Pick a Time'
+                                        date={this.state.date}
+                                    />
 
-                                {/* <View style={{width: '40%'}}> */}
-                                <Item style={styles.inputItem} >
-                                    <EmotionIcon name='cupcake' size={20} />
-                                    <Picker
-                                        mode="dropdown"
-                                        // iosIcon={<Icon name="expand-more" />}
-                                        style={{}}
-                                        placeholder="Select your Meal"
-                                        iosHeader="Meal"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={this.state.mealSelected}
-                                        onValueChange={this.onMealChange.bind(this)}>
-                                        {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
-                                    </Picker>
-                                </Item>
-                                {/* </View> */}
+                                    <Item picker style={styles.inputItem} >
+                                        <MaterialCommunityIcons name='cupcake' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <Picker
+                                            mode="dropdown"
+                                            iosIcon={<MaterialIcons name="expand-more" size={40} />}
+                                            style={{ width: '75%' }}
+                                            placeholder="Select your Meal"
+                                            iosHeader="Meal"
+                                            placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
+                                            placeholderIconColor="#f4d29a"
+                                            textStyle={{ color: "#333745", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            selectedValue={this.state.mealSelected}
+                                            onValueChange={this.onMealChange.bind(this)}>
+                                            {Preference.Meals.map(el => (<Picker.Item key={Math.random()} label={el} value={el} />))}
+                                        </Picker>
+                                    </Item>
 
-                                <Item style={styles.inputItem} >
-                                    <Icon name='do-not-disturb' size={20} />
-                                    <Picker
-                                        mode="dropdown"
-                                        // iosIcon={<Icon name="expand-more" />}
-                                        style={{}}
-                                        placeholder="Select your Symptoms"
-                                        iosHeader="Symptoms"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={this.state.symptomSelected}
-                                        onValueChange={this.onSymptomChange.bind(this)}
-                                    >
-                                        <Picker.Item label="Feeling Well" value="Feeling Well" />
-                                        <Picker.Item label="Itching Skin" value="Itching Skin" />
-                                        <Picker.Item label="Running Nose" value="Running Nose" />
-                                        <Picker.Item label="Breath Difficuties" value="Breath Difficuties" />
-                                    </Picker>
-                                </Item>
-                                {/* </View> */} 
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='restaurant' size={20} />
-                                    {/* <Input placeholder='Food' onChangeText={(text) => this.setState({ food: text })} /> */}
-                                    <Input placeholder={this.state.food} onChangeText={(text) => this.setState({ food: text })} />
-                                </Item>
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='mode-edit' size={20} />
-                                    <Input placeholder={ingredientString} onChangeText={(text) => this.setState({ ingredients: text })} />
-                                </Item>
-
-                                <Item style={styles.inputItem} >
-                                    <Icon name='comment' size={20} />
-                                    <Input placeholder='Comments' onChangeText={(text) => this.setState({ comments: text })} />
-                                </Item>
-
-                                <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveBtnHandler} >
-                                    <Text>Create {this.state.food} Dairy</Text>
-                                </Button>
-                            </Form>
-
-                            {/* </Content> */}
+                                    <Item picker style={styles.inputItem} >
+                                        <MaterialCommunityIcons name='do-not-disturb' size={30} color='#f4d29a' style={{ paddingLeft: 16 }} />
+                                        <Picker
+                                            mode="dropdown"
+                                            iosIcon={<MaterialIcons name="expand-more" size={40} />}
+                                            style={{ width: '75%' }}
+                                            placeholder="Select your Symptoms"
+                                            iosHeader="Symptoms"
+                                            placeholderStyle={{ color: "#91627b", maxWidth: '100%' }}
+                                            placeholderIconColor="#f4d29a"
+                                            textStyle={{ color: "#333745", fontSize: 18, fontWeight: 'bold', maxWidth: '100%' }}
+                                            selectedValue={this.state.symptomSelected}
+                                            onValueChange={this.onSymptomChange.bind(this)}
+                                        >
+                                            <Picker.Item label="Feeling Well" value="Feeling Well" />
+                                            <Picker.Item label="Itching Skin" value="Itching Skin" />
+                                            <Picker.Item label="Running Nose" value="Running Nose" />
+                                            <Picker.Item label="Breath Difficuties" value="Breath Difficuties" />
+                                        </Picker>
+                                    </Item>
+                                    <Kohana
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
+                                        label={'Food Name'}
+                                        iconClass={MaterialIcons}
+                                        iconName={'restaurant'}
+                                        iconColor={this.state.isFoodNameEmpty ? '#f95a25' : '#f4d29a'}
+                                        iconSize={30}
+                                        labelStyle={{ color: this.state.isFoodNameEmpty ? '#f95a25' : '#333745' }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
+                                        defaultValue={this.state.food}
+                                        // multiline={true}
+                                        onChangeText={(text) => this.setState({ food: text })}
+                                        useNativeDriver
+                                    />
+                                    <Kohana
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
+                                        label={'Ingredients'}
+                                        iconClass={MaterialIcons}
+                                        iconName={'mode-edit'}
+                                        iconColor={this.state.isIngredientsEmpty ? '#f95a25' : '#f4d29a'}
+                                        iconSize={30}
+                                        labelStyle={{ color: this.state.isIngredientsEmpty ? '#f95a25' : '#333745' }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
+                                        defaultValue={ingredientString}
+                                        onChangeText={(text) => this.setState({ ingredients: text })}
+                                        useNativeDriver
+                                    />
+                                    <Kohana
+                                        // style={[styles.input, { backgroundColor: '#f9f5ed' }]}
+                                        style={styles.input}
+                                        label={'Comments (optional)'}
+                                        iconClass={MaterialIcons}
+                                        iconName={'comment'}
+                                        iconSize={30}
+                                        iconColor={'#f4d29a'}
+                                        labelStyle={{ color: '#333745' }}
+                                        inputStyle={{ color: '#333745', paddingLeft: 0 }}
+                                        onChangeText={(text) => this.setState({ comments: text })}
+                                        useNativeDriver
+                                    />
+                                    <Button style={[Theme.button, {width: '100%'}]} onPress={this.saveBtnHandler} >
+                                        <Text>Create</Text>
+                                    </Button>
+                                </Form>
+                            </Grid>
                         </Row>
                     </Grid>
                 </Content>
-            </Container>
+            </Container >
         );
     };
 
@@ -289,19 +326,23 @@ class createDairyScreen extends Component {
 
 const styles = StyleSheet.create({
     inputItem: {
-        margin: 5
+        marginTop: 5,
+        // backgroundColor: '#f9f5ed',
+        marginTop: 4,
+        marginLeft: 0,
+
     },
     headRow: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#E63462'
+        // backgroundColor: '#E63462'
     },
     emotionRow: {
         alignItems: 'center',
         justifyContent: 'center',
     },
     emotion: {
-        marginHorizontal: '2%',
+        margin: '2%',
     },
     picker: {
         marginHorizontal: '3%',
@@ -311,8 +352,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "row",
-        marginTop: 10,
-    }
+        marginBottom: 10,
+    },
+    card2: {
+        padding: 16,
+        paddingTop: 0,
+        flex: 1,
+    },
+    input: {
+        marginTop: 4,
+        backgroundColor: '#F4F4F4',
+        borderBottomColor: '#E5E1E0',
+        borderBottomWidth: 1,
+    },
 });
 
 export default createDairyScreen;

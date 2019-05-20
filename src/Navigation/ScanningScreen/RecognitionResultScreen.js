@@ -238,7 +238,7 @@ export default class recognitionResultScreen extends Component {
                                 {this.renderModalContent()}
                             </Modal>
                         </Row>
-                        <Button
+                        {this.state.ingredList.length > 0 ? <Button
                             style={styles.addDiaryBtn}
                             onPress={() => {
                                 this.props.navigation.navigate(
@@ -247,9 +247,9 @@ export default class recognitionResultScreen extends Component {
                                         navigation: this.props.navigation,
                                         ingredients: this.state.ingredList
                                     });
-                            }} >
+                            }} > 
                             <Text>Add to Dairy</Text>
-                        </Button>
+                        </Button>: <Text />}
                     </Grid>
                 </Content>
             </Container>
