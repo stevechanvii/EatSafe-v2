@@ -15,14 +15,14 @@ class chefCard extends Component {
   static navigationOptions = {
     header: null
   }
-  
+
   componentWillMount() {
     this.createPDF();
   }
 
   /**
    * @func createPDF generate PDF file
-   */  
+   */
   createPDF = () => {
     // Create a new PDF in your app's private Documents directory
     const RNFS = require('react-native-fs');
@@ -30,18 +30,22 @@ class chefCard extends Component {
     const pdfPath = (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/ChefCard.pdf';
 
     // get the parameter allergens and intolerance from parent component, set default value if not exist
-    const info = this.props.navigation.getParam('info', {allergens: {}, intolerance: {}});
+    const info = this.props.navigation.getParam('info', { allergens: {}, intolerance: {} });
 
     // convert allergens and intolerance from object to array
     const allergens = [];
-    Object.entries(info.allergens).forEach(([key, value]) => {
-      value ? allergens.push(key) : ''
-    });
-    
+    if (!(Object.entries(info.allergens).length === 0 && info.allergens.constructor === Object)) {
+      Object.entries(info.allergens).forEach(([key, value]) => {
+        value ? allergens.push(key) : ''
+      });
+    }
+
     const intolerance = [];
-    Object.entries(info.intolerance).forEach(([key, value]) => {
-      value ? intolerance.push(key) : ''
-    });
+    if (!(Object.entries(info.intolerance).length === 0 && info.intolerance.constructor === Object)) {
+      Object.entries(info.intolerance).forEach(([key, value]) => {
+        value ? intolerance.push(key) : ''
+      });
+    }
 
     // generate pdf page
     const page1 = PDFPage
@@ -199,7 +203,7 @@ class chefCard extends Component {
     const pdfPath = (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath) + '/ChefCard.pdf';
 
     // get the parameter user from parent component, set default value if not exist
-    const user = this.props.navigation.getParam('info', {user: {avatar: "", name: "PokeAllergist", email: ""}}).user;
+    const user = this.props.navigation.getParam('info', { user: { avatar: "", name: "PokeAllergist", email: "" } }).user;
 
     Mailer.mail({
       subject: 'Chef card',
@@ -232,7 +236,7 @@ class chefCard extends Component {
         <HeaderGoBack navigation={this.props.navigation} title='Chef Card' />
         <Grid style={Theme.body}>
           <Row size={4} style={styles.rowCenter} >
-          <ProfileSVG.PDF width={120} height={120} />
+            <ProfileSVG.PDF width={120} height={120} />
           </Row>
           <Row size={6}>
             <Grid>
