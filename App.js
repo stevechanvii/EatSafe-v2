@@ -20,7 +20,8 @@ import AboutUs from './src/Navigation/ProfileScreen/AboutUs';
 import AllergenSetting from './src/Navigation/ProfileScreen/AllergenSetting';
 
 /**
- * This is the root component for EatSafe which defins four tabBar navigation (Diary, Scanner, Report, Profile)
+ * This is the root component for EatSafe which defins four tabBar navigation (Diary, Scanner, Report, Profile),
+ * screens need to be specify and can only navigate inside its stack
  */
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
@@ -53,6 +54,7 @@ export default createAppContainer(createBottomTabNavigator(
     Profile: { screen: ProfileStack }
   },
   {
+    // define icons and color when activated
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
