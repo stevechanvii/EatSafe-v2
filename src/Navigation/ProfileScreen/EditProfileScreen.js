@@ -36,8 +36,14 @@ class editProfileScreen extends Component {
      * data structure {user: {avatar: "UserMale", name: "Steve", email: "danyangvii@gmail.com"}
      */
     setUserInfo = async () => {
+        const obj = {
+            avatar: this.state.avatar,
+            name: this.state.name,
+            email: this.state.email.toLowerCase(),
+        };
+
         try {
-            await AsyncStorage.setItem('user', JSON.stringify(this.state));
+            await AsyncStorage.setItem('user', JSON.stringify(obj));
         } catch (e) {
             // save error
             console.log(e);
