@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Container, Text, Title, Content, Button, Left, Item, Form, Picker, H3, Right, View, Body, Header, Icon } from 'native-base';
+import { Container, Text, Content, Button, Item, Form, Picker, H3, View } from 'native-base';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -13,59 +13,89 @@ import HeaderGoBack from '../../Components/HeaderGoBack';
 import Preference from '../../Preferences/Preferences';
 import EmotionSVG from '../../assets/svg/emotion_svg';
 
+/**
+ * @class addDiaryScreen is the child component of DiaryScreen which create diary by user input
+ */
 class addDiaryScreen extends Component {
     static navigationOptions = {
         header: null
     }
 
     state = {
-        symptomSelected: "Feeling Well",
-        mealSelected: "Breakfast",
         emotionSelected: 'Good',
-        isDateTimePickerVisible: false,
         date: this.props.navigation.state.params.date,
+        mealSelected: "Lunch",
+        symptomSelected: "Feeling Well",
         food: '',
         ingredients: '',
         comments: '',
+        
+        // date picker content 
+        isDateTimePickerVisible: false,
+    
+        // food and ingredients empty validation
         isIngredientsEmpty: false,
         isFoodNameEmpty: false,
     };
 
-    // symptom picker
+    /**
+     * @func mealSelectedByTime calculate meal type based on time
+     */
+    mealSelectedByTime = (time) => {
+
+    }
+
+    /**
+     * @func onSymptomChange symptom picker
+     */
     onSymptomChange = (value) => {
         this.setState({
             symptomSelected: value
         });
     }
 
-    // meal picker
+    /**
+     * @func onMealChange meal picker
+     */
     onMealChange = (value) => {
         this.setState({
             mealSelected: value
         });
     }
 
-    // change emotion id
+    /**
+     * @func emotionSelectedHandler change emotion id
+     */
     emotionSelectedHandler = value => {
         this.setState({ emotionSelected: value });
     }
 
-    // date picker
+    /**
+     * @func showDateTimePicker display time picker content
+     */
     showDateTimePicker = () => {
         this.setState({ isDateTimePickerVisible: true });
     };
 
+    /**
+     * @func hideDateTimePicker hide time picker content
+     */
     hideDateTimePicker = () => {
         this.setState({ isDateTimePickerVisible: false });
     };
 
+    /**
+     * @func handleDatePicked get new time from user select and update state
+     */
     handleDatePicked = time => {
         this.setState({ date: new Date(this.state.date.setTime(time.getTime())) });
-        console.log("new state time: ", this.state.date);
         this.hideDateTimePicker();
     };
 
-    /*
+    /**
+     * @func saveBtnHandler validate ingredients and food name, and saves new diary to Async Stroage
+     * if today doesn't have any meal, then create new meal, if today exist meal then mergeItem 
+     * 
      * data structure
      * {'2642019': [{'Breakfast': [{0.1545: [{'time': date}, {'feel': 'Good'},{'food': 'bread'}, {'ingredients': 'wheat'}, {'symptoms': 'nothing wrong'}, {'comments': 'Good'}]},
      *                             {0.5454: [{'time': date}, {'feel': 'Alful'},{'food': 'milk'}, {'ingredients': 'milk'}, {'symptoms': 'itching skin'}, {'comments': 'allergy'}]}
@@ -78,9 +108,8 @@ class addDiaryScreen extends Component {
      *          ]
      * }
      */
-
     saveBtnHandler = async () => {
-        console.log(this.state);
+
         // check are ingredients and food name empty
         if (this.state.food.trim()) {
             this.setState({ isFoodNameEmpty: false });
@@ -98,7 +127,6 @@ class addDiaryScreen extends Component {
         }
 
         const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
-
         const saveObj = {
             time: JSON.stringify(this.state.date),
             feel: this.state.emotionSelected,
@@ -108,7 +136,10 @@ class addDiaryScreen extends Component {
             comments: this.state.comments
         }
 
-        // this obj will be saved in database
+        /*
+         * this obj will be saved in database
+         * a random key is used because Async Storage does not support auto increment key
+         */
         const obj = {
             [this.state.mealSelected]: {
                 [Math.random()]: saveObj
@@ -124,38 +155,23 @@ class addDiaryScreen extends Component {
                     try {
                         AsyncStorage.mergeItem(dateKey, JSON.stringify(obj));
                     } catch (e) {
-                        console.log(e + ' 2');
+                        console.log(e);
                     }
                 } else {
                     // create new object and save
                     try {
                         AsyncStorage.setItem(dateKey, JSON.stringify(obj));
                     } catch (e) {
-                        console.log(e + ' 3');
+                        console.log(e);
                     }
                 }
             });
         } catch (e) {
-            console.log(e + ' 1');
-        }
-
-        try {
-            const value = await AsyncStorage.getItem(dateKey);
-        } catch (e) {
-            // read error
+            console.log(e);
         }
 
         this.props.navigation.goBack();
     };
-
-    getMeals = async () => {
-        const dateKey = KeyGenerator.dateKeyGenerator(this.state.date);
-        try {
-            const value = await AsyncStorage.getItem(dateKey);
-        } catch (e) {
-            // read error
-        }
-    }
 
     render() {
         return (
@@ -165,7 +181,7 @@ class addDiaryScreen extends Component {
                 {/* <Content contentContainerStyle={{ flex: 1 }}> */}
                 <Content showsVerticalScrollIndicator={false}>
                     <Grid style={Theme.body} >
-                        <Row size={3} >
+                        <Row size={2} >
                             <Grid style={styles.headRow}>
                                 <Row size={1} style={{ alignItems: 'center', justifyContent: 'center', margin: 15 }} >
                                     <H3>How do you feel after the meal?</H3>
@@ -208,7 +224,7 @@ class addDiaryScreen extends Component {
                                 </Row>
                             </Grid>
                         </Row>
-                        <Row size={7} >
+                        <Row size={8} >
                             {/* <Grid style={{ backgroundColor: '#b792a6' }}> */}
                             <Grid>
                                 <Form style={styles.card2}>
@@ -355,7 +371,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "row",
-        margin: 10,
+        marginBottom: 10,
     },
     card2: {
         padding: 16,
