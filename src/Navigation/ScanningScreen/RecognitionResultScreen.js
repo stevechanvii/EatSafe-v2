@@ -97,7 +97,7 @@ export default class recognitionResultScreen extends Component {
                 return
             }
 
-            // compare the allergens and intolerence which user suffer from with the ingredients
+            // compare the allergens and intolerance which user suffer from with the ingredients
             const diagnose = AllergensDetector(allergenObj, ingredList);
             console.log(diagnose)
             if (diagnose.length > 0) {

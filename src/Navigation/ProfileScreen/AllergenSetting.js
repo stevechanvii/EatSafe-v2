@@ -50,7 +50,7 @@ class allergenSetting extends Component {
     };
 
     /**
-     * @func setAllergens saves allergens and intolerence to Async Storage
+     * @func setAllergens saves allergens and intolerance to Async Storage
      */
     setAllergens = async () => {
         const allergens = ["allergens", JSON.stringify(this.state.allergens)];
