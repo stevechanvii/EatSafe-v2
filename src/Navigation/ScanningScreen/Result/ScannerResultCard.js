@@ -86,7 +86,7 @@ class scannerResultCard extends Component {
 
             // compare the allergens and intolerence which user suffer from with the ingredients
             const diagnose = AllergensDetector(allergenObj, ingredientsList);
-            if (diagnose) {
+            if (diagnose.length > 0) {
                 // remove duplicant in diagnose
                 diagnoseCleaned = [...new Set(diagnose)];
 
