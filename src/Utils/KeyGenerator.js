@@ -1,5 +1,9 @@
-// this method will generate the date key based on the format: 10 May 2019 -> 20190510
-// import this file, then use fileName(date) to call this function
+/**
+ * @class dateKeyGenerator will generate the date key based on the format: 10 May 2019 -> 20190510
+ * @param {Object} date 
+ * 
+ * import this file, then use fileName(date) to call this function
+ */
 const dateKeyGenerator = (date) => {
     const year = date.getFullYear();
     // month is from 0-11, so we plus 1
@@ -21,9 +25,16 @@ const dateKeyGenerator = (date) => {
     }
 }
 
-// month and year need to be number, e.g. monthKeyGenerator(5, 2019), if today is 6 May 2019, 
-// this method will generate a list of [20190501, 20190502, 20190503, 20190504, 20190505, 20190506],
-// if today is 6 Jun 2019, it will generate [20190501, ... , 20190531]
+
+/**
+ * @class monthKeyGenerator will generate an array contains datekeys within a month
+ * @param {number} month e.g. 5
+ * @param {number} year e.g. 12
+ * 
+ * e.g. monthKeyGenerator(5, 2019), if today is 6 May 2019, 
+ * this method will generate a list of [20190501, 20190502, 20190503, 20190504, 20190505, 20190506],
+ * if today is 6 Jun 2019, it will generate [20190501, ... , 20190531]
+ */
 monthKeyGenerator = (month, year) => {
     const currentDate = new Date();
     const dateKeyList = [];

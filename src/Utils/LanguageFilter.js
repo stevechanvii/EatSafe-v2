@@ -1,4 +1,7 @@
-// this method remove the allergens which is not english, it return a list
+/**
+ * @class languageFilter removes the allergens which is not english, it return a list
+ * @param {String} allergens e.g. 'en:milk,en:soy,de:oyld'
+ */
 const languageFilter = (allergens) => {
     let allergenList = [];
     allergens.split(',').map(el => {

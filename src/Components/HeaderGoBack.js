@@ -2,6 +2,10 @@ import React from 'react';
 import { Left, Right, Title, Header, Body, Icon, Button, Text } from 'native-base';
 import Theme from '../Styles/Theme';
 
+/**
+ * @func headheaderGoBacker header for child page of roots
+ * @param {Object} props contains title and navigation
+ */
 const headerGoBack = (props) => {
     return (
         <Header androidStatusBarColor={Theme.headerBar.backgroundColor} style={Theme.headerBar} >
