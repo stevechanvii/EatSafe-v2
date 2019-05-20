@@ -30,10 +30,17 @@ class allergenSetting extends Component {
     saveHandler = () => {
         this.setAllergens();
 
-        Toast.show({
-            text: 'Saved',
-            textStyle: { textAlign: 'center' }
-        });
+        /**
+         * DESABLED
+         * 
+         * Warning: Can't perform a React state update on an unmounted component. 
+         * This is a no-op, but it indicates a memory leak in your application. 
+         * To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+         */
+        // Toast.show({
+        //     text: 'Saved',
+        //     textStyle: { textAlign: 'center' }
+        // });
 
         // call the refresh function in parent conponent and send current state as parameter
         this.props.navigation.state.params.refresh(
