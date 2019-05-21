@@ -1,15 +1,14 @@
 import React from 'react';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, ListItem } from 'native-base';
+import { Container, Text } from 'native-base';
+import ScanSVG from '../../../assets/svg/scan_svg';
 
 /**
  * @class lostNetworkw is the child component of productDetailScreen.js
  */
 const lostNetwork = () => (
     <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Icon name='comment-alert-outline' size={40} />
-        <Text style={{ color: "black", fontSize: 20, fontWeight: "bold" }}>Sorry, Lost Network Connection!</Text>
+        <ScanSVG.Network width={140} height={140} />
+        <Text style={{ color: "black", fontSize: 20, fontWeight: "bold", margin: 30 }}>Sorry, Lost Network Connection!</Text>
     </Container>
 );
 
