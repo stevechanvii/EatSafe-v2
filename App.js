@@ -22,6 +22,39 @@ import AllergenSetting from './src/Navigation/ProfileScreen/AllergenSetting';
 /**
  * This is the root component for EatSafe which defins four tabBar navigation (Diary, Scanner, Report, Profile),
  * screens need to be specify and can only navigate inside its stack
+ *
+ * Project Structure
+ * -----------------
+ * 
+ * App.js
+ * ├── DiaryScreen.js
+ * │   ├── DiaryContent.js
+ * │   │   └── MealConetent.js
+ * │   │       └── Meal.js
+ * │   └── AddDiaryScreen.js
+ * │ 
+ * ├── ScannerSegScreen.js
+ * │   ├── BarcodeScanner.js
+ * │   │   └── ProductDetailScreen.js
+ * │   │       ├── ScannerResultCard.js
+ * │   │       ├── LostNetwork.js
+ * │   │       └── ProductNotFound.js
+ * │   ├── TextRecognition.js
+ * │   │   └── RecognitionResultScreen.js
+ * │   └── CreateDiaryScreen.js
+ * │
+ * ├── ReportScreen.js
+ * │   ├── WeeklyReport.js
+ * │   ├── MonthlyReport.js
+ * │   └── YearlyReport.js
+ * │
+ * └── ProfileScreen.js
+ *     ├── EditProfileScreen.js
+ *     ├── AllergenSetting.js
+ *     ├── KnowledgeCard.js
+ *     ├── AboutUs.js
+ *     ├── ChefCard.js
+ *     └── ExportCSV.js
  */
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
