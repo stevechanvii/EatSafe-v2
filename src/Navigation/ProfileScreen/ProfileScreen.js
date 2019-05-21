@@ -25,7 +25,6 @@ class profileScreen extends Component {
         user: {},
         allergens: {},
         intolerance: {},
-
     };
 
     /**

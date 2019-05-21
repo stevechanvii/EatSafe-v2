@@ -31,17 +31,18 @@ class chefCard extends Component {
 
     // get the parameter allergens and intolerance from parent component, set default value if not exist
     const info = this.props.navigation.getParam('info', { allergens: {}, intolerance: {} });
+    console.log(info.allergens)
 
     // convert allergens and intolerance from object to array
     const allergens = [];
-    if (!(Object.entries(info.allergens).length === 0 && info.allergens.constructor === Object)) {
+    if (info.allergens) {
       Object.entries(info.allergens).forEach(([key, value]) => {
         value ? allergens.push(key) : ''
       });
-    }
+    } 
 
     const intolerance = [];
-    if (!(Object.entries(info.intolerance).length === 0 && info.intolerance.constructor === Object)) {
+    if (info.intolerance) {
       Object.entries(info.intolerance).forEach(([key, value]) => {
         value ? intolerance.push(key) : ''
       });
@@ -205,12 +206,22 @@ class chefCard extends Component {
     // get the parameter user from parent component, set default value if not exist
     const user = this.props.navigation.getParam('info', { user: { avatar: "", name: "PokeAllergist", email: "" } }).user;
 
+    console.log(user)
+    // check user empty, it happens when user set allergens but not account
+    let email = '';
+    let name = '';
+    if (user) {
+      email = user.email;
+      name = user.name;
+    } 
+    console.log(user)
+
     Mailer.mail({
       subject: 'Chef card',
-      recipients: [user.email],
+      recipients: [email],
       // ccRecipients: ['supportCC@example.com'],
       // bccRecipients: ['supportBCC@example.com'],
-      body: `Hi, this is your chef card from <b>PokeAllergist</b><br><br><br>Best Regards,<br>${user.name}`,
+      body: `Hi, this is your chef card from <b>PokeAllergist</b><br><br><br>Best Regards,<br>${name}`,
       isHTML: true,
       attachment: {
         path: pdfPath,
