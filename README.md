@@ -129,8 +129,6 @@ Guidance
 * https://github.com/frichti/react-native-tips
 
 Splash Screen
-* https://github.com/fuyaode/react-native-app-intro
-* https://github.com/crazycodeboy/react-native-splash-screen
 * https://github.com/Jacse/react-native-app-intro-slider
 
 3D touch
