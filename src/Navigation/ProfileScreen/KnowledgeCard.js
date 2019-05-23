@@ -81,8 +81,8 @@ const cards =
             Text2: 'Present the card to the chef or manager.',
             // Text3: '\n\nDownload and print the template and keep along with you when eating out.',
             // Text4: '\n\nClick the following link and access the Checfs card template provided by Allergy & Anaphylaxis Australia ',
-            Text11: 'https://allergyfacts.org.au/images/pdf/AAA_Chef_Card_Template_2018_editable.pdf',
-            Text12: '\n\nClick Here To Access the Chef Card',
+            // Text11: 'https://allergyfacts.org.au/images/pdf/AAA_Chef_Card_Template_2018_editable.pdf',
+            // Text12: '\n\nClick Here To Access the Chef Card',
             image: require('../../assets/img/chef_card.png'),
         },
 
@@ -147,7 +147,7 @@ export default class KnowledgeCard extends Component {
                     />
                 </View>
                 {/* </Content> */}
-                <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 0, left: 0, right: 0, justifyContent: 'space-between', padding: 1 }}>
+                {/* <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 0, left: 0, right: 0, justifyContent: 'space-between', padding: 1 }}>
                     <Button info iconLeft onPress={() => this._deckSwiper._root.swipeLeft()}>
                         <Icon name="arrow-back" />
                         <Text>Swipe Left</Text>
@@ -156,7 +156,7 @@ export default class KnowledgeCard extends Component {
                         <Text>Swipe Right</Text>
                         <Icon name="arrow-forward" />
                     </Button>
-                </View>
+                </View> */}
             </Container>
         );
     }
