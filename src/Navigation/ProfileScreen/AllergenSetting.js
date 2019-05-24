@@ -275,7 +275,7 @@ class allergenSetting extends Component {
                                             <Col size={1} style={styles.gridCenter}>
                                                 <TouchableOpacity onPress={() => this.toggleIntoleranceBtn('chili')}>
                                                     <IntoleranceSVG.Chili style={styles.iconCenter} height={60} width={60} isAllergic={this.state.intolerance.chili} />
-                                                    <Text style={styles.iconCenter}>Chili</Text>
+                                                    <Text style={styles.iconCenter}>Chilli</Text>
                                                 </TouchableOpacity>
                                             </Col>
                                         </Grid>

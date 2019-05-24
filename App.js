@@ -23,6 +23,7 @@ import AllergenSetting from './src/Navigation/ProfileScreen/AllergenSetting';
  * This is the root component for EatSafe which defins four tabBar navigation (Diary, Scanner, Report, Profile),
  * screens need to be specify and can only navigate inside its stack
  *
+ * 
  * Project Structure
  * -----------------
  * 

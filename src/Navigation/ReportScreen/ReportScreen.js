@@ -5,7 +5,8 @@ import { Container, Text, Item, Content, Card, CardItem, Body, Label, H3, Icon, 
 import AsyncStorage from '@react-native-community/async-storage';
 import Preference from '../../Preferences/Preferences';
 import Header from '../../Components/Header';
-import defaultAllergens from '../../Preferences/IntoleranceMap'
+import defaultAllergens from '../../Preferences/IntoleranceMap';
+import ReportSVG from '../../assets/svg/report_svg';
 import {
     LineChart,
     BarChart,
@@ -81,7 +82,9 @@ class reportScreen extends Component {
 
         try {
             values = await AsyncStorage.multiGet(dateKeys);
-            values.map(daysList => {
+            tempval = []
+            values.map(x => (!(x.includes("allergens") | x.includes("intolerance") | x.includes("user")) ? tempval.push(x) : null))
+            tempval.map(daysList => {
                 if (daysList) {
                     if (daysList[1]) {
                         let minFeel = 5;
@@ -106,6 +109,9 @@ class reportScreen extends Component {
             // read error
             console.log(e);
         }
+        delete dailyFeel['allergens'];
+        delete dailyFeel['intolerance'];
+        delete dailyFeel['user'];
 
         console.log(symptoms);
 
@@ -221,31 +227,31 @@ class reportScreen extends Component {
         return (
             <Container>
                 <Header title='Report' />
-                <Content showsVerticalScrollIndicator={false}>
-                    <Card style={styles.card}>
-                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10 }}>Ingredients to avoid</H3>
+                <Content showsVerticalScrollIndicator={false} padder>
+                    <Card style={[styles.card, { marginTop: 10 }]}>
+                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10, marginTop: 10 }}>Ingredients to avoid</H3>
                         <CardItem style={styles.cardItem}>
-                            {avoidIngred.map(el => (
+                            {avoidIngred.length > 0 ? avoidIngred.map(el => (
                                 <Item key={Math.random()} rounded style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'red' }}>
                                     <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }}>{el}</Text>
                                 </Item>
-                            ))}
+                            )) : <ReportSVG.Diary height={140} width={140} />}
                         </CardItem>
                     </Card>
                     <Card style={styles.card}>
-                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10 }}>Possible Intolerances</H3>
+                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10, marginTop: 10 }}>Possible Intolerances</H3>
                         <CardItem style={styles.cardItem}>
                             {/* <WeeklyReport feelData={feelData} feelLabel={feelLabel} /> */}
-                            {intol.map(el => (
+                            {intol.length > 0 ? intol.map(el => (
                                 <Item key={Math.random()} rounded style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'red' }}>
                                     <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }}>{el}</Text>
                                 </Item>
-                            ))}
+                            )) : <ReportSVG.PastelMicroscope height={100} width={100} />}
                         </CardItem>
                         <Text style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10 }}>Consult a doctor to confirm</Text>
                     </Card>
                     <Card style={styles.card}>
-                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10 }}>Quarterly Feel Trend</H3>
+                        <H3 style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 10, marginTop: 10 }}>Quarterly Feel Trend</H3>
                         <CardItem style={styles.cardItem}>
                             <Item rounded style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: '#FA7921' }}>
                                 <TouchableOpacity onPress={() => this.shiftQuarter(-3)}>
@@ -271,9 +277,10 @@ class reportScreen extends Component {
                     </Card>
                     <Card style={styles.card}>
                         <CardItem style={styles.cardItem}>
-                            <Text style={styles.cardTitle}>Symptoms Distribution</Text>
+                            <Text style={[styles.cardTitle, { marginTop: 10 }]}>Symptoms Distribution</Text>
                         </CardItem>
                         <CardItem style={styles.cardItem}>
+                            {this.state.symptomData.length > 0 ?
                                 <PieChart
                                     data={this.state.symptomData}
                                     width={screenWidth}
@@ -283,7 +290,7 @@ class reportScreen extends Component {
                                     backgroundColor="transparent"
                                     paddingLeft="15"
                                     absolute
-                                />
+                                /> : <ReportSVG.Constructing height={120} width={120} />}
                         </CardItem>
                     </Card>
                 </Content>

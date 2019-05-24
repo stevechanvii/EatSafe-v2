@@ -29,7 +29,7 @@ const Allergens = {
     'nut': ['cashew', 'walnut', 'almond'],
     'peanut': [],
     'soy': [],
-    'fish': ['gadus', 'trout'],
+    'fish': ['gadus', 'trout', 'tuna'],
     'shell': ['crab', 'prawn', 'oyster', 'octopus', 'clam'],
     'gluten': ['wheat'],
     'celery': [],
@@ -48,7 +48,7 @@ const Intolerance = {
     'lamb': [],
     'carrot': [],
     'garlic': [],
-    'chili': [],
+    'chili': ['chilli'],
 }
 
 const Symptoms = [
