@@ -2,8 +2,8 @@ import React from 'react';
 
 /**
  * @func allergensDetctor grab the allergens and compare with in the list, and return a list
- * @param {*} allergenObj is the object contains allergens(key) that user suffering and byproducts(value) predefined in Preference
- * @param {*} ingredientsList is the list of detected ingredients
+ * @param {Object} allergenObj is the object contains allergens(key) that user suffering and byproducts(value) predefined in Preference
+ * @param {Array} ingredientsList is the list of detected ingredients
  */
 const allergensDetctor = (allergenObj, ingredientsList) => {
     const detected = [];
