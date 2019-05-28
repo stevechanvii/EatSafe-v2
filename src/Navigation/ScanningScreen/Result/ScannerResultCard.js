@@ -234,8 +234,6 @@ const styles = StyleSheet.create({
         paddingRight: 0,
         paddingTop: 0,
         borderRadius: 10,
-        // borderTopLeftRadius: 10,
-        // borderTopRightRadius: 10,
     },
     imageView: {
         height: 200,
