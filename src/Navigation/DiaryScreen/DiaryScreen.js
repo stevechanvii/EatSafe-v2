@@ -74,6 +74,7 @@ export default class diaryScreen extends Component {
 
   /**
    * @func componentDidMount before dairy tab get focus, rerender this screen
+   * afterAddNew is to update state and re-render the components
    */
   componentDidMount() {
     // https://github.com/react-navigation/react-navigation/issues/1617
