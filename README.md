@@ -140,6 +140,9 @@ resource
 touch id
 https://github.com/naoufal/react-native-touch-id
 
+multi language support
+https://github.com/AlexanderZaytsev/react-native-i18n
+
 
 
 
