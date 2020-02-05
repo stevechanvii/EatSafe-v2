@@ -2,7 +2,7 @@
 
 ## What's NEW!
 * We change our name from EatSafe to PokeAllergist to avoid IP conflicts in App Store and Google Play.
-* All-new UI design and user-friendly interaction logic.
+* We implement all-new UI design and user-friendly interaction logic.
 * Using AI to identify your potential allergies and intolerance, the basic idea is to collect the data (ingredients, feeling and reaction) and match weight to every ingredient. We have maintained a considerable allegiance map. Once we identify the user allergic to milk, it is highly likely that the user may allergic to milk byproducts, such as cheese, yogurt and latte.
 
 ## Main features
@@ -141,10 +141,6 @@ multi language support
 https://github.com/AlexanderZaytsev/react-native-i18n
 
 
-
-
-
-
 Thank you for all the communities and programmers who provide so amazing open source libraries. 
 
 ## Versioning
@@ -163,6 +159,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 
 ## Acknowledgments
 
-* Produced by Team Hygieia (Danyang Chen, Souvic Chaki, Santash Ashok Pawar, Lili Zhou, Zizhang Ba)
-* Inspiration
+* Proudly produced by Team Hygieia (Danyang Chen, Souvic Chaki, Santash Ashok Pawar, Lili Zhou, Zizhang Ba)
 * Some high quality icons come from icons8 (https://icons8.com/license), I subscribed when I developed this app. Do read the license before using. Furthermore, I use https://www.smooth-code.com/open-source/svgr/playground/ convert svg to jsx svg
