@@ -5,6 +5,7 @@
 * All-new UI design and user-friendly interaction logic.
 * Using AI to identify your potential allergies and intolerance, the basic idea is to collect the data (ingredients, feeling and reaction) and match weight to every ingredient. We have maintained a considerable allegiance map. Once we identify the user allergic to milk, it is highly likely that the user may allergic to milk byproducts, such as cheese, yogurt and latte.
 
+## Main features
 Eat Safe-Eat what suits you.  
 An app to deal with food sensitivity.  
 A safeguard from allergies and intolerance.  
@@ -15,7 +16,6 @@ Eliminate food that doesn't suit you.
 ![ScreenShot](src/assets/screenshots/intro.jpg)
 
 The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe  
-
 
 ## Main features
 ### Diary
