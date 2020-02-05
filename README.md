@@ -1,4 +1,9 @@
-# EatSafe V2.0
+# PokeAllergist
+
+## What's NEW!
+* We change our name from EatSafe to PokeAllergist to avoid IP conflicts in App Store and Google Play.
+* All-new UI design and user-friendly interaction logic.
+* Using AI to identify your potential allergies and intolerance, the basic idea is to collect the data (ingredients, feeling and reaction) and match weight to every ingredient. We have maintained a considerable allegiance map. Once we identify the user allergic to milk, it is highly likely that the user may allergic to milk byproducts, such as cheese, yogurt and latte.
 
 Eat Safe-Eat what suits you.  
 An app to deal with food sensitivity.  
@@ -7,32 +12,27 @@ Scan food products before buying them.
 Keep track of daily meals.  
 Eliminate food that doesn't suit you.  
 
-The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe
+![ScreenShot](src/assets/screenshots/intro.jpg)
+
+The first iteration of EatSafe in https://github.com/stevechanvii/EatSafe  
+
 
 ## Main features
 ### Diary
-* Diary entries to track the diet of daily intake.  
-![ScreenShot](src/assets/screenshots/IMG_5282.JPG)
-![ScreenShot](src/assets/screenshots/IMG_5289.JPG)
+* Diary entries to track the diet of diary intake.  
+![ScreenShot](src/assets/screenshots/diary.jpg)
 
 ### Scanning
-* Barcode scanning the product, and get alert if it contains allergens your suffer from.  
-![ScreenShot](src/assets/screenshots/IMG_5283.JPG)
-![ScreenShot](src/assets/screenshots/IMG_5284.JPG)
-
-### Text Recognition
-* Allow you idenfity the ingredients from product wrapper.  
-![ScreenShot](src/assets/screenshots/IMG_5288.JPG)
+* Barcode scanning or text recognition, and get alert if it contains allergens your suffer from.  
+![ScreenShot](src/assets/screenshots/scanner.jpg)
 
 ### Report
-* Generate weekly, monthly and yearly report based on diary.  
-![ScreenShot](src/assets/screenshots/IMG_5285.JPG)
-![ScreenShot](src/assets/screenshots/IMG_5290.JPG)
+* Generate report based on diary.  
+![ScreenShot](src/assets/screenshots/report.jpg)
 
 ### Profile
 * Settings and allow you export data from local database.  
-![ScreenShot](src/assets/screenshots/IMG_5286.JPG)
-![ScreenShot](src/assets/screenshots/IMG_5287.JPG)
+![ScreenShot](src/assets/screenshots/profile.jpg)
 
 ## Getting Started
 

@@ -129,7 +129,7 @@ export default class diaryScreen extends Component {
     return (
       <Root>
         <Container>
-          <Header title='Dairy' />
+          <Header title='Diary' />
           <Grid style={Theme.body} >
             <Row size={2}>
               <Col size={2} style={styles.arrowBtn}>
