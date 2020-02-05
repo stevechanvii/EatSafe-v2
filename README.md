@@ -3,7 +3,7 @@
 ## What's NEW!
 * We change our name from EatSafe to PokeAllergist to avoid IP conflicts in App Store and Google Play.
 * We implement all-new UI design and user-friendly interaction logic.
-* Using AI to identify your potential allergies and intolerance, the basic idea is to collect the data (ingredients, feeling and reaction) and match weight to every ingredient. We have maintained a considerable allegiance map. Once we identify the user allergic to milk, it is highly likely that the user may allergic to milk byproducts, such as cheese, yogurt and latte.
+* Using AI to identify your potential allergies and intolerance, the basic idea is to collect the data (ingredients, feeling and reaction) and match weight to every ingredient. We have maintained a considerable allegiance map. Once we identify the user allergic such as milk, it is highly likely that the user may allergic to milk byproducts, such as cheese, yogurt and latte.
 
 ## Introduction
 Eat Safe-Eat what suits you.  
